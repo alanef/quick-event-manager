@@ -1,4 +1,7 @@
 == Changelog ==
+= 9.6.4 =
+* Remove some warnings and fix 8.1 issue
+
 = 9.6.3 =
 * Add filter for CPT creation
 
