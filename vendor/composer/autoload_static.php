@@ -6,6 +6,20 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitda97497b29fc495785fa0ede798f45e4
 {
+    public static $prefixLengthsPsr4 = array (
+        'D' => 
+        array (
+            'DrewM\\MailChimp\\' => 16,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'DrewM\\MailChimp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/drewm/mailchimp-api/src',
+        ),
+    );
+
     public static $prefixesPsr0 = array (
         'C' => 
         array (
@@ -53,12 +67,17 @@ class ComposerStaticInitda97497b29fc495785fa0ede798f45e4
         'Composer\\Installers\\WordPressInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/WordPressInstaller.php',
         'Composer\\Installers\\ZendInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/ZendInstaller.php',
         'Composer\\Installers\\ZikulaInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/ZikulaInstaller.php',
+        'DrewM\\MailChimp\\Batch' => __DIR__ . '/..' . '/drewm/mailchimp-api/src/Batch.php',
+        'DrewM\\MailChimp\\MailChimp' => __DIR__ . '/..' . '/drewm/mailchimp-api/src/MailChimp.php',
+        'DrewM\\MailChimp\\Webhook' => __DIR__ . '/..' . '/drewm/mailchimp-api/src/Webhook.php',
         'Gamajo_Template_Loader' => __DIR__ . '/..' . '/gamajo/template-loader/class-gamajo-template-loader.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInitda97497b29fc495785fa0ede798f45e4::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitda97497b29fc495785fa0ede798f45e4::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInitda97497b29fc495785fa0ede798f45e4::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitda97497b29fc495785fa0ede798f45e4::$classMap;
 

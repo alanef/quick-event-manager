@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'fullworks/quick-event-manager',
-        'pretty_version' => '9.6.4.x-dev',
-        'version' => '9.6.4.9999999-dev',
-        'reference' => '85cdf439670ca5a3027fc475b23fcea7b8d62a50',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => 'b233e34ca2b700b6bb60019daa063c7caa657615',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -19,10 +19,19 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'drewm/mailchimp-api' => array(
+            'pretty_version' => 'v2.5.4',
+            'version' => '2.5.4.0',
+            'reference' => 'c6cdfab4ca6ddbc3b260913470bd0a4a5cb84c7a',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../drewm/mailchimp-api',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'freemius/wordpress-sdk' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '35782eb9f19eefc63723afb3196c768bca6dfbd9',
+            'reference' => '2e56d683dd7b30445940679ecb401d2aff746c9e',
             'type' => 'library',
             'install_path' => __DIR__ . '/../freemius/wordpress-sdk',
             'aliases' => array(
@@ -31,9 +40,9 @@
             'dev_requirement' => false,
         ),
         'fullworks/quick-event-manager' => array(
-            'pretty_version' => '9.6.4.x-dev',
-            'version' => '9.6.4.9999999-dev',
-            'reference' => '85cdf439670ca5a3027fc475b23fcea7b8d62a50',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => 'b233e34ca2b700b6bb60019daa063c7caa657615',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -53,24 +62,6 @@
             'replaced' => array(
                 0 => '*',
             ),
-        ),
-        'squizlabs/php_codesniffer' => array(
-            'pretty_version' => '3.7.1',
-            'version' => '3.7.1.0',
-            'reference' => '1359e176e9307e906dc3d890bcc9603ff6d90619',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../squizlabs/php_codesniffer',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'wp-coding-standards/wpcs' => array(
-            'pretty_version' => '2.3.0',
-            'version' => '2.3.0.0',
-            'reference' => '7da1894633f168fe244afc6de00d141f27517b62',
-            'type' => 'phpcodesniffer-standard',
-            'install_path' => __DIR__ . '/../wp-coding-standards/wpcs',
-            'aliases' => array(),
-            'dev_requirement' => false,
         ),
     ),
 );
