@@ -78,7 +78,7 @@ function qem_registration_fields()
     ),
         'yournumber1'     => array(
         'form_field'  => 12,
-        'sanitize_cb' => 'qem_sanitize_number',
+        'sanitize_cb' => 'sanitize_text_field',
         'default'     => '',
     ),
         'yourselector'    => array(
@@ -725,6 +725,7 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
                 case 'field8':
                     
                     if ( qem_get_element( $register, 'usecopy', false ) ) {
+                        $copychecked = '';
                         if ( qem_get_element( $register, 'copychecked' ) ) {
                             $copychecked = 'checked';
                         }
@@ -1963,230 +1964,232 @@ function qem_build_registration_table_esc(
     $content_escaped .= '</tr>';
     $num = 0;
     $sort_message = qem_add_message_key( $message );
-    foreach ( $sort_message as $value ) {
-        $num += (int) qem_get_element( $value, 'yourplaces', 0 );
-        $span = '';
-        if ( $number && $num > $number ) {
-            $span = 'color:#CCC;';
-        }
-        if ( !qem_get_element( $value, 'approved', false ) && $register['moderate'] ) {
-            $span = $span . 'font-style:italic;';
-        }
-        if ( $span ) {
-            $span = ' style="' . $span . '" ';
-        }
-        $content_escaped .= '<tr' . esc_attr( $span ) . '>';
-        foreach ( $sort as $name ) {
-            switch ( $name ) {
-                case 'field1':
-                    $content_escaped .= qem_build_reg_input_esc(
-                        'type="text"',
-                        'usename',
-                        'yourname',
-                        $register,
-                        $selected,
-                        $i_array,
-                        $value,
-                        $qem_edit
-                    );
-                    break;
-                case 'field2':
-                    $content_escaped .= qem_build_reg_input_esc(
-                        'type="text"',
-                        'usemail',
-                        'youremail',
-                        $register,
-                        $selected,
-                        $i_array,
-                        $value,
-                        $qem_edit
-                    );
-                    break;
-                case 'field3':
-                    $content_escaped .= qem_build_reg_input_esc(
-                        'type="text"',
-                        'useattend',
-                        'yourattend',
-                        $register,
-                        $selected,
-                        $i_array,
-                        $value,
-                        $qem_edit
-                    );
-                    break;
-                case 'field4':
-                    $content_escaped .= qem_build_reg_input_esc(
-                        'type="text"',
-                        'usetelephone',
-                        'yourtelephone',
-                        $register,
-                        $selected,
-                        $i_array,
-                        $value,
-                        $qem_edit
-                    );
-                    break;
-                case 'field5':
-                    
-                    if ( qem_get_element( $register, 'useplaces' ) && empty(qem_get_element( $value, 'notattend' )) ) {
-                        $content_escaped .= '<td class="yourplaces">';
+    if ( is_array( $sort_message ) ) {
+        foreach ( $sort_message as $value ) {
+            $num += (int) qem_get_element( $value, 'yourplaces', 0 );
+            $span = '';
+            if ( $number && $num > $number ) {
+                $span = 'color:#CCC;';
+            }
+            if ( !qem_get_element( $value, 'approved', false ) && $register['moderate'] ) {
+                $span = $span . 'font-style:italic;';
+            }
+            if ( $span ) {
+                $span = ' style="' . $span . '" ';
+            }
+            $content_escaped .= '<tr' . esc_attr( $span ) . '>';
+            foreach ( $sort as $name ) {
+                switch ( $name ) {
+                    case 'field1':
+                        $content_escaped .= qem_build_reg_input_esc(
+                            'type="text"',
+                            'usename',
+                            'yourname',
+                            $register,
+                            $selected,
+                            $i_array,
+                            $value,
+                            $qem_edit
+                        );
+                        break;
+                    case 'field2':
+                        $content_escaped .= qem_build_reg_input_esc(
+                            'type="text"',
+                            'usemail',
+                            'youremail',
+                            $register,
+                            $selected,
+                            $i_array,
+                            $value,
+                            $qem_edit
+                        );
+                        break;
+                    case 'field3':
+                        $content_escaped .= qem_build_reg_input_esc(
+                            'type="text"',
+                            'useattend',
+                            'yourattend',
+                            $register,
+                            $selected,
+                            $i_array,
+                            $value,
+                            $qem_edit
+                        );
+                        break;
+                    case 'field4':
+                        $content_escaped .= qem_build_reg_input_esc(
+                            'type="text"',
+                            'usetelephone',
+                            'yourtelephone',
+                            $register,
+                            $selected,
+                            $i_array,
+                            $value,
+                            $qem_edit
+                        );
+                        break;
+                    case 'field5':
                         
-                        if ( $qem_edit == 'selected' && qem_get_element( $selected, $i_array ) || $qem_edit == 'all' ) {
-                            $content_escaped .= '<input style="width:100%" type="number" required min="1" value="' . esc_attr( qem_get_element( $value, 'yourplaces' ) ) . '" name="message[' . esc_attr( qem_get_element( $value, 'orig_key' ) ) . '][yourplaces]">';
-                        } else {
-                            $content_escaped .= wp_kses_post( qem_get_element( $value, 'yourplaces' ) . qem_get_element( $value, 'products' ) );
+                        if ( qem_get_element( $register, 'useplaces' ) && empty(qem_get_element( $value, 'notattend' )) ) {
+                            $content_escaped .= '<td class="yourplaces">';
+                            
+                            if ( $qem_edit == 'selected' && qem_get_element( $selected, $i_array ) || $qem_edit == 'all' ) {
+                                $content_escaped .= '<input style="width:100%" type="number" required min="1" value="' . esc_attr( qem_get_element( $value, 'yourplaces' ) ) . '" name="message[' . esc_attr( qem_get_element( $value, 'orig_key' ) ) . '][yourplaces]">';
+                            } else {
+                                $content_escaped .= wp_kses_post( qem_get_element( $value, 'yourplaces' ) . qem_get_element( $value, 'products' ) );
+                            }
+                            
+                            $content_escaped .= '</td>';
+                        } elseif ( qem_get_element( $register, 'useplaces' ) ) {
+                            $content_escaped .= '<td></td>';
                         }
                         
-                        $content_escaped .= '</td>';
-                    } elseif ( qem_get_element( $register, 'useplaces' ) ) {
-                        $content_escaped .= '<td></td>';
-                    }
-                    
-                    $content_escaped .= qem_build_reg_input_esc(
-                        'type="text"',
-                        'usemorenames',
-                        'morenames',
-                        $register,
-                        $selected,
-                        $i_array,
-                        $value,
-                        $qem_edit
-                    );
-                    break;
-                case 'field6':
-                    if ( qem_get_element( $register, 'usemessage', false ) ) {
-                        $content_escaped .= '<td class="yourmessage">' . wp_kses_post( qem_get_element( $value, 'yourmessage' ) ) . '</td>';
-                    }
-                    break;
-                case 'field9':
-                    $content_escaped .= qem_build_reg_input_esc(
-                        'type="text"',
-                        'useblank1',
-                        'yourblank1',
-                        $register,
-                        $selected,
-                        $i_array,
-                        $value,
-                        $qem_edit
-                    );
-                    break;
-                case 'field10':
-                    $content_escaped .= qem_build_reg_input_esc(
-                        'type="text"',
-                        'useblank2',
-                        'yourblank2',
-                        $register,
-                        $selected,
-                        $i_array,
-                        $value,
-                        $qem_edit
-                    );
-                    break;
-                case 'field11':
-                    $content_escaped .= qem_build_reg_input_esc(
-                        'type="text"',
-                        'usedropdown',
-                        'yourdropdown',
-                        $register,
-                        $selected,
-                        $i_array,
-                        $value,
-                        $qem_edit
-                    );
-                    break;
-                case 'field12':
-                    $content_escaped .= qem_build_reg_input_esc(
-                        'type="text"',
-                        'usenumber1',
-                        'yournumber1',
-                        $register,
-                        $selected,
-                        $i_array,
-                        $value,
-                        $qem_edit
-                    );
-                    break;
-                case 'field14':
-                    $content_escaped .= qem_build_reg_input_esc(
-                        'type="text"',
-                        'usedselector',
-                        'yourselector',
-                        $register,
-                        $selected,
-                        $i_array,
-                        $value,
-                        $qem_edit
-                    );
-                    break;
-                case 'field15':
-                    $content_escaped .= qem_build_reg_input_esc(
-                        'type="text"',
-                        'useoptin',
-                        'youroptin',
-                        $register,
-                        $selected,
-                        $i_array,
-                        $value,
-                        $qem_edit
-                    );
-                    break;
-                case 'field16':
-                    $content_escaped .= qem_build_reg_input_esc(
-                        'type="text"',
-                        'usechecks',
-                        'checkslist',
-                        $register,
-                        $selected,
-                        $i_array,
-                        $value,
-                        $qem_edit
-                    );
-                    break;
-                case 'field17':
-                    break;
+                        $content_escaped .= qem_build_reg_input_esc(
+                            'type="text"',
+                            'usemorenames',
+                            'morenames',
+                            $register,
+                            $selected,
+                            $i_array,
+                            $value,
+                            $qem_edit
+                        );
+                        break;
+                    case 'field6':
+                        if ( qem_get_element( $register, 'usemessage', false ) ) {
+                            $content_escaped .= '<td class="yourmessage">' . wp_kses_post( qem_get_element( $value, 'yourmessage' ) ) . '</td>';
+                        }
+                        break;
+                    case 'field9':
+                        $content_escaped .= qem_build_reg_input_esc(
+                            'type="text"',
+                            'useblank1',
+                            'yourblank1',
+                            $register,
+                            $selected,
+                            $i_array,
+                            $value,
+                            $qem_edit
+                        );
+                        break;
+                    case 'field10':
+                        $content_escaped .= qem_build_reg_input_esc(
+                            'type="text"',
+                            'useblank2',
+                            'yourblank2',
+                            $register,
+                            $selected,
+                            $i_array,
+                            $value,
+                            $qem_edit
+                        );
+                        break;
+                    case 'field11':
+                        $content_escaped .= qem_build_reg_input_esc(
+                            'type="text"',
+                            'usedropdown',
+                            'yourdropdown',
+                            $register,
+                            $selected,
+                            $i_array,
+                            $value,
+                            $qem_edit
+                        );
+                        break;
+                    case 'field12':
+                        $content_escaped .= qem_build_reg_input_esc(
+                            'type="text"',
+                            'usenumber1',
+                            'yournumber1',
+                            $register,
+                            $selected,
+                            $i_array,
+                            $value,
+                            $qem_edit
+                        );
+                        break;
+                    case 'field14':
+                        $content_escaped .= qem_build_reg_input_esc(
+                            'type="text"',
+                            'usedselector',
+                            'yourselector',
+                            $register,
+                            $selected,
+                            $i_array,
+                            $value,
+                            $qem_edit
+                        );
+                        break;
+                    case 'field15':
+                        $content_escaped .= qem_build_reg_input_esc(
+                            'type="text"',
+                            'useoptin',
+                            'youroptin',
+                            $register,
+                            $selected,
+                            $i_array,
+                            $value,
+                            $qem_edit
+                        );
+                        break;
+                    case 'field16':
+                        $content_escaped .= qem_build_reg_input_esc(
+                            'type="text"',
+                            'usechecks',
+                            'checkslist',
+                            $register,
+                            $selected,
+                            $i_array,
+                            $value,
+                            $qem_edit
+                        );
+                        break;
+                    case 'field17':
+                        break;
+                }
             }
-        }
-        if ( qem_get_element( $value, 'yourname' ) || qem_get_element( $value, 'youremail' ) ) {
-            $output = true;
-        }
-        $content_escaped .= '<td class="sentdate">' . esc_attr( qem_get_element( $value, 'sentdate' ) ) . '</td>';
-        
-        if ( qem_get_element( $payment, 'ipn' ) || qem_get_element( $ic, 'useincontext' ) || qem_get_element( $register, 'ignorepayment' ) ) {
-            $paid_sel = '';
-            $pending_sel = '';
-            
-            if ( 'Paid' == qem_get_element( $value, 'ipn' ) ) {
-                $paid_sel = ' selected ';
-            } else {
-                $pending_sel = ' selected ';
+            if ( qem_get_element( $value, 'yourname' ) || qem_get_element( $value, 'youremail' ) ) {
+                $output = true;
             }
+            $content_escaped .= '<td class="sentdate">' . esc_attr( qem_get_element( $value, 'sentdate' ) ) . '</td>';
             
-            $ipn = ( qem_get_element( $payment, 'sandbox' ) ? qem_get_element( $value, 'ipn' ) : esc_html__( 'Pending', 'quick-event-manager' ) );
-            if ( isset( $register['ignorepayment'] ) && $register['ignorepayment'] && isset( $value['ignore'] ) && 'checked' === $value['ignore'] ) {
-                $ipn = qem_get_element( $register, 'ignorepaymentlabel' );
-            }
-            $value['ipn'] = ( qem_get_element( $value, 'ipn' ) == "Paid" ? qem_get_element( $payment, 'paid' ) : $ipn );
-            $content_escaped .= '<td class="payment">';
-            
-            if ( $qem_edit == 'selected' && qem_get_element( $selected, $i_array ) || $qem_edit == 'all' ) {
-                //		$content .= '<input style="width:100%" type="text" value="' . $value['ipn'] . '" name="message[' . $i . '][ipn]">';
-                $content_escaped .= '<select style="width:100%"' . '" name="message[' . esc_attr( qem_get_element( $value, 'orig_key' ) ) . '][ipn]">';
-                $content_escaped .= '<option value="Paid"' . esc_attr( $paid_sel ) . '>' . esc_attr( qem_get_element( $payment, 'paid' ) ) . '</option>';
-                $content_escaped .= '<option value="' . esc_attr( qem_get_element( $value, 'custom' ) ) . '"' . $pending_sel . '>' . esc_html__( 'Pending', 'quick-event-manager' ) . '</option>';
-                $content_escaped .= '</select>';
-            } else {
-                $content_escaped .= esc_html( qem_get_element( $value, 'ipn' ) );
+            if ( qem_get_element( $payment, 'ipn' ) || qem_get_element( $ic, 'useincontext' ) || qem_get_element( $register, 'ignorepayment' ) ) {
+                $paid_sel = '';
+                $pending_sel = '';
+                
+                if ( 'Paid' == qem_get_element( $value, 'ipn' ) ) {
+                    $paid_sel = ' selected ';
+                } else {
+                    $pending_sel = ' selected ';
+                }
+                
+                $ipn = ( qem_get_element( $payment, 'sandbox' ) ? qem_get_element( $value, 'ipn' ) : esc_html__( 'Pending', 'quick-event-manager' ) );
+                if ( isset( $register['ignorepayment'] ) && $register['ignorepayment'] && isset( $value['ignore'] ) && 'checked' === $value['ignore'] ) {
+                    $ipn = qem_get_element( $register, 'ignorepaymentlabel' );
+                }
+                $value['ipn'] = ( qem_get_element( $value, 'ipn' ) == "Paid" ? qem_get_element( $payment, 'paid' ) : $ipn );
+                $content_escaped .= '<td class="payment">';
+                
+                if ( $qem_edit == 'selected' && qem_get_element( $selected, $i_array ) || $qem_edit == 'all' ) {
+                    //		$content .= '<input style="width:100%" type="text" value="' . $value['ipn'] . '" name="message[' . $i . '][ipn]">';
+                    $content_escaped .= '<select style="width:100%"' . '" name="message[' . esc_attr( qem_get_element( $value, 'orig_key' ) ) . '][ipn]">';
+                    $content_escaped .= '<option value="Paid"' . esc_attr( $paid_sel ) . '>' . esc_attr( qem_get_element( $payment, 'paid' ) ) . '</option>';
+                    $content_escaped .= '<option value="' . esc_attr( qem_get_element( $value, 'custom' ) ) . '"' . $pending_sel . '>' . esc_html__( 'Pending', 'quick-event-manager' ) . '</option>';
+                    $content_escaped .= '</select>';
+                } else {
+                    $content_escaped .= esc_html( qem_get_element( $value, 'ipn' ) );
+                }
+                
+                $content_escaped .= '</td>';
             }
             
-            $content_escaped .= '</td>';
+            if ( !$report || $report == 'edit' ) {
+                // has name of sorted position and value of table position
+                $content_escaped .= '<td class="checkbox"><input type="checkbox" name="' . esc_attr( $i_array ) . '" value="' . esc_attr( qem_get_element( $value, 'orig_key' ) ) . '" /></td>';
+            }
+            $content_escaped .= '</tr>';
+            $i_array++;
         }
-        
-        if ( !$report || $report == 'edit' ) {
-            // has name of sorted position and value of table position
-            $content_escaped .= '<td class="checkbox"><input type="checkbox" name="' . esc_attr( $i_array ) . '" value="' . esc_attr( qem_get_element( $value, 'orig_key' ) ) . '" /></td>';
-        }
-        $content_escaped .= '</tr>';
-        $i_array++;
     }
     $content_escaped .= '</table>';
     $str = qem_get_the_numbers( $pid, $payment );
@@ -2240,6 +2243,9 @@ function qem_build_reg_input_esc(
 
 function qem_add_message_key( $messages )
 {
+    if ( !is_array( $messages ) ) {
+        return $messages;
+    }
     foreach ( $messages as $key => &$row ) {
         $row['orig_key'] = $key;
     }

@@ -1,4 +1,12 @@
 == Changelog ==
+= 9.7.4 =
+* Set default sort on event edit table to be event date descending
+* Add some extra report options to premium reports dashboard to make finding the easier ( Pro only )
+
+= 9.7.3 =
+* fix number validation
+* restructure js file to avoid conflicts
+
 = 9.7.2 =
 * removed legacy code causing edge case error
 

@@ -308,3 +308,23 @@ function qem_add_custom_post_type_to_query( $query )
         $query->set( 'post_type', array( 'post', 'event' ) );
     }
 }
+
+/**
+ * set default order of edit events page
+ *
+ * @param $query
+ *
+ * @return void
+ */
+function qem_admin_edit_table_order( $query )
+{
+    global  $post_type, $pagenow ;
+    if ( 'edit.php' == $pagenow && 'event' == $post_type ) {
+        
+        if ( empty(get_query_var( 'order' )) && empty(get_query_var( 'orderby' )) ) {
+            $query->set( 'orderby', 'meta_value_num' );
+            $query->set( 'order', 'desc' );
+        }
+    
+    }
+}
