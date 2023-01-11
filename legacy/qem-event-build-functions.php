@@ -765,8 +765,8 @@ function qem_build_event(
                         $ipn = qem_check_ipnblock( $payment, $item );
                         
                         if ( ('' === $event_number_max || (int) $num <= (int) $event_number_max) && !$item['notattend'] && !$ipn && ($register['moderate'] && $item['approved'] || !$register['moderate']) ) {
-                            $str = $str . $item['yourname'] . ', ';
-                            $grav = $grav . '<img title="' . $item['yourname'] . '" src="http://www.gravatar.com/avatar/' . md5( $item['youremail'] ) . '?s=40&&d=identicon" /> ';
+                            $str = $str . esc_attr( $item['yourname'] ) . ', ';
+                            $grav = $grav . '<img title="' . esc_attr( $item['yourname'] ) . '" src="http://www.gravatar.com/avatar/' . md5( $item['youremail'] ) . '?s=40&&d=identicon" /> ';
                         }
                     
                     }

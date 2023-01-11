@@ -5,7 +5,7 @@ function qem_download_files()
     global  $qem_fs ;
     
     if ( isset( $_POST['qem_download_csv'] ) ) {
-        if ( isset( $_POST['_qem_download_form_nonce'] ) && !wp_verify_nonce( $_POST['_qem_download_form_nonce'], 'qem_download_form' ) ) {
+        if ( !isset( $_POST['_qem_download_form_nonce'] ) || !wp_verify_nonce( $_POST['_qem_download_form_nonce'], 'qem_download_form' ) ) {
             wp_die( esc_html__( 'Invalid Nonce, sorry something went wrong', 'quick-event-manager' ) );
         }
         $event = (int) $_POST['qem_download_form'];

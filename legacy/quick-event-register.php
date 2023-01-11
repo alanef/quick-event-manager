@@ -574,7 +574,7 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
                 }
             }
             if ( qem_get_element( $errors, 'yourcoupon' ) ) {
-                $register['blurb'] = '<p>Invalid Coupon Code</p>';
+                $register['blurb'] = '<p>' . esc_html__( 'Invalid Coupon Code', 'quick-event-manager' ) . '</p>';
             }
             if ( qem_get_element( $errors, 'yourplaces' ) ) {
                 $errors['yourplaces'] = 'border:1px solid red;';
@@ -2295,12 +2295,6 @@ function qem_split_surname( $full_name )
  */
 function qem_messages()
 {
-    if ( isset( $_POST['_qem_download_form_nonce'] ) && !wp_verify_nonce( $_POST['_qem_download_form_nonce'], 'qem_download_form' ) ) {
-        wp_die( esc_html__( 'Invalid Nonce, sorry something went wrong', 'quick-event-manager' ) );
-    }
-    if ( isset( $_POST['_qem_changeoptions_nonce'] ) && !wp_verify_nonce( $_POST['_qem_changeoptions_nonce'], 'qem_changeoptions' ) ) {
-        wp_die( esc_html__( 'Invalid Nonce, sorry something went wrong', 'quick-event-manager' ) );
-    }
     global  $qem_fs ;
     $event = ( isset( $_GET["event"] ) ? (int) $_GET["event"] : null );
     $title = ( isset( $_GET["title"] ) ? sanitize_text_field( $_GET["title"] ) : null );
@@ -2311,6 +2305,9 @@ function qem_messages()
     $category = 'All Categories';
     
     if ( isset( $_POST['qem_reset_message'] ) ) {
+        if ( !isset( $_POST['_qem_download_form_nonce'] ) || !wp_verify_nonce( $_POST['_qem_download_form_nonce'], 'qem_download_form' ) ) {
+            wp_die( esc_html__( 'Invalid Nonce, sorry something went wrong', 'quick-event-manager' ) );
+        }
         $event = (int) $_POST['qem_download_form'];
         $title = get_the_title( $event );
         delete_option( 'qem_messages_' . $event );
@@ -2340,6 +2337,9 @@ function qem_messages()
     
     
     if ( isset( $_POST['changeoptions'] ) ) {
+        if ( !isset( $_POST['_qem_changeoptions_nonce'] ) || !wp_verify_nonce( $_POST['_qem_changeoptions_nonce'], 'qem_changeoptions' ) ) {
+            wp_die( esc_html__( 'Invalid Nonce, sorry something went wrong', 'quick-event-manager' ) );
+        }
         $options = array( 'showevents', 'category' );
         foreach ( $options as $item ) {
             $messageoptions[$item] = stripslashes( sanitize_text_field( qem_get_element( $_POST, $item ) ) );
@@ -2350,6 +2350,9 @@ function qem_messages()
     
     
     if ( isset( $_POST['qem_delete_selected'] ) ) {
+        if ( !isset( $_POST['_qem_download_form_nonce'] ) || !wp_verify_nonce( $_POST['_qem_download_form_nonce'], 'qem_download_form' ) ) {
+            wp_die( esc_html__( 'Invalid Nonce, sorry something went wrong', 'quick-event-manager' ) );
+        }
         $event = (int) $_POST["qem_download_form"];
         $message = get_option( 'qem_messages_' . $event );
         $len = count( $message );
@@ -2369,6 +2372,9 @@ function qem_messages()
     $new_row = false;
     
     if ( isset( $_POST['qem_add_row'] ) ) {
+        if ( !isset( $_POST['_qem_download_form_nonce'] ) || !wp_verify_nonce( $_POST['_qem_download_form_nonce'], 'qem_download_form' ) ) {
+            wp_die( esc_html__( 'Invalid Nonce, sorry something went wrong', 'quick-event-manager' ) );
+        }
         $event = (int) $_POST["qem_download_form"];
         $message = get_option( 'qem_messages_' . $event );
         $message[] = apply_filters( 'qem_new_attendee_defaults', array(
@@ -2381,6 +2387,9 @@ function qem_messages()
     
     
     if ( isset( $_POST['qem_delete_blanks'] ) ) {
+        if ( !isset( $_POST['_qem_download_form_nonce'] ) || !wp_verify_nonce( $_POST['_qem_download_form_nonce'], 'qem_download_form' ) ) {
+            wp_die( esc_html__( 'Invalid Nonce, sorry something went wrong', 'quick-event-manager' ) );
+        }
         $event = (int) $_POST["qem_download_form"];
         $message = get_option( 'qem_messages_' . $event );
         $message = array_filter( $message, function ( $item ) {
@@ -2392,6 +2401,9 @@ function qem_messages()
     
     
     if ( isset( $_POST['qem_approve_selected'] ) ) {
+        if ( !isset( $_POST['_qem_download_form_nonce'] ) || !wp_verify_nonce( $_POST['_qem_download_form_nonce'], 'qem_download_form' ) ) {
+            wp_die( esc_html__( 'Invalid Nonce, sorry something went wrong', 'quick-event-manager' ) );
+        }
         $event = (int) $_POST["qem_download_form"];
         $message = get_option( 'qem_messages_' . $event );
         $len = count( $message );
@@ -2420,6 +2432,9 @@ function qem_messages()
     // Update edited applications
     
     if ( isset( $_POST['qem_update'] ) ) {
+        if ( !isset( $_POST['_qem_download_form_nonce'] ) || !wp_verify_nonce( $_POST['_qem_download_form_nonce'], 'qem_download_form' ) ) {
+            wp_die( esc_html__( 'Invalid Nonce, sorry something went wrong', 'quick-event-manager' ) );
+        }
         $event = (int) $_POST["qem_download_form"];
         $unixtime = get_post_meta( $event, 'event_date', true );
         $date = date_i18n( "d M Y", $unixtime );
@@ -2473,6 +2488,9 @@ function qem_messages()
     // Edit all applications
     
     if ( isset( $_POST['qem_edit'] ) ) {
+        if ( !isset( $_POST['_qem_download_form_nonce'] ) || !wp_verify_nonce( $_POST['_qem_download_form_nonce'], 'qem_download_form' ) ) {
+            wp_die( esc_html__( 'Invalid Nonce, sorry something went wrong', 'quick-event-manager' ) );
+        }
         $event = (int) $_POST["qem_download_form"];
         $unixtime = get_post_meta( $event, 'event_date', true );
         $date = date_i18n( "d M Y", $unixtime );
@@ -2483,6 +2501,9 @@ function qem_messages()
     // Edit selected applications
     
     if ( isset( $_POST['qem_edit_selected'] ) || false !== $new_row ) {
+        if ( !isset( $_POST['_qem_download_form_nonce'] ) || !wp_verify_nonce( $_POST['_qem_download_form_nonce'], 'qem_download_form' ) ) {
+            wp_die( esc_html__( 'Invalid Nonce, sorry something went wrong', 'quick-event-manager' ) );
+        }
         $event = (int) $_POST["qem_download_form"];
         $unixtime = get_post_meta( $event, 'event_date', true );
         $date = date_i18n( "d M Y", $unixtime );
@@ -2506,6 +2527,9 @@ function qem_messages()
     
     
     if ( isset( $_POST['qem_emaillist'] ) ) {
+        if ( !isset( $_POST['_qem_download_form_nonce'] ) || !wp_verify_nonce( $_POST['_qem_download_form_nonce'], 'qem_download_form' ) ) {
+            wp_die( esc_html__( 'Invalid Nonce, sorry something went wrong', 'quick-event-manager' ) );
+        }
         
         if ( empty($register['sendemail']) ) {
             $sys_email = get_bloginfo( 'admin_email' );

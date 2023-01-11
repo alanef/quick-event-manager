@@ -1,4 +1,7 @@
 == Changelog ==
+= 9.7.5 =
+* Improve nonce checking and sanitization
+
 = 9.7.4 =
 * Set default sort on event edit table to be event date descending
 * Add some extra report options to premium reports dashboard to make finding the easier ( Pro only )
