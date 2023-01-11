@@ -1,4 +1,7 @@
 == Changelog ==
+= 9.7.6 =
+* Fix commas on blank cells in CSV
+
 = 9.7.5 =
 * Improve nonce checking and sanitization
 

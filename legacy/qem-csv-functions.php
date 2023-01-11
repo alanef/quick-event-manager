@@ -187,9 +187,14 @@ function qem_download_files()
             }
             array_push( $cells, qem_get_element( $value, 'sentdate' ) );
             $row = '';
+            $i = 0;
             foreach ( $cells as $cell ) {
+                $i++;
                 // add commas except last one
-                $row .= ( next( $cells ) ? qem_csv_a_cell( $cell ) . ',' : qem_csv_a_cell( $cell ) );
+                $row .= qem_csv_a_cell( $cell );
+                if ( $i < count( $cells ) ) {
+                    $row .= ',';
+                }
             }
             echo  wp_kses_post( $row ) . PHP_EOL ;
         }
