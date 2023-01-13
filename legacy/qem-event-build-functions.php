@@ -181,7 +181,7 @@ function qem_event_construct_esc( $atts )
         $linkclose = '</a>';
         
         if ( $atts['popup'] ) {
-            $linkopen = '<a href="javascript:xlightbox(\'' . $popupcontent . '\'); ">';
+            $linkopen = '<a class="qem_linkpopup" data-xlightbox="' . $popupcontent . '"  >';
         } else {
             
             if ( $category && in_category( $category ) ) {
