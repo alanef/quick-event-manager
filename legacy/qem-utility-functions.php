@@ -42,6 +42,7 @@ function qem_category_key( $cal, $style, $calendar ) {
 		$catkey .= '<span class="qem-category" style="border:' . $style['date_border_width'] . 'px solid ' . $style['date_border_colour'] . ';background:#CCC"><a style="color:' . $style['date_colour'] . '" href="' . $caturl . '">' . $allcats . '</a></span>';
 	}
 
+
 	$class = 'class="qem-category qem-key"';
 	foreach ( $cat as $i ) {
 		foreach ( $arr as $option ) {

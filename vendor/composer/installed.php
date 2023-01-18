@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'fullworks/quick-event-manager',
-        'pretty_version' => '9.7.4.x-dev',
-        'version' => '9.7.4.9999999-dev',
-        'reference' => '1893314d93779730b0a072cd9a93cb758c4223ca',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => '9296f3e8473fe88f6b471eecd37cc893adf1f153',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -19,15 +19,6 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'drewm/mailchimp-api' => array(
-            'pretty_version' => 'v2.5.4',
-            'version' => '2.5.4.0',
-            'reference' => 'c6cdfab4ca6ddbc3b260913470bd0a4a5cb84c7a',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../drewm/mailchimp-api',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
         'freemius/wordpress-sdk' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
@@ -40,9 +31,9 @@
             'dev_requirement' => false,
         ),
         'fullworks/quick-event-manager' => array(
-            'pretty_version' => '9.7.4.x-dev',
-            'version' => '9.7.4.9999999-dev',
-            'reference' => '1893314d93779730b0a072cd9a93cb758c4223ca',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '9296f3e8473fe88f6b471eecd37cc893adf1f153',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

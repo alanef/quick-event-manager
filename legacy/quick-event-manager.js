@@ -54,7 +54,7 @@ var qem_dont_cancel;
         */
         var calendar = $(e).closest('.qem_calendar');
         var cid = Number(calendar.attr('id').replace('qem_calendar_', ''));
-        var params = 'action=qem_ajax_calendar&_qemcalnonce=' + qem_cal_nonce;
+        var params = 'action=qem_ajax_calendar';
 
         /*
             URL Encode the atts array
