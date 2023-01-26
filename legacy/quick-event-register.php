@@ -4,6 +4,7 @@
 	Add: WordPress hooks for ajax
 */
 use  Quick_Event_Manager\Plugin\Control\Admin_Template_Loader ;
+use  Quick_Event_Manager\Plugin\Core\Utilities ;
 add_action( 'wp_ajax_qem_validate_form', 'qem_ajax_validation' );
 add_action( 'wp_ajax_nopriv_qem_validate_form', 'qem_ajax_validation' );
 function qem_registration_fields()
@@ -1297,7 +1298,7 @@ function qem_process_form( $values, $ajax = false )
             $multi['yourname'] = qem_get_element( $multi, 'name' . $i );
             $multi['youremail'] = qem_get_element( $multi, 'email' . $i );
             if ( qem_get_element( $multi, 'yourname' ) ) {
-                $qem_messages[] = qem_add_attendee( $multi );
+                $qem_messages[] = qem_add_attendee( $multi, $register );
             }
             if ( (qem_get_element( $auto, 'enable' ) || qem_get_element( $multi, 'qem-copy' )) && qem_get_element( $multi, 'youremail' ) && !qem_get_element( $register, 'moderate' ) && qem_get_element( $auto, 'whenconfirm' ) == 'aftersubmission' ) {
                 qem_send_confirmation(
@@ -1314,7 +1315,7 @@ function qem_process_form( $values, $ajax = false )
         $values['yourname'] = qem_get_element( $multi, 'name1' );
         $values['youremail'] = qem_get_element( $multi, 'email1' );
     } else {
-        $qem_messages[] = qem_add_attendee( $values );
+        $qem_messages[] = qem_add_attendee( $values, $register );
     }
     
     
@@ -1476,8 +1477,9 @@ function qem_admin_notification(
  *
  * @return array
  */
-function qem_add_attendee( $values )
+function qem_add_attendee( $values, $register )
 {
+    global  $qem_fs ;
     $newmessage = array();
     $sentdate = date_i18n( 'd M Y' );
     $arr = array(
@@ -1498,7 +1500,6 @@ function qem_add_attendee( $values )
         'products',
         'checkslist'
     );
-    // @TODO  what is this section seems to do nothing with an undefined variable
     foreach ( $arr as $item ) {
         if ( $values[$item] != $register[$item] ) {
             $newmessage[$item] = $values[$item];
@@ -1512,6 +1513,7 @@ function qem_add_attendee( $values )
     $newmessage['datetime_added'] = time();
     $newmessage['ipn'] = qem_get_element( $values, 'ipn' );
     $newmessage['custom'] = qem_get_element( $values, 'ipn' );
+    $newmessage['ticket_no'] = qem_get_element( $values, 'ticket_no' );
     return $newmessage;
 }
 
@@ -1613,6 +1615,7 @@ function qem_send_confirmation(
     $id
 )
 {
+    global  $qem_fs ;
     $event = event_get_stored_options();
     $payment = qem_get_stored_payment();
     $rcm = get_post_meta( $id, 'event_registration_message', true );
@@ -2377,9 +2380,9 @@ function qem_messages()
         }
         $event = (int) $_POST["qem_download_form"];
         $message = get_option( 'qem_messages_' . $event );
-        $message[] = apply_filters( 'qem_new_attendee_defaults', array(
+        $message[] = array(
             'datetime_added' => time(),
-        ) );
+        );
         update_option( 'qem_messages_' . $event, $message );
         $new_row = count( $message ) - 1;
         qem_admin_notice( esc_html__( 'New attendee added.', 'quick-event-manager' ) );

@@ -2,7 +2,7 @@
 Contributors: Fullworks
 Tags: event manager, calendar, events, event booking, event calendar
 Tested up to: 6.1
-Stable tag: 9.7.8
+Stable tag: 9.8.0
 Type: freemium
 
 Simple event manager. No messing about, just add events and a shortcode and the plugin does the rest for you.
@@ -90,8 +90,14 @@ Well OK yes you can add more fields if you want but you are going to have to fid
 
 
 == Changelog ==
+= 9.8.0 =
+* add ticket number generation ( Pro Only)
+* fix html in some emails
+* add email header to stop grouping as conversations
+
 = 9.7.8 =
 * fix category link on lists
+* remove extra calendar nonce validation, not required
 * namespace Mailchimp library to avoid conflicts ( Pro only )
 
 = 9.7.6 =
