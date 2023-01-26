@@ -1,4 +1,7 @@
 == Changelog ==
+= 9.8.1 =
+* Fix licence levels functionality ( Pro Only )
+
 = 9.8.0 =
 * add ticket number generation ( Pro Only)
 * fix html in some emails
