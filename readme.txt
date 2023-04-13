@@ -1,8 +1,8 @@
 === Quick Event Manager ===
 Contributors: Fullworks
 Tags: event manager, calendar, events, event booking, event calendar
-Tested up to: 6.1
-Stable tag: 9.8.1
+Tested up to: 6.2
+Stable tag: 9.8.5.1
 Type: freemium
 
 Simple event manager. No messing about, just add events and a shortcode and the plugin does the rest for you.
@@ -90,24 +90,19 @@ Well OK yes you can add more fields if you want but you are going to have to fid
 
 
 == Changelog ==
-= 9.8.1 =
-* Fix licence levels functionality ( Pro Only )
+= 9.8.5.1 =
+* Fix individual email sending and sort into date (Pro Only)
+* Fix missing form preview
+* Make popup responsive
 
-= 9.8.0 =
-* add ticket number generation ( Pro Only)
-* fix html in some emails
-* add email header to stop grouping as conversations
+= 9.8.5 =
+* Permit multiple guest notification emails (Pro Only)
+* Fix some missing columns on reports
+* set print css to print all qem admin pages
 
-= 9.7.8 =
-* fix category link on lists
-* remove extra calendar nonce validation, not required
-* namespace Mailchimp library to avoid conflicts ( Pro only )
-
-= 9.7.6 =
-* Fix commas on blank cells in CSV
-
-
-
+= 9.8.4 =
+* Fix end date when blank in Guest Post email (Pro Only)
+* Fix csv example link (Pro Only)
 
 
 

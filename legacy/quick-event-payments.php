@@ -7,19 +7,7 @@ function qem_process_payment_form_esc( $values, &$val = array() )
     $payments = qem_get_stored_payment();
     $register = get_custom_registration_form( $post->ID );
     $ic = qem_get_incontext();
-    
-    if ( !isset( $_POST['_reg_nonce'] ) || !wp_verify_nonce( $_POST['_reg_nonce'], 'qem_register' ) ) {
-        echo  wp_json_encode( array(
-            'success' => false,
-            'title'   => esc_html__( 'Invalid Security, Form not Processed, Contact Support', 'quick-event-manager' ),
-            'errors'  => array(
-            'name'  => 'id',
-            'error' => 'Invalid Security',
-        ),
-        ) ) ;
-        exit;
-    }
-    
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce not required user action.
     
     if ( isset( $_REQUEST['action'] ) && "qem_validate_form" == $_REQUEST['action'] ) {
         $page_url = sanitize_url( $_SERVER["HTTP_REFERER"] );

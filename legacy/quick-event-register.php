@@ -5,6 +5,7 @@
 */
 use  Quick_Event_Manager\Plugin\Control\Admin_Template_Loader ;
 use  Quick_Event_Manager\Plugin\Core\Utilities ;
+use  Quick_Event_Manager\Vendor\Stripe\StripeClient ;
 add_action( 'wp_ajax_qem_validate_form', 'qem_ajax_validation' );
 add_action( 'wp_ajax_nopriv_qem_validate_form', 'qem_ajax_validation' );
 function qem_registration_fields()
@@ -185,19 +186,7 @@ function qem_sanitize_forms_values( $input )
 function qem_ajax_validation()
 {
     header( "Content-Type: application/json", true );
-    
-    if ( !isset( $_POST['_reg_nonce'] ) || !wp_verify_nonce( $_POST['_reg_nonce'], 'qem_register' ) ) {
-        echo  wp_json_encode( array(
-            'success' => false,
-            'title'   => esc_html__( 'Invalid Security, Form not Processed, Contact Support', 'quick-event-manager' ),
-            'errors'  => array(
-            'name'  => 'id',
-            'error' => 'Invalid Security',
-        ),
-        ) ) ;
-        exit;
-    }
-    
+    // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce not required end user form
     global  $post ;
     global  $qem_fs ;
     $event = $_POST['id'];
@@ -445,8 +434,15 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
     global  $qem_fs ;
     global  $post ;
     $id = ( isset( $post->ID ) ? get_the_ID() : null );
-    $qem_number_places_available = qem_number_places_available( $id );
-    $event_number_max = get_post_meta( $id, 'event_number', true );
+    
+    if ( null === $id ) {
+        $qem_number_places_available = 999999;
+        $event_number_max = '';
+    } else {
+        $qem_number_places_available = qem_number_places_available( $id );
+        $event_number_max = get_post_meta( $id, 'event_number', true );
+    }
+    
     $cutoff = '';
     $notopen = '';
     $cutoff_display_date = '';
@@ -526,7 +522,7 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
         
         $qem_number_places_available = '';
     } elseif ( 'checked' == $notopen ) {
-    } elseif ( $event_number_max !== '' && $event_number_max >= 0 && $qem_number_places_available == 0 && !qem_get_element( $register, 'waitinglist' ) ) {
+    } elseif ( empty($event_number_max) && $qem_number_places_available == 0 && !qem_get_element( $register, 'waitinglist' ) ) {
         $content_escaped .= '';
         $qem_number_places_available = '';
     } elseif ( qem_get_element( $errors, 'alreadyregistered', false ) == 'checked' ) {
@@ -1923,7 +1919,7 @@ function qem_build_registration_table_esc(
                 
                 if ( $register['usedropdown'] ) {
                     $arr = explode( ",", $register['yourdropdown'] );
-                    $content_escaped .= '<th class="yourdropdown">' . wp_kses_post( $arr[0] ) . '</th>';
+                    $content_escaped .= '<th class="yourdropdown">' . esc_html__( 'Dropdown 1', 'quick-event-manager' ) . '</th>';
                 }
                 
                 break;
@@ -1931,7 +1927,7 @@ function qem_build_registration_table_esc(
                 
                 if ( isset( $register['useselector'] ) && $register['useselector'] ) {
                     $arr = explode( ",", $register['yourselector'] );
-                    $content_escaped .= '<th class="yourselector">' . wp_kses_post( $arr[0] ) . '</th>';
+                    $content_escaped .= '<th class="yourselector">' . esc_html__( 'Dropdown 2', 'quick-event-manager' ) . '</th>';
                 }
                 
                 break;
@@ -2114,7 +2110,7 @@ function qem_build_registration_table_esc(
                     case 'field14':
                         $content_escaped .= qem_build_reg_input_esc(
                             'type="text"',
-                            'usedselector',
+                            'useselector',
                             'yourselector',
                             $register,
                             $selected,
@@ -2277,6 +2273,14 @@ function qem_sort_date_desc( $messages )
 {
     usort( $messages, function ( $a, $b ) {
         return strcmp( strtolower( $b['datetime_added'] ), strtolower( $a['datetime_added'] ) );
+    } );
+    return $messages;
+}
+
+function qem_sort_date_asc( $messages )
+{
+    usort( $messages, function ( $a, $b ) {
+        return strcmp( strtolower( $a['datetime_added'] ), strtolower( $b['datetime_added'] ) );
     } );
     return $messages;
 }

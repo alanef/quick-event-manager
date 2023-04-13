@@ -292,8 +292,7 @@ function qem_head_ic()
     
     // should  be changed to locaizescript or add inline script
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- this is core WP security function
-    echo  '<script type="text/javascript"> qem_register_nonce = "' . wp_create_nonce( 'qem_register' ) . '"
-ajaxurl = "' . esc_url( admin_url( 'admin-ajax.php' ) ) . '"; qem_calendar_atts = []; qem_year = []; qem_month = []; qem_category = [];</script>' ;
+    echo  '<script type="text/javascript">ajaxurl = "' . esc_url( admin_url( 'admin-ajax.php' ) ) . '"; qem_calendar_atts = []; qem_year = []; qem_month = []; qem_category = [];</script>' ;
 }
 
 function qem_flush_rules()
