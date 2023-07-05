@@ -2288,8 +2288,14 @@ function qem_payment()
             'pendingcleardownmsg'
         );
         foreach ( $options as $item ) {
-            $payment[$item] = stripslashes( qem_get_element( $_POST, $item ) );
-            $payment[$item] = filter_var( qem_get_element( $payment, $item ), FILTER_SANITIZE_STRING );
+            $field = stripslashes( qem_get_element( $_POST, $item ) );
+            
+            if ( in_array( $item, array( 'message', 'pendingcleardownmsg' ) ) ) {
+                $payment[$item] = wp_kses_post( $field );
+            } else {
+                $payment[$item] = sanitize_text_field( $field );
+            }
+        
         }
         update_option( 'qem_payment', $payment );
         qem_admin_notice( esc_html__( 'The payment form settings have been updated', 'quick-event-manager' ) );

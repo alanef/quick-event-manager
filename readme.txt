@@ -2,7 +2,7 @@
 Contributors: Fullworks
 Tags: event manager, calendar, events, event booking, event calendar
 Tested up to: 6.2
-Stable tag: 9.8.5.2
+Stable tag: 9.8.5.3
 Type: freemium
 
 Simple event manager. No messing about, just add events and a shortcode and the plugin does the rest for you.
@@ -90,6 +90,9 @@ Well OK yes you can add more fields if you want but you are going to have to fid
 
 
 == Changelog ==
+= 9.8.5.3 =
+* Allow html in payment auto responder
+
 = 9.8.5.2 =
 * Fix registration form not showing
 

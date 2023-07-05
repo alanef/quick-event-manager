@@ -1,4 +1,7 @@
 == Changelog ==
+= 9.8.5.3 =
+* Allow html in payment auto responder
+
 = 9.8.5.2 =
 * Fix registration form not showing
 
