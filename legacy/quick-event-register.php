@@ -522,7 +522,7 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
         
         $qem_number_places_available = '';
     } elseif ( 'checked' == $notopen ) {
-    } elseif ( empty($event_number_max) && $qem_number_places_available == 0 && !qem_get_element( $register, 'waitinglist' ) ) {
+    } elseif ( $event_number_max !== '' && $event_number_max >= 0 && $qem_number_places_available == 0 && !qem_get_element( $register, 'waitinglist' ) ) {
         $content_escaped .= '';
         $qem_number_places_available = '';
     } elseif ( qem_get_element( $errors, 'alreadyregistered', false ) == 'checked' ) {

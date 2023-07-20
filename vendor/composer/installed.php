@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'fullworks/quick-event-manager',
-        'pretty_version' => 'dev-master',
-        'version' => 'dev-master',
-        'reference' => 'fac230bdab69ceae9870bbaf80ec0c0aec6214b2',
+        'pretty_version' => 'dev-9.8.6.2',
+        'version' => '9.8.6.2-dev',
+        'reference' => '346c9f70f68019af060196403e406baadc568310',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -20,20 +20,18 @@
             'dev_requirement' => false,
         ),
         'freemius/wordpress-sdk' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
-            'reference' => '095fc9ced29efef5b18f9b7242bb80b0b4ac6aff',
+            'pretty_version' => '2.5.10',
+            'version' => '2.5.10.0',
+            'reference' => NULL,
             'type' => 'library',
             'install_path' => __DIR__ . '/../freemius/wordpress-sdk',
-            'aliases' => array(
-                0 => '9999999-dev',
-            ),
+            'aliases' => array(),
             'dev_requirement' => false,
         ),
         'fullworks/quick-event-manager' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
-            'reference' => 'fac230bdab69ceae9870bbaf80ec0c0aec6214b2',
+            'pretty_version' => 'dev-9.8.6.2',
+            'version' => '9.8.6.2-dev',
+            'reference' => '346c9f70f68019af060196403e406baadc568310',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -53,6 +51,15 @@
             'replaced' => array(
                 0 => '*',
             ),
+        ),
+        'woocommerce/action-scheduler' => array(
+            'pretty_version' => '3.6.1',
+            'version' => '3.6.1.0',
+            'reference' => '7fd383cad3d64b419ec81bcd05bab44355a6e6ef',
+            'type' => 'wordpress-plugin',
+            'install_path' => __DIR__ . '/../woocommerce__premium_only/action-scheduler',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
     ),
 );

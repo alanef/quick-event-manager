@@ -1,4 +1,14 @@
 == Changelog ==
+= 9.8.5.4 =
+* Improve data feed to Display Eventbrite plugin ( Pro Only )
+* Fix rounding on Stripe prices ( Pro Only )
+
+= 9.8.5.3 =
+* Allow html in payment auto responder
+
+= 9.8.5.2 =
+* Fix registration form not showing
+
 = 9.8.5.1 =
 * Fix individual email sending and sort into date (Pro Only)
 * Fix missing form preview

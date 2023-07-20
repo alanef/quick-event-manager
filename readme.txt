@@ -2,7 +2,7 @@
 Contributors: Fullworks
 Tags: event manager, calendar, events, event booking, event calendar
 Tested up to: 6.2
-Stable tag: 9.8.5.1
+Stable tag: 9.8.5.4
 Type: freemium
 
 Simple event manager. No messing about, just add events and a shortcode and the plugin does the rest for you.
@@ -90,6 +90,16 @@ Well OK yes you can add more fields if you want but you are going to have to fid
 
 
 == Changelog ==
+= 9.8.5.4 =
+* Improve data feed to Display Eventbrite plugin ( Pro Only )
+* Fix rounding on Stripe prices ( Pro Only )
+
+= 9.8.5.3 =
+* Allow html in payment auto responder
+
+= 9.8.5.2 =
+* Fix registration form not showing
+
 = 9.8.5.1 =
 * Fix individual email sending and sort into date (Pro Only)
 * Fix missing form preview
@@ -100,9 +110,6 @@ Well OK yes you can add more fields if you want but you are going to have to fid
 * Fix some missing columns on reports
 * set print css to print all qem admin pages
 
-= 9.8.4 =
-* Fix end date when blank in Guest Post email (Pro Only)
-* Fix csv example link (Pro Only)
 
 
 
