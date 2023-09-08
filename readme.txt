@@ -1,8 +1,8 @@
 === Quick Event Manager ===
 Contributors: Fullworks
 Tags: event manager, calendar, events, event booking, event calendar
-Tested up to: 6.2
-Stable tag: 9.8.5.4
+Tested up to: 6.3
+Stable tag: 9.8.5.5
 Type: freemium
 
 Simple event manager. No messing about, just add events and a shortcode and the plugin does the rest for you.
@@ -90,6 +90,9 @@ Well OK yes you can add more fields if you want but you are going to have to fid
 
 
 == Changelog ==
+= 9.8.5.5 =
+* Fix pay later thank you
+
 = 9.8.5.4 =
 * Improve data feed to Display Eventbrite plugin ( Pro Only )
 * Fix rounding on Stripe prices ( Pro Only )

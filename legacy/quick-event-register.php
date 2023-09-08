@@ -273,6 +273,9 @@ function qem_ajax_validation()
                 if ( isset( $formvalues['ignore'] ) && $formvalues['ignore'] == 'checked' && qem_get_element( $register, 'ignorepayment' ) == 'checked' ) {
                     qem_process_form( $formvalues, true );
                     $json['ignore'] = true;
+                    $json['title'] = qem_get_element( $register, 'replytitle' );
+                    $json['blurb'] = qem_get_element( $register, 'replydeferred' );
+                    $json['form'] = '';
                 } else {
                     // qem_ajax_submit($formvalues);
                     qem_process_form( $formvalues, true );

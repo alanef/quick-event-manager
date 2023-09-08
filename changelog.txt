@@ -1,4 +1,7 @@
 == Changelog ==
+= 9.8.5.5 =
+* Fix pay later thank you
+
 = 9.8.5.4 =
 * Improve data feed to Display Eventbrite plugin ( Pro Only )
 * Fix rounding on Stripe prices ( Pro Only )

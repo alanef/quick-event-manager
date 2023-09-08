@@ -147,20 +147,9 @@ var qem_dont_cancel;
             /*
                 Successful validation!
             */
-            if (data.ignore) {
-
-                params = {
-                    'module': 'deferred',
-                    'custom': 'Deferred Payment',
-                    'form': qem.find('input[name=form_id]').val()
-                };
-
-                qem_redirect(params);
-            } else {
                 qem.find('.places').hide();
                 var form = data.form;
                 qem.find('.qem-form').html(form);
-            }
         }
 
         /*
@@ -240,62 +229,52 @@ var qem_dont_cancel;
                 event.preventDefault();
                 return false;
             });
-            
-                $('.qem-form input[type=submit]').click(function (event) {
 
-                    event.preventDefault();
+            $('.qem-form input[type=submit]').click(function (event) {
 
-                    /*
-                        Collect Important Data
-                    */
-                    $target = event.target;
-                    c = $($target);
-                    $ = jQuery;
-                    form = c.closest('form');
-                    form.hide();
+                event.preventDefault();
 
-                    var formid = form.attr('id');
-                    $('.qem_validating_form[data-form-id="' + formid + '"]').show();
+                /*
+                    Collect Important Data
+                */
+                $target = event.target;
+                c = $($target);
+                $ = jQuery;
+                form = c.closest('form');
+                form.hide();
 
-                    var fd = $(form).serialize();
-                    fd += '&' + c.attr('name') + '=' + c.val() + '&action=qem_validate_form';
-                    $.ajax({
-                        type: 'POST',
-                        url: ajaxurl,
-                        data: fd,
-                        success: function (e) {
-                            data = e;
+                var formid = form.attr('id');
+                $('.qem_validating_form[data-form-id="' + formid + '"]').show();
 
-                            if (!data.success) {
+                var fd = $(form).serialize();
+                fd += '&' + c.attr('name') + '=' + c.val() + '&action=qem_validate_form';
+                $.ajax({
+                    type: 'POST',
+                    url: ajaxurl,
+                    data: fd,
+                    success: function (e) {
+                        data = e;
 
-                                $('.qem_validating[data-form-id="' + formid + '"]').hide();
-                                $('.qem_processing[data-form-id="' + formid + '"]').hide();
-                                form.show();
-                                qem_handle_regular(data, form);
+                        if (!data.success) {
 
-                                return;
-                            }
-                            
-                                params = {
-                                    'module': 'deferred',
-                                    'custom': 'Deferred Payment',
-                                    'form': form.find('input[name=form_id]').val()
-                                };
+                            $('.qem_validating[data-form-id="' + formid + '"]').hide();
+                            $('.qem_processing[data-form-id="' + formid + '"]').hide();
+                            form.show();
+                            qem_handle_regular(data, form);
 
-                                qem_redirect(params);
-
-                                qem_dont_cancel = true;
-                                
-                        },
-                        error: function (data) {
-                            console.log(data);
-                            alert(__('Server Error check console log', 'quick-event-manager'));
+                            return;
                         }
-                    });
-
-                    return false;
+                        
+                    },
+                    error: function (data) {
+                        console.log(data);
+                        alert(__('Server Error check console log', 'quick-event-manager'));
+                    }
                 });
-                
+
+                return false;
+            });
+            
         }
 
         $('.qem-multi-product').on('input', function () {
