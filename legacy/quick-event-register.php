@@ -671,7 +671,14 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
                                 'cost'  => (double) $Mcost,
                             );
                         }
-                        wp_add_inline_script( 'event_script', 'qem_multi_' . (int) $id . ' = ' . wp_json_encode( $products ), 'after' );
+                        add_action(
+                            'wp_enqueue_scripts',
+                            function () use( $id, $products ) {
+                            wp_add_inline_script( 'event_script', 'qem_multi_' . (int) $id . ' = ' . wp_json_encode( $products ), 'after' );
+                        },
+                            99,
+                            1
+                        );
                         if ( qem_get_element( $payment, 'attendeelabel' ) ) {
                             $content_escaped .= '<p><b>' . wp_kses_post( qem_get_element( $payment, 'attendeelabel' ) ) . '</b></p>';
                         }
@@ -953,7 +960,7 @@ function qem_verify_form( &$values, &$errors, $ajax = false )
         $values,
         qem_get_element( $register, 'spam' )
     );
-    // Checks against CSV
+    // Checks against messages
     $alreadyregistered = false;
     
     if ( !qem_get_element( $register, 'usemail' ) && qem_get_element( $register, 'usename' ) && !qem_get_element( $register, 'allowmultiple' ) && qem_get_element( $values, 'yourname' ) ) {
@@ -970,7 +977,16 @@ function qem_verify_form( &$values, &$errors, $ajax = false )
                     $message = get_option( 'qem_messages_' . $id );
                     for ( $i = 0 ;  $i <= count( $message ) ;  $i++ ) {
                         if ( $message[$i]['youremail'] == qem_get_element( $values, 'youremail' ) ) {
-                            unset( $message[$i] );
+                            
+                            if ( !qem_get_element( $message[$i], 'ignore', false ) ) {
+                                unset( $message[$i] );
+                                if ( !qem_get_element( $register, 'nonotifications' ) ) {
+                                    qem_sendreplacementemail( $register, $message[$i] );
+                                }
+                            } else {
+                                $alreadyregistered = true;
+                            }
+                        
                         }
                     }
                     $message = array_values( $message );
@@ -1535,10 +1551,10 @@ function qem_sendremovalemail( $register, $values )
     
     $date = get_post_meta( $post->ID, 'event_date', true );
     $date = date_i18n( "d M Y", $date );
-    $subject = 'Registration Removal for ' . get_the_title() . ' on ' . $date;
+    $subject = 'Registration Removal for ' . get_the_title() . ' ' . esc_html__( 'on', 'quick-event-manager' ) . ' ' . $date;
     $headers = "From: " . $values['yourname'] . " <" . $qem_email . ">\r\n";
     $headers .= "Reply-to: " . $values['yourname'] . " <" . $values['youremail'] . ">\r\n" . "Content-Type: text/html; charset=\"utf-8\"\r\n";
-    $content = $values['yourname'] . ' (' . $values['youremail'] . ') is no longer attending ' . get_the_title() . ' on ' . $date;
+    $content = $values['yourname'] . ' (' . $values['youremail'] . ') is no longer attending ' . get_the_title() . ' ' . esc_html__( 'on', 'quick-event-manager' ) . ' ' . $date;
     $message = '<html>' . $content . '</html>';
     qem_wp_mail(
         'Removal Email',
@@ -1579,6 +1595,33 @@ function qem_sendremovalemail( $register, $values )
     $newmessage['date'] = $date;
     $qem_removal[] = $newmessage;
     update_option( 'qem_removal', $qem_removal );
+}
+
+function qem_sendreplacementemail( $register, $values )
+{
+    global  $post ;
+    
+    if ( empty($register['sendemail']) ) {
+        $qem_email = get_bloginfo( 'admin_email' );
+    } else {
+        $emails = explode( ',', $register['sendemail'] );
+        $qem_email = $emails[0];
+    }
+    
+    $date = get_post_meta( $post->ID, 'event_date', true );
+    $date = date_i18n( "d M Y", $date );
+    $subject = esc_html__( 'Registration Replacement for ', 'quick-event-manager' ) . get_the_title() . ' ' . esc_html__( 'on', 'quick-event-manager' ) . ' ' . $date;
+    $headers = "From: " . $values['yourname'] . " <" . $qem_email . ">\r\n";
+    $headers .= "Reply-to: " . $values['yourname'] . " <" . $values['youremail'] . ">\r\n" . "Content-Type: text/html; charset=\"utf-8\"\r\n";
+    $content = $values['yourname'] . ' (' . $values['youremail'] . ') ' . esc_html__( 'registration pending payment was removed by a new re-registration for the same email that requires payment - please ignore any early notifications as they are no longer valid for ', 'quick-event-manager' ) . get_the_title() . ' ' . esc_html__( 'on', 'quick-event-manager' ) . ' ' . $date;
+    $message = '<html>' . $content . '</html>';
+    qem_wp_mail(
+        'Replacement Email',
+        $qem_email,
+        $subject,
+        $message,
+        $headers
+    );
 }
 
 /**
