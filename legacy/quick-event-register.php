@@ -671,24 +671,18 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
                                 'cost'  => (double) $Mcost,
                             );
                         }
-                        add_action(
-                            'wp_enqueue_scripts',
-                            function () use( $id, $products ) {
-                            wp_add_inline_script( 'event_script', 'qem_multi_' . (int) $id . ' = ' . wp_json_encode( $products ), 'after' );
-                        },
-                            99,
-                            1
-                        );
                         if ( qem_get_element( $payment, 'attendeelabel' ) ) {
                             $content_escaped .= '<p><b>' . wp_kses_post( qem_get_element( $payment, 'attendeelabel' ) ) . '</b></p>';
                         }
-                        $content_escaped .= '<div class="qem_multi_holder" id="qem_multi_' . (int) $id . '">';
+                        $content_escaped .= '<div class="qem_multi_holder" id="qem_multi_' . (int) $id . '"  >';
                         for ( $i = 0 ;  $i < count( $products ) ;  $i++ ) {
                             $label = qem_get_element( $payment, 'itemlabel' );
                             $label = str_replace( '[label]', $products[$i]['label'], $label );
                             $label = str_replace( '[currency]', qem_get_element( $payment, 'currencysymbol' ), $label );
                             $label = str_replace( '[cost]', $products[$i]['cost'], $label );
-                            $content_escaped .= '<div style="clear:both;"><b><span style="float:left">' . wp_kses_post( $label ) . '</span><span style="float:right;width:3em;"><input type="text" style="text-align:right;" class="qem-multi-product"
+                            $content_escaped .= '<div style="clear:both;"><b><span style="float:left">' . wp_kses_post( $label ) . '</span><span style="float:right;width:3em;">
+                       <input type="text" style="text-align:right;" class="qem-multi-product" 
+                       data-qem-cost="' . esc_attr( $products[$i]['cost'] ) . '"
                              name="qtyproduct' . (int) $i . '" id="qtyproduct' . (int) $i . '" value="" /></span></b></div>';
                         }
                         $content_escaped .= '<div style="clear:both;"></div>

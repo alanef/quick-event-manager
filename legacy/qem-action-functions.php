@@ -157,7 +157,7 @@ function qem_generate_css()
         }
     
     }
-    $lbmargin = (int) ($display['lightboxwidth'] / 2);
+    $lbmargin = (int) ((int) $display['lightboxwidth'] / 2);
     $script .= '#xlightbox {width:' . $display['lightboxwidth'] . '%;margin-left:-' . $lbmargin . '%;}
 @media only screen and (max-width: 480px) {#xlightbox {width:90%;margin-left:-45%;}}';
     if ( $register['ontheright'] ) {

@@ -2,7 +2,7 @@
 Contributors: Fullworks
 Tags: event manager, calendar, events, event booking, event calendar
 Tested up to: 6.3
-Stable tag: 9.8.5.6
+Stable tag: 9.8.5.7
 Type: freemium
 
 Simple event manager. No messing about, just add events and a shortcode and the plugin does the rest for you.
@@ -92,6 +92,10 @@ Well OK yes you can add more fields if you want but you are going to have to fid
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/quick-event-manager)
 
 == Changelog ==
+= 9.8.5.7 =
+* Javascript fix for incompatible themes
+* Fix for 8.1 compatability
+
 = 9.8.5.6 =
 * Fix pay later logic
 * Add notification if a user re registers for a pending payment

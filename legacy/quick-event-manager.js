@@ -147,9 +147,9 @@ var qem_dont_cancel;
             /*
                 Successful validation!
             */
-                qem.find('.places').hide();
-                var form = data.form;
-                qem.find('.qem-form').html(form);
+            qem.find('.places').hide();
+            var form = data.form;
+            qem.find('.qem-form').html(form);
         }
 
         /*
@@ -278,30 +278,35 @@ var qem_dont_cancel;
         }
 
         $('.qem-multi-product').on('input', function () {
-            var H = $(this).closest('.qem_multi_holder'),
-                X = H.find('input'),
-                T = 0,
-                F = $(this).closest('form').attr('id'),
-                A = window['qem_multi_' + F];
-            let attending = 0
-            var V = 0, C = 0, I;
-            for (var i = 0; i < X.length; i++) {
+            var multiHolder = $(this).closest('.qem_multi_holder');
+            var productInputs = multiHolder.find('input');
+            var total = 0;
+            var attending = 0;
 
-                V = $(X[i]).val();
-                attending += parseInt(V) || 0;
+            for (var i = 0; i < productInputs.length; i++) {
+                var inputValue = $(productInputs[i]).val();
 
-                I = $(X[i]).attr('id').replace('qtyproduct', '');
+                // Remove all non-integer characters from the input value
+                var cleanedValue = inputValue.replace(/\D/g, '');
 
-                T += A[I].cost * V;
+                // Update the input field with the cleaned value
+                $(productInputs[i]).val(cleanedValue);
 
+                var quantity = parseInt(cleanedValue);
+                var cost = parseFloat($(productInputs[i]).data('qem-cost'));
+                if (!isNaN(quantity) ) {
+                    attending += quantity;
+                    total += quantity * cost;
+                }
             }
+
             if (attending < 2) {
                 $("#morenames").hide();
             } else {
                 $("#morenames").show();
             }
 
-            H.find('#total_price .qem_output').text(T);
+            multiHolder.find('#total_price .qem_output').text(total.toFixed(2));
         });
         /*
 	QEM Toggle

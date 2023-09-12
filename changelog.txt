@@ -1,4 +1,8 @@
 == Changelog ==
+= 9.8.5.7 =
+* Javascript fix for incompatbile themes
+* Fix for 8.1 compatability
+
 = 9.8.5.6 =
 * Fix pay later logic
 * Add notification if a user re registers for a pending payment
