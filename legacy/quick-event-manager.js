@@ -147,20 +147,9 @@ var qem_dont_cancel;
             /*
                 Successful validation!
             */
-            if (data.ignore) {
-
-                params = {
-                    'module': 'deferred',
-                    'custom': 'Deferred Payment',
-                    'form': qem.find('input[name=form_id]').val()
-                };
-
-                qem_redirect(params);
-            } else {
-                qem.find('.places').hide();
-                var form = data.form;
-                qem.find('.qem-form').html(form);
-            }
+            qem.find('.places').hide();
+            var form = data.form;
+            qem.find('.qem-form').html(form);
         }
 
         /*
@@ -240,89 +229,84 @@ var qem_dont_cancel;
                 event.preventDefault();
                 return false;
             });
-            
-                $('.qem-form input[type=submit]').click(function (event) {
 
-                    event.preventDefault();
+            $('.qem-form input[type=submit]').click(function (event) {
 
-                    /*
-                        Collect Important Data
-                    */
-                    $target = event.target;
-                    c = $($target);
-                    $ = jQuery;
-                    form = c.closest('form');
-                    form.hide();
+                event.preventDefault();
 
-                    var formid = form.attr('id');
-                    $('.qem_validating_form[data-form-id="' + formid + '"]').show();
+                /*
+                    Collect Important Data
+                */
+                $target = event.target;
+                c = $($target);
+                $ = jQuery;
+                form = c.closest('form');
+                form.hide();
 
-                    var fd = $(form).serialize();
-                    fd += '&' + c.attr('name') + '=' + c.val() + '&action=qem_validate_form';
-                    $.ajax({
-                        type: 'POST',
-                        url: ajaxurl,
-                        data: fd,
-                        success: function (e) {
-                            data = e;
+                var formid = form.attr('id');
+                $('.qem_validating_form[data-form-id="' + formid + '"]').show();
 
-                            if (!data.success) {
+                var fd = $(form).serialize();
+                fd += '&' + c.attr('name') + '=' + c.val() + '&action=qem_validate_form';
+                $.ajax({
+                    type: 'POST',
+                    url: ajaxurl,
+                    data: fd,
+                    success: function (e) {
+                        data = e;
 
-                                $('.qem_validating[data-form-id="' + formid + '"]').hide();
-                                $('.qem_processing[data-form-id="' + formid + '"]').hide();
-                                form.show();
-                                qem_handle_regular(data, form);
+                        if (!data.success) {
 
-                                return;
-                            }
-                            
-                                params = {
-                                    'module': 'deferred',
-                                    'custom': 'Deferred Payment',
-                                    'form': form.find('input[name=form_id]').val()
-                                };
+                            $('.qem_validating[data-form-id="' + formid + '"]').hide();
+                            $('.qem_processing[data-form-id="' + formid + '"]').hide();
+                            form.show();
+                            qem_handle_regular(data, form);
 
-                                qem_redirect(params);
-
-                                qem_dont_cancel = true;
-                                
-                        },
-                        error: function (data) {
-                            console.log(data);
-                            alert(__('Server Error check console log', 'quick-event-manager'));
+                            return;
                         }
-                    });
-
-                    return false;
+                        
+                    },
+                    error: function (data) {
+                        console.log(data);
+                        alert(__('Server Error check console log', 'quick-event-manager'));
+                    }
                 });
-                
+
+                return false;
+            });
+            
         }
 
         $('.qem-multi-product').on('input', function () {
-            var H = $(this).closest('.qem_multi_holder'),
-                X = H.find('input'),
-                T = 0,
-                F = $(this).closest('form').attr('id'),
-                A = window['qem_multi_' + F];
-            let attending = 0
-            var V = 0, C = 0, I;
-            for (var i = 0; i < X.length; i++) {
+            var multiHolder = $(this).closest('.qem_multi_holder');
+            var productInputs = multiHolder.find('input');
+            var total = 0;
+            var attending = 0;
 
-                V = $(X[i]).val();
-                attending += parseInt(V) || 0;
+            for (var i = 0; i < productInputs.length; i++) {
+                var inputValue = $(productInputs[i]).val();
 
-                I = $(X[i]).attr('id').replace('qtyproduct', '');
+                // Remove all non-integer characters from the input value
+                var cleanedValue = inputValue.replace(/\D/g, '');
 
-                T += A[I].cost * V;
+                // Update the input field with the cleaned value
+                $(productInputs[i]).val(cleanedValue);
 
+                var quantity = parseInt(cleanedValue);
+                var cost = parseFloat($(productInputs[i]).data('qem-cost'));
+                if (!isNaN(quantity) ) {
+                    attending += quantity;
+                    total += quantity * cost;
+                }
             }
+
             if (attending < 2) {
                 $("#morenames").hide();
             } else {
                 $("#morenames").show();
             }
 
-            H.find('#total_price .qem_output').text(T);
+            multiHolder.find('#total_price .qem_output').text(total.toFixed(2));
         });
         /*
 	QEM Toggle

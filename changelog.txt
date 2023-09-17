@@ -1,4 +1,22 @@
 == Changelog ==
+= 9.8.5.8 =
+* check for not null freemius when detecting plugin already installed
+
+= 9.8.5.7 =
+* Javascript fix for incompatbile themes
+* Fix for 8.1 compatability
+
+= 9.8.5.6 =
+* Fix pay later logic
+* Add notification if a user re registers for a pending payment
+
+= 9.8.5.5 =
+* Fix pay later thank you
+
+= 9.8.5.4 =
+* Improve data feed to Display Eventbrite plugin ( Pro Only )
+* Fix rounding on Stripe prices ( Pro Only )
+
 = 9.8.5.3 =
 * Allow html in payment auto responder
 

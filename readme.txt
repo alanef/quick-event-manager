@@ -1,8 +1,8 @@
 === Quick Event Manager ===
 Contributors: Fullworks
 Tags: event manager, calendar, events, event booking, event calendar
-Tested up to: 6.2
-Stable tag: 9.8.5.3
+Tested up to: 6.3
+Stable tag: 9.8.5.8
 Type: freemium
 
 Simple event manager. No messing about, just add events and a shortcode and the plugin does the rest for you.
@@ -88,8 +88,28 @@ No.
 = Why not? =
 Well OK yes you can add more fields if you want but you are going to have to fiddle about with the php file which needs a bit of care and attention. Everything you need to know is in the [wordpress codex](http://codex.wordpress.org/Writing_a_Plugin).
 
+= How can I report security bugs? =
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/quick-event-manager)
 
 == Changelog ==
+= 9.8.5.8 =
+* check for not null freemius when detecting plugin already installed
+
+= 9.8.5.7 =
+* Javascript fix for incompatible themes
+* Fix for 8.1 compatability
+
+= 9.8.5.6 =
+* Fix pay later logic
+* Add notification if a user re registers for a pending payment
+
+= 9.8.5.5 =
+* Fix pay later thank you
+
+= 9.8.5.4 =
+* Improve data feed to Display Eventbrite plugin ( Pro Only )
+* Fix rounding on Stripe prices ( Pro Only )
+
 = 9.8.5.3 =
 * Allow html in payment auto responder
 
@@ -106,9 +126,6 @@ Well OK yes you can add more fields if you want but you are going to have to fid
 * Fix some missing columns on reports
 * set print css to print all qem admin pages
 
-= 9.8.4 =
-* Fix end date when blank in Guest Post email (Pro Only)
-* Fix csv example link (Pro Only)
 
 
 
