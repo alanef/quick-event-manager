@@ -1,4 +1,10 @@
 == Changelog ==
+= 9.8.5.9 =
+* remove attempt to load missing un-needed files
+
+= 9.8.5.8 =
+* check for not null freemius when detecting plugin already installed
+
 = 9.8.5.7 =
 * Javascript fix for incompatbile themes
 * Fix for 8.1 compatability
