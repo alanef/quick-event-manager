@@ -1,4 +1,10 @@
 == Changelog ==
+= 9.8.6 =
+* Fix for shortcode qemsendemail (Pro Only)
+
+= 9.8.5.9 =
+* remove attempt to load missing un-needed files
+
 = 9.8.5.8 =
 * check for not null freemius when detecting plugin already installed
 

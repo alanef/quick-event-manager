@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'fullworks/quick-event-manager',
-        'pretty_version' => 'dev-9.8.5.8',
-        'version' => '9.8.5.8-dev',
-        'reference' => 'e9d899a97a4267133488d85980bd33f5aebd8f9e',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => '07500d2f36c78bb96ca12a16d0d381e3a569eedf',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -31,9 +31,9 @@
             'dev_requirement' => false,
         ),
         'fullworks/quick-event-manager' => array(
-            'pretty_version' => 'dev-9.8.5.8',
-            'version' => '9.8.5.8-dev',
-            'reference' => 'e9d899a97a4267133488d85980bd33f5aebd8f9e',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '07500d2f36c78bb96ca12a16d0d381e3a569eedf',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

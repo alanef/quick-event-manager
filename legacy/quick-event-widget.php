@@ -303,7 +303,7 @@ class qem_calendar_widget extends WP_Widget {
 		$title = apply_filters( 'widget_title', $instance['title'] );
 		echo wp_kses_post( $args['before_widget'] );
 		if ( ! empty( $title ) ) {
-			echo wp_kses_post($args['before_title'] . $title . $args['after_title']);
+			echo wp_kses_post( $args['before_title'] . $title . $args['after_title'] );
 		}
 
 
@@ -326,9 +326,9 @@ class qem_calendar_widget extends WP_Widget {
 			$headerstyle = '#qem-calendar-widget ' . $instance['header'] . '{' . $instance['headerstyle'] . '}';
 		}
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_strip_all_tags is a WP security function, qem_show_calendar_esc returns escaped data https://developer.wordpress.org/apis/security/escaping/#toc_4
-		echo '<div id="qem-calendar-widget"><style>' . wp_strip_all_tags($smallicon . ' ' . $headerstyle). '</style>' . qem_show_calendar_esc( $instance ) . '</div>' . "\r\n";
+		echo '<div id="qem-calendar-widget"><style>' . wp_strip_all_tags( $smallicon . ' ' . $headerstyle ) . '</style>' . qem_show_calendar_esc( $instance ) . '</div>' . "\r\n";
 
-		echo wp_kses_post($args['after_widget']);
+		echo wp_kses_post( $args['after_widget'] );
 	}
 }
 

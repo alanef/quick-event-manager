@@ -6,7 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-09-17 18:12+0000\n"
+"POT-Creation-Date: 2023-10-12 21:29+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -141,7 +141,7 @@ msgstr ""
 msgid "..."
 msgstr ""
 
-#: src/legacy/quick-event-editor.php:82, src/legacy/quick-event-extensions__premium_only.php:657, src/legacy/quick-event-manager-settings.php:1450, src/legacy/quick-event-payments.php:132, src/legacy/quick-event-register.php:405
+#: src/legacy/quick-event-editor.php:82, src/legacy/quick-event-extensions__premium_only.php:670, src/legacy/quick-event-manager-settings.php:1450, src/legacy/quick-event-payments.php:132, src/legacy/quick-event-register.php:405
 msgid "Event"
 msgstr ""
 
@@ -185,7 +185,7 @@ msgstr ""
 msgid "Event ID:"
 msgstr ""
 
-#: src/legacy/quick-event-editor.php:187, src/legacy/quick-event-extensions__premium_only.php:657
+#: src/legacy/quick-event-editor.php:187, src/legacy/quick-event-extensions__premium_only.php:670
 msgid "Date"
 msgstr ""
 
@@ -538,7 +538,7 @@ msgstr ""
 msgid "User defined"
 msgstr ""
 
-#: src/legacy/quick-event-editor.php:620, src/legacy/quick-event-extensions__premium_only.php:516, src/legacy/quick-event-extensions__premium_only.php:681, src/legacy/quick-event-manager-settings.php:1930, src/legacy/quick-event-register.php:2447
+#: src/legacy/quick-event-editor.php:620, src/legacy/quick-event-extensions__premium_only.php:529, src/legacy/quick-event-extensions__premium_only.php:694, src/legacy/quick-event-manager-settings.php:1930, src/legacy/quick-event-register.php:2447
 msgid "Dropdown 1"
 msgstr ""
 
@@ -546,7 +546,7 @@ msgstr ""
 msgid "Values"
 msgstr ""
 
-#: src/legacy/quick-event-editor.php:624, src/legacy/quick-event-extensions__premium_only.php:520, src/legacy/quick-event-extensions__premium_only.php:685, src/legacy/quick-event-manager-settings.php:1944, src/legacy/quick-event-register.php:2453
+#: src/legacy/quick-event-editor.php:624, src/legacy/quick-event-extensions__premium_only.php:533, src/legacy/quick-event-extensions__premium_only.php:698, src/legacy/quick-event-manager-settings.php:1944, src/legacy/quick-event-register.php:2453
 msgid "Dropdown 2"
 msgstr ""
 
@@ -618,95 +618,95 @@ msgstr ""
 msgid "Registrations"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:295
+#: src/legacy/quick-event-extensions__premium_only.php:308
 msgid "Message sent to %1$s selected attendees"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:317
+#: src/legacy/quick-event-extensions__premium_only.php:330
 msgid "Message sent to all registrants"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:335
+#: src/legacy/quick-event-extensions__premium_only.php:348
 msgid "Email Attendees"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:348, src/legacy/quick-event-manager-settings.php:2376
+#: src/legacy/quick-event-extensions__premium_only.php:361, src/legacy/quick-event-manager-settings.php:2376
 msgid "From Name:"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:348
+#: src/legacy/quick-event-extensions__premium_only.php:361
 msgid "Defaults to your"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:348
+#: src/legacy/quick-event-extensions__premium_only.php:361
 msgid "Site Title"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:348, src/legacy/quick-event-extensions__premium_only.php:350, src/legacy/quick-event-manager-settings.php:2376, src/legacy/quick-event-manager-settings.php:2379
+#: src/legacy/quick-event-extensions__premium_only.php:361, src/legacy/quick-event-extensions__premium_only.php:363, src/legacy/quick-event-manager-settings.php:2376, src/legacy/quick-event-manager-settings.php:2379
 msgid "if left blank"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:350, src/legacy/quick-event-manager-settings.php:2378
+#: src/legacy/quick-event-extensions__premium_only.php:363, src/legacy/quick-event-manager-settings.php:2378
 msgid "From Email:"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:350, src/legacy/quick-event-manager-settings.php:2378
+#: src/legacy/quick-event-extensions__premium_only.php:363, src/legacy/quick-event-manager-settings.php:2378
 msgid "Defaults to the"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:350, src/legacy/quick-event-manager-settings.php:2378
+#: src/legacy/quick-event-extensions__premium_only.php:363, src/legacy/quick-event-manager-settings.php:2378
 msgid "Admin Email"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:352, src/legacy/quick-event-manager-settings.php:2381
+#: src/legacy/quick-event-extensions__premium_only.php:365, src/legacy/quick-event-manager-settings.php:2381
 msgid "Subject:"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:589, src/legacy/quick-event-extensions__premium_only.php:633, src/legacy/quick-event-extensions__premium_only.php:805
+#: src/legacy/quick-event-extensions__premium_only.php:602, src/legacy/quick-event-extensions__premium_only.php:646, src/legacy/quick-event-extensions__premium_only.php:818
 msgid "Send to this email address"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:591, src/legacy/quick-event-extensions__premium_only.php:637, src/legacy/quick-event-register.php:3183
+#: src/legacy/quick-event-extensions__premium_only.php:604, src/legacy/quick-event-extensions__premium_only.php:650, src/legacy/quick-event-register.php:3183
 msgid "Email List"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:693, src/legacy/quick-event-register.php:2483
+#: src/legacy/quick-event-extensions__premium_only.php:706, src/legacy/quick-event-register.php:2483
 msgid "Date Sent"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:814
+#: src/legacy/quick-event-extensions__premium_only.php:827
 msgid "No registrations found"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:804
+#: src/legacy/quick-event-extensions__premium_only.php:817
 msgid "Your Registrations"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:1144
+#: src/legacy/quick-event-extensions__premium_only.php:1157
 msgid "Everyone has been deleted"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:1157
+#: src/legacy/quick-event-extensions__premium_only.php:1170
 msgid "Delete ALL not attending records"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:1158
+#: src/legacy/quick-event-extensions__premium_only.php:1171
 msgid "Are you sure you want to delete the list?"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:1159
+#: src/legacy/quick-event-extensions__premium_only.php:1172
 msgid "Send report to this email address:"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:1192
+#: src/legacy/quick-event-extensions__premium_only.php:1205
 msgid "Everybody is attending"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:1299
+#: src/legacy/quick-event-extensions__premium_only.php:1312
 msgid "Warning!"
 msgstr ""
 
-#: src/legacy/quick-event-extensions__premium_only.php:1305, src/legacy/quick-event-manager-settings.php:2387, src/legacy/quick-event-manager-settings.php:2496
+#: src/legacy/quick-event-extensions__premium_only.php:1318, src/legacy/quick-event-manager-settings.php:2387, src/legacy/quick-event-manager-settings.php:2496
 msgid "Event Editor"
 msgstr ""
 

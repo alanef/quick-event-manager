@@ -40,18 +40,5 @@ class FrontEnd {
 	}
 
 	public function hooks() {
-
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-	}
-
-	public function enqueue_styles() {
-
-		wp_enqueue_style( $this->plugin_name, QUICK_EVENT_MANAGER_PLUGIN_URL . 'css/frontend.css', array(), $this->version, 'all' );
-	}
-
-	public function enqueue_scripts() {
-
-		wp_enqueue_script( $this->plugin_name, QUICK_EVENT_MANAGER_PLUGIN_URL . 'js/frontend.js', array( 'jquery' ), $this->version, false );
 	}
 }
