@@ -1,8 +1,8 @@
 === Quick Event Manager ===
 Contributors: Fullworks
 Tags: event manager, calendar, events, event booking, event calendar
-Tested up to: 6.3
-Stable tag: 9.8.5.9
+Tested up to: 6.4
+Stable tag: 9.8.8
 Type: freemium
 
 Simple event manager. No messing about, just add events and a shortcode and the plugin does the rest for you.
@@ -92,6 +92,15 @@ Well OK yes you can add more fields if you want but you are going to have to fid
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/quick-event-manager)
 
 == Changelog ==
+= 9.8.8 =
+* Fix fatal error for some scenarios on PHP 8.1 and various notices
+
+= 9.8.7 =
+* Fix Thank you page message on grid layout
+
+= 9.8.6 =
+* Fix for shortcode qemsendemail (Pro Only)
+
 = 9.8.5.9 =
 * remove attempt to load missing un-needed files
 
@@ -108,6 +117,7 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 = 9.8.5.5 =
 * Fix pay later thank you
+
 
 = 9.8.5.4 =
 * Improve data feed to Display Eventbrite plugin ( Pro Only )

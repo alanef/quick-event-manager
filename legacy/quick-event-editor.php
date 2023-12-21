@@ -32,7 +32,7 @@ function event_custom_columns( $column )
             echo  esc_html( qem_get_element( qem_get_element( $custom, "event_cost" ), 0 ) ) ;
             break;
         case "number_coming":
-            echo  wp_kses_post( qem_attending( $event ) ) ;
+            echo  qem_wp_kses_post( qem_attending( $event ) ) ;
             break;
         case 'categories':
             $category = get_the_term_list(
@@ -442,7 +442,7 @@ function event_details_meta()
         $event_names = substr( $event_names, 0, -2 );
         echo  '<tr>
         <td>' . esc_html__( 'Attendees', 'quick-event-manager' ) . ' (' . esc_html__( 'names and emails collected from the', 'quick-event-manager' ) . ' <a href="options-general.php?page=' . esc_attr( QUICK_EVENT_MANAGER_PLUGIN_NAME ) . '&tab=register">' . esc_html__( 'registration form', 'quick-event-manager' ) . '</a>)</td>
-        <td>' . wp_kses_post( $event_names ) . '</td>
+        <td>' . qem_wp_kses_post( $event_names ) . '</td>
         </tr>
         <tr>
         <td></td>
@@ -452,7 +452,7 @@ function event_details_meta()
     
     echo  '<tr>
         <td>' . esc_html__( 'Notes', 'quick-event-manager' ) . ':</td>
-        <td><textarea style="width:100%;height:100px;" name="event_notes">' . wp_kses_post( qem_get_event_field( "event_notes" ) ) . '</textarea></td>
+        <td><textarea style="width:100%;height:100px;" name="event_notes">' . qem_wp_kses_post( qem_get_event_field( "event_notes" ) ) . '</textarea></td>
         </tr>
         </table>' ;
     wp_nonce_field( 'qem_nonce', 'save_qem' );
@@ -464,7 +464,7 @@ function event_details_meta()
             'freemius'        => $qem_fs,
         ) );
         $template_loader->get_template_part( 'upgrade_cta' );
-        echo  wp_kses_post( $template_loader->get_output() ) ;
+        echo  qem_wp_kses_post( $template_loader->get_output() ) ;
     }
 
 }
@@ -578,7 +578,7 @@ function save_event_details()
         }
     
     }
-    save_event_field( "event_desc", 'wp_kses_post' );
+    save_event_field( "event_desc", 'qem_wp_kses_post' );
     save_event_field( "event_start", 'sanitize_text_field' );
     save_event_field( "event_finish", 'sanitize_text_field' );
     save_event_field( "event_timezone", 'sanitize_text_field' );
@@ -597,30 +597,30 @@ function save_event_details()
     }
     
     save_event_field( "event_custom_timezone", 'sanitize_text_field' );
-    save_event_field( "event_location", 'wp_kses_post' );
-    save_event_field( "event_address", 'wp_kses_post' );
+    save_event_field( "event_location", 'qem_wp_kses_post' );
+    save_event_field( "event_address", 'qem_wp_kses_post' );
     save_event_field( "event_link", 'sanitize_url' );
     save_event_field( "event_anchor", 'sanitize_text_field' );
     save_event_field( "event_cost", 'sanitize_text_field' );
     save_event_field( "event_deposit", 'sanitize_text_field' );
     save_event_field( "event_deposittype", 'sanitize_text_field' );
-    save_event_field( "event_organiser", 'wp_kses_post' );
-    save_event_field( "event_telephone", 'wp_kses_post' );
+    save_event_field( "event_organiser", 'qem_wp_kses_post' );
+    save_event_field( "event_telephone", 'qem_wp_kses_post' );
     save_event_field( "event_image", 'sanitize_url' );
     save_event_field( "event_redirect", 'sanitize_url' );
-    save_event_field( "event_registration_message", 'wp_kses_post' );
-    save_event_field( "event_show_cutoff_blurb", 'wp_kses_post' );
-    save_event_field( "qem_reg_closed_date_time_msg", 'wp_kses_post' );
+    save_event_field( "event_registration_message", 'qem_wp_kses_post' );
+    save_event_field( "event_show_cutoff_blurb", 'qem_wp_kses_post' );
+    save_event_field( "qem_reg_closed_date_time_msg", 'qem_wp_kses_post' );
     save_event_field( "event_maxplaces", 'sanitize_text_field' );
-    save_event_field( "event_notes", 'wp_kses_post' );
-    save_event_field( "event_readmore", 'wp_kses_post' );
+    save_event_field( "event_notes", 'qem_wp_kses_post' );
+    save_event_field( "event_readmore", 'qem_wp_kses_post' );
     $products = ',';
     // some legacy rubbish here - starts with a comma
     for ( $i = 1 ;  $i <= 8 ;  $i++ ) {
         
         if ( $i & 1 ) {
             //odd
-            $val = wp_kses_post( qem_get_element( $_POST, "product" . $i ) );
+            $val = qem_wp_kses_post( qem_get_element( $_POST, "product" . $i ) );
         } else {
             //even
             $val = sanitize_text_field( qem_get_element( $_POST, "product" . $i ) );

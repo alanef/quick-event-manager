@@ -497,7 +497,7 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
         if ( !empty(qem_get_element( $register, 'replyblurb' )) ) {
             $register['replyblurb'] = '<p>' . qem_get_element( $register, 'replyblurb' ) . '</p>';
         }
-        $content_escaped .= wp_kses_post( qem_get_element( $register, 'replytitle' ) ) . wp_kses_post( qem_get_element( $register, 'replyblurb' ) );
+        $content_escaped .= qem_wp_kses_post( qem_get_element( $register, 'replytitle' ) ) . qem_wp_kses_post( qem_get_element( $register, 'replyblurb' ) );
         
         if ( $paypal && $cost && !qem_get_element( $values, 'ignore', false ) ) {
             $content_escaped .= '<a id="qem_reload"></a>';
@@ -506,7 +506,7 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
         </script>';
             $content_escaped .= qem_process_payment_form_esc( $values );
         } elseif ( qem_get_element( $register, 'useread_more' ) ) {
-            $content_escaped .= '<p><a href="' . get_permalink() . '">' . wp_kses_post( qem_get_element( $register, 'read_more' ) ) . '</a></p>';
+            $content_escaped .= '<p><a href="' . get_permalink() . '">' . qem_wp_kses_post( qem_get_element( $register, 'read_more' ) ) . '</a></p>';
         }
         
         $content_escaped .= '<a id="qem_reload"></a>';
@@ -520,7 +520,7 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
                 'freemius'        => $qem_fs,
             ) );
             $template_loader->get_template_part( 'registration_closed' );
-            $content_escaped = wp_kses_post( $template_loader->get_output() );
+            $content_escaped = qem_wp_kses_post( $template_loader->get_output() );
         }
         
         $qem_number_places_available = '';
@@ -529,15 +529,15 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
         $content_escaped .= '';
         $qem_number_places_available = '';
     } elseif ( qem_get_element( $errors, 'alreadyregistered', false ) == 'checked' ) {
-        $content_escaped .= "<div class='places'>" . wp_kses_post( $placesleft ) . '</div><h2>' . esc_html( qem_get_element( $register, 'alreadyregistered' ) ) . '</h2>';
+        $content_escaped .= "<div class='places'>" . qem_wp_kses_post( $placesleft ) . '</div><h2>' . esc_html( qem_get_element( $register, 'alreadyregistered' ) ) . '</h2>';
         if ( qem_get_element( $register, 'useread_more' ) ) {
-            $content_escaped .= '<p><a href="' . get_permalink() . '">' . wp_kses_post( qem_get_element( $register, 'read_more' ) ) . '</a></p>';
+            $content_escaped .= '<p><a href="' . get_permalink() . '">' . qem_wp_kses_post( qem_get_element( $register, 'read_more' ) ) . '</a></p>';
         }
         $content_escaped .= '<a id="qem_reload"></a>';
     } elseif ( qem_get_element( $errors, 'alreadyregistered', false ) == 'removed' ) {
-        $content_escaped .= "<div class='places'>" . wp_kses_post( $placesleft ) . '</div><h2>' . esc_html( qem_get_element( $register, 'nameremoved' ) ) . '</h2>';
+        $content_escaped .= "<div class='places'>" . qem_wp_kses_post( $placesleft ) . '</div><h2>' . esc_html( qem_get_element( $register, 'nameremoved' ) ) . '</h2>';
         if ( qem_get_element( $register, 'useread_more' ) ) {
-            $content_escaped .= '<p><a href="' . get_permalink() . '">' . wp_kses_post( qem_get_element( $register, 'read_more' ) ) . '</a></p>';
+            $content_escaped .= '<p><a href="' . get_permalink() . '">' . qem_wp_kses_post( qem_get_element( $register, 'read_more' ) ) . '</a></p>';
         }
         $content_escaped .= '<a id="qem_reload"></a>';
     } else {
@@ -549,13 +549,13 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
         }
         $content_escaped .= '<div class="qem-register">';
         if ( qem_get_element( $register, 'hideform', false ) && count( $errors ) == 0 ) {
-            $content_escaped .= '<div class="toggle-qem"><a href="#">' . wp_kses_post( qem_get_element( $register, 'title' ) ) . '</a></div>
+            $content_escaped .= '<div class="toggle-qem"><a href="#">' . qem_wp_kses_post( qem_get_element( $register, 'title' ) ) . '</a></div>
             <div class="apply" style="display: none;">';
         }
         $content_escaped .= '<div id="' . esc_attr( qem_get_element( $style, 'border' ) ) . '">';
         
         if ( count( $errors ) > 0 ) {
-            $content_escaped .= "<h2 class='qem-error-header'>" . wp_kses_post( qem_get_element( $register, 'error' ) ) . "</h2>";
+            $content_escaped .= "<h2 class='qem-error-header'>" . qem_wp_kses_post( qem_get_element( $register, 'error' ) ) . "</h2>";
             $arr = array(
                 'yourname',
                 'youremail',
@@ -588,20 +588,20 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
         } else {
             
             if ( !qem_get_element( $register, 'hideform', false ) || count( $errors ) != 0 ) {
-                $content_escaped .= wp_kses_post( qem_get_element( $register, 'thetitle' ) );
+                $content_escaped .= qem_wp_kses_post( qem_get_element( $register, 'thetitle' ) );
             } else {
                 $content_escaped .= '<h2></h2>';
             }
             
             if ( !$registered ) {
-                $content_escaped .= wp_kses_post( qem_get_element( $register, 'blurb' ) );
+                $content_escaped .= qem_wp_kses_post( qem_get_element( $register, 'blurb' ) );
             }
         }
         
         if ( $cutoffmessage && 'checked' === $cutoff ) {
-            $content_escaped .= '<p class="qem-cutoff-message"><strong>' . wp_kses_post( $cutoffmessage ) . ' ' . wp_kses_post( $cutoff_display_date ) . '</strong></p>';
+            $content_escaped .= '<p class="qem-cutoff-message"><strong>' . qem_wp_kses_post( $cutoffmessage ) . ' ' . qem_wp_kses_post( $cutoff_display_date ) . '</strong></p>';
         }
-        $content_escaped .= "<div class='places'>" . wp_kses_post( $placesleft ) . "</div>";
+        $content_escaped .= "<div class='places'>" . qem_wp_kses_post( $placesleft ) . "</div>";
         $content_escaped .= '<div class="qem-form"><form action="" method="POST" enctype="multipart/form-data" id="' . (int) $id . '">';
         $content_escaped .= '<input type="hidden" name="id" value="' . (int) $id . '" />';
         foreach ( explode( ',', qem_get_element( $register, 'sort' ) ) as $name ) {
@@ -620,7 +620,7 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
                                 $content_escaped .= '<th>' . esc_html__( 'Email', 'quick-event-manager' ) . '</th>';
                             }
                             $content_escaped .= '</tr>';
-                            $content_escaped .= wp_kses_post( qem_get_element( $errors, 'name' . $i ) );
+                            $content_escaped .= qem_wp_kses_post( qem_get_element( $errors, 'name' . $i ) );
                             for ( $i = 1 ;  $i <= $qem_number_places_available ;  $i++ ) {
                                 $content_escaped .= '<tr><td><input type="text" name="name' . (int) $i . '" ' . esc_attr( $required ) . ' ' . esc_attr( qem_get_element( $errors, 'name' . $i ) ) . ' value="' . esc_attr( qem_get_element( $values, 'name' . $i ) ) . '"></td>';
                                 if ( qem_get_element( $register, 'event_getemails' ) ) {
@@ -647,7 +647,7 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
                     break;
                 case 'field3':
                     if ( qem_get_element( $register, 'useattend', false ) ) {
-                        $content_escaped .= '<p><input type="checkbox" name="notattend" value="checked" ' . esc_attr( qem_get_element( $values, 'notattend' ) ) . ' /> ' . wp_kses_post( qem_get_element( $register, 'yourattend' ) ) . '</p>';
+                        $content_escaped .= '<p><input type="checkbox" name="notattend" value="checked" ' . esc_attr( qem_get_element( $values, 'notattend' ) ) . ' /> ' . qem_wp_kses_post( qem_get_element( $register, 'yourattend' ) ) . '</p>';
                     }
                     break;
                 case 'field4':
@@ -662,17 +662,23 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
                     
                     if ( $useproducts ) {
                         $product = get_post_meta( $id, 'event_productlist', true );
-                        $products = explode( ',', trim( $product, ',' ) );
-                        $products = array_chunk( $products, 2 );
-                        for ( $i = 0 ;  $i < count( $products ) ;  $i++ ) {
-                            list( $Mlabel, $Mcost ) = qem_get_element( $products, $i );
-                            $products[$i] = array(
-                                'label' => (string) $Mlabel,
-                                'cost'  => (double) $Mcost,
-                            );
+                        
+                        if ( !is_array( $product ) ) {
+                            $products = explode( ',', trim( $product, ',' ) );
+                            $products = array_chunk( $products, 2 );
+                            for ( $i = 0 ;  $i < count( $products ) ;  $i++ ) {
+                                list( $Mlabel, $Mcost ) = qem_get_element( $products, $i );
+                                $products[$i] = array(
+                                    'label' => (string) $Mlabel,
+                                    'cost'  => (double) $Mcost,
+                                );
+                            }
+                        } else {
+                            $products = $product;
                         }
+                        
                         if ( qem_get_element( $payment, 'attendeelabel' ) ) {
-                            $content_escaped .= '<p><b>' . wp_kses_post( qem_get_element( $payment, 'attendeelabel' ) ) . '</b></p>';
+                            $content_escaped .= '<p><b>' . qem_wp_kses_post( qem_get_element( $payment, 'attendeelabel' ) ) . '</b></p>';
                         }
                         $content_escaped .= '<div class="qem_multi_holder" id="qem_multi_' . (int) $id . '"  >';
                         for ( $i = 0 ;  $i < count( $products ) ;  $i++ ) {
@@ -680,23 +686,23 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
                             $label = str_replace( '[label]', $products[$i]['label'], $label );
                             $label = str_replace( '[currency]', qem_get_element( $payment, 'currencysymbol' ), $label );
                             $label = str_replace( '[cost]', $products[$i]['cost'], $label );
-                            $content_escaped .= '<div style="clear:both;"><b><span style="float:left">' . wp_kses_post( $label ) . '</span><span style="float:right;width:3em;">
+                            $content_escaped .= '<div style="clear:both;"><b><span style="float:left">' . qem_wp_kses_post( $label ) . '</span><span style="float:right;width:3em;">
                        <input type="text" style="text-align:right;" class="qem-multi-product" 
                        data-qem-cost="' . esc_attr( $products[$i]['cost'] ) . '"
                              name="qtyproduct' . (int) $i . '" id="qtyproduct' . (int) $i . '" value="" /></span></b></div>';
                         }
                         $content_escaped .= '<div style="clear:both;"></div>
-                    <p style="clear:both"><span style="float:left">' . wp_kses_post( $payment['totallabel'] ) . '</span><span style="float:right;width:5em;text-align:right;" id="total_price">' . esc_html( qem_get_element( $payment, 'currencysymbol' ) ) . '<span class="qem_output">0.00</span></span></p>
+                    <p style="clear:both"><span style="float:left">' . qem_wp_kses_post( $payment['totallabel'] ) . '</span><span style="float:right;width:5em;text-align:right;" id="total_price">' . esc_html( qem_get_element( $payment, 'currencysymbol' ) ) . '<span class="qem_output">0.00</span></span></p>
                     <div style="clear:both;"></div>';
                         $content_escaped .= '</div>';
                     } elseif ( qem_get_element( $register, 'useplaces', false ) ) {
                         $content_escaped .= '<p>';
                         if ( $register['placesposition'] == 'right' ) {
-                            $content_escaped .= wp_kses_post( qem_get_element( $register, 'yourplaces' ) ) . ' ';
+                            $content_escaped .= qem_wp_kses_post( qem_get_element( $register, 'yourplaces' ) ) . ' ';
                         }
                         $content_escaped .= '<input id="yourplaces" name="yourplaces" min="1" type="number"' . esc_attr( qem_get_element( $errors, 'yourplaces' ) ) . ' style="width:3em;margin-right:5px" value="' . esc_attr( qem_get_element( $values, 'yourplaces' ) ) . '" onblur="if (this.value == \'\') {this.value = \'' . esc_attr( qem_get_element( $values, 'yourplaces' ) ) . '\';}" onfocus="if (this.value == \'' . esc_attr( qem_get_element( $values, 'yourplaces' ) ) . '\') {this.value = \'\';}" />';
                         if ( qem_get_element( $register, 'placesposition' ) != 'right' ) {
-                            $content_escaped .= ' ' . wp_kses_post( qem_get_element( $register, 'yourplaces' ) );
+                            $content_escaped .= ' ' . qem_wp_kses_post( qem_get_element( $register, 'yourplaces' ) );
                         }
                         $content_escaped .= '</p>';
                     } else {
@@ -719,7 +725,7 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
                     break;
                 case 'field7':
                     if ( qem_get_element( $register, 'usecaptcha', false ) ) {
-                        $content_escaped .= '<p>' . wp_kses_post( qem_get_element( $register, 'captchalabel' ) ) . ' ' . esc_html( $values['thesum'] ) . ' = <input id="youranswer" name="youranswer" class="required" type="text"' . esc_attr( qem_get_element( $errors, 'youranswer' ) ) . ' style="width:3em;"  value="' . esc_attr( qem_get_element( $values, 'youranswer' ) ) . '" onblur="if (this.value == \'\') {this.value = \'' . esc_attr( qem_get_element( $values, 'youranswer' ) ) . '\';}" onfocus="if (this.value == \'' . esc_attr( qem_get_element( $values, 'youranswer' ) ) . '\') {this.value = \'\';}" /><input type="hidden" name="answer" value="' . esc_attr( strip_tags( qem_get_element( $values, 'answer' ) ) ) . '" />
+                        $content_escaped .= '<p>' . qem_wp_kses_post( qem_get_element( $register, 'captchalabel' ) ) . ' ' . esc_html( $values['thesum'] ) . ' = <input id="youranswer" name="youranswer" class="required" type="text"' . esc_attr( qem_get_element( $errors, 'youranswer' ) ) . ' style="width:3em;"  value="' . esc_attr( qem_get_element( $values, 'youranswer' ) ) . '" onblur="if (this.value == \'\') {this.value = \'' . esc_attr( qem_get_element( $values, 'youranswer' ) ) . '\';}" onfocus="if (this.value == \'' . esc_attr( qem_get_element( $values, 'youranswer' ) ) . '\') {this.value = \'\';}" /><input type="hidden" name="answer" value="' . esc_attr( strip_tags( qem_get_element( $values, 'answer' ) ) ) . '" />
                                                   <input type="hidden" name="thesum" value="' . esc_attr( strip_tags( qem_get_element( $values, 'thesum' ) ) ) . '" /></p>';
                     }
                     break;
@@ -730,7 +736,7 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
                         if ( qem_get_element( $register, 'copychecked' ) ) {
                             $copychecked = 'checked';
                         }
-                        $content_escaped .= '<p><input type="checkbox" name="qem-copy" value="checked" ' . esc_attr( qem_get_element( $values, 'qem-copy' ) ) . ' ' . esc_attr( $copychecked ) . ' /> ' . wp_kses_post( qem_get_element( $register, 'copyblurb' ) ) . '</p>';
+                        $content_escaped .= '<p><input type="checkbox" name="qem-copy" value="checked" ' . esc_attr( qem_get_element( $values, 'qem-copy' ) ) . ' ' . esc_attr( $copychecked ) . ' /> ' . qem_wp_kses_post( qem_get_element( $register, 'copyblurb' ) ) . '</p>';
                     }
                     
                     break;
@@ -782,13 +788,13 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
                     
                     if ( qem_get_element( $register, 'usenumber1', false ) ) {
                         $required = ( qem_get_element( $register, 'reqnumber1' ) ? 'class="required"' : '' );
-                        $content_escaped .= '<p>' . wp_kses_post( qem_get_element( $register, 'yournumber1' ) ) . '&nbsp;<input id="yournumber1" name="yournumber1" ' . esc_attr( $required ) . ' ' . esc_attr( qem_get_element( $errors, 'yournumber1' ) ) . ' type="text" style="' . esc_attr( qem_get_element( $errors, 'yournumber1' ) ) . 'width:3em;margin-right:5px" value="' . esc_attr( qem_get_element( $values, 'yournumber1' ) ) . '" value="' . esc_attr( qem_get_element( $values, 'yournumber1' ) ) . '" onblur="if (this.value == \'\') {this.value = \'' . esc_attr( qem_get_element( $values, 'yournumber1' ) ) . '\';}" onfocus="if (this.value == \'' . esc_attr( qem_get_element( $values, 'yournumber1' ) ) . '\') {this.value = \'\';}" /></p>';
+                        $content_escaped .= '<p>' . qem_wp_kses_post( qem_get_element( $register, 'yournumber1' ) ) . '&nbsp;<input id="yournumber1" name="yournumber1" ' . esc_attr( $required ) . ' ' . esc_attr( qem_get_element( $errors, 'yournumber1' ) ) . ' type="text" style="' . esc_attr( qem_get_element( $errors, 'yournumber1' ) ) . 'width:3em;margin-right:5px" value="' . esc_attr( qem_get_element( $values, 'yournumber1' ) ) . '" value="' . esc_attr( qem_get_element( $values, 'yournumber1' ) ) . '" onblur="if (this.value == \'\') {this.value = \'' . esc_attr( qem_get_element( $values, 'yournumber1' ) ) . '\';}" onfocus="if (this.value == \'' . esc_attr( qem_get_element( $values, 'yournumber1' ) ) . '\') {this.value = \'\';}" /></p>';
                     }
                     
                     break;
                 case 'field13':
                     if ( qem_get_element( $register, 'useaddinfo', false ) && ($paypal && qem_get_element( $register, 'paypaladdinfo', false ) || !$paypal && !qem_get_element( $register, 'paypaladdinfo', false )) ) {
-                        $content_escaped .= '<p>' . wp_kses_post( qem_get_element( $register, 'addinfo' ) ) . '</p>';
+                        $content_escaped .= '<p>' . qem_wp_kses_post( qem_get_element( $register, 'addinfo' ) ) . '</p>';
                     }
                     break;
                 case 'field14':
@@ -801,7 +807,7 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
                             if ( qem_get_element( $values, 'yourselector' ) == $item ) {
                                 $selected = 'selected';
                             }
-                            $content_escaped .= '<option value="' . esc_attr( $item ) . '" ' . esc_html( $selected ) . '>' . wp_kses_post( $item ) . '</option>';
+                            $content_escaped .= '<option value="' . esc_attr( $item ) . '" ' . esc_html( $selected ) . '>' . qem_wp_kses_post( $item ) . '</option>';
                         }
                         $content_escaped .= '</select>';
                     }
@@ -809,13 +815,13 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
                     break;
                 case 'field15':
                     if ( qem_get_element( $register, 'useoptin', false ) ) {
-                        $content_escaped .= '<p><input type="checkbox" name="youroptin" value="checked" ' . esc_html( qem_get_element( $values, 'youroptin' ) ) . ' /> ' . wp_kses_post( qem_get_element( $register, 'optinblurb' ) ) . '</p>';
+                        $content_escaped .= '<p><input type="checkbox" name="youroptin" value="checked" ' . esc_html( qem_get_element( $values, 'youroptin' ) ) . ' /> ' . qem_wp_kses_post( qem_get_element( $register, 'optinblurb' ) ) . '</p>';
                     }
                     break;
                 case 'field16':
                     
                     if ( qem_get_element( $register, 'usechecks', false ) ) {
-                        $content_escaped .= '<p>' . wp_kses_post( qem_get_element( $register, 'checkslabel' ) ) . '</p>';
+                        $content_escaped .= '<p>' . qem_wp_kses_post( qem_get_element( $register, 'checkslabel' ) ) . '</p>';
                         $content_escaped .= '<p>';
                         $arr = explode( ",", qem_get_element( $register, 'checkslist' ) );
                         $i = 0;
@@ -829,7 +835,7 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
                                 // force fixed name for radio as only 1 can be selected
                                 $i = 1;
                             }
-                            $content_escaped .= '<label><input type="' . esc_attr( $type ) . '" style="margin:0; padding: 0; border: none" name="' . 'checks_' . (int) $i . '" value="' . esc_html( $item ) . '" ' . checked( qem_get_element( $values, $item ), $item, false ) . '> ' . wp_kses_post( $item ) . '</label><br>';
+                            $content_escaped .= '<label><input type="' . esc_attr( $type ) . '" style="margin:0; padding: 0; border: none" name="' . 'checks_' . (int) $i . '" value="' . esc_html( $item ) . '" ' . checked( qem_get_element( $values, $item ), $item, false ) . '> ' . qem_wp_kses_post( $item ) . '</label><br>';
                         }
                         $content_escaped .= '</p>';
                     }
@@ -853,7 +859,7 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
             if ( qem_get_element( $register, 'termstarget' ) ) {
                 $target = ' target="_blank"';
             }
-            $content_escaped .= '<p><input type="checkbox" name="terms" value="checked" ' . esc_html( $termstyle ) . esc_html( qem_get_element( $values, 'terms' ) ) . ' /> <a href="' . esc_url( qem_get_element( $register, 'termsurl' ) ) . '"' . esc_attr( $target ) . esc_attr( $termslink ) . '>' . wp_kses_post( qem_get_element( $register, 'termslabel' ) ) . '</a></p>';
+            $content_escaped .= '<p><input type="checkbox" name="terms" value="checked" ' . esc_html( $termstyle ) . esc_html( qem_get_element( $values, 'terms' ) ) . ' /> <a href="' . esc_url( qem_get_element( $register, 'termsurl' ) ) . '"' . esc_attr( $target ) . esc_attr( $termslink ) . '>' . qem_wp_kses_post( qem_get_element( $register, 'termslabel' ) ) . '</a></p>';
         }
         
         if ( qem_get_element( $register, 'ignorepayment', false ) && ($paypal && $cost) ) {
@@ -877,8 +883,8 @@ function qem_display_form_unprotected_esc( $values, $errors, $registered )
         <input type="submit" value="' . esc_attr( $button_value ) . '" alt="' . esc_attr( qem_get_element( $register, 'qemsubmit' ) ) . '" id="submit" name="qemregister' . esc_attr( $id ) . '" />
         </form></div>
         <div class="qem_validating_form" data-form-id="' . esc_attr( $id ) . '"><span class="qem-spinner is-active"></span></div>
-		<div id="qem_validating">' . wp_kses_post( qem_get_element( $api, 'validating' ) ) . '<span class="qem-spinner is-active"></span></div>
-		<div id="qem_processing">' . wp_kses_post( qem_get_element( $api, 'waiting' ) ) . '<span class="qem-spinner is-active"></span></div>
+		<div id="qem_validating">' . qem_wp_kses_post( qem_get_element( $api, 'validating' ) ) . '<span class="qem-spinner is-active"></span></div>
+		<div id="qem_processing">' . qem_wp_kses_post( qem_get_element( $api, 'waiting' ) ) . '<span class="qem-spinner is-active"></span></div>
         <div style="clear:both;"></div></div>';
         if ( qem_get_element( $register, 'hideform', false ) && count( $errors ) == 0 ) {
             $content_escaped .= '</div>';
@@ -1286,14 +1292,27 @@ function qem_process_form( $values, $ajax = false )
     
     if ( $useproducts ) {
         $product = get_post_meta( $id, 'event_productlist', true );
-        $products = explode( ',', trim( $product, ',' ) );
-        $values['products'] = ' (';
-        for ( $i = 0 ;  $i < 4 ;  $i++ ) {
-            if ( qem_get_element( $products, $i * 2 ) ) {
-                $values['products'] .= qem_get_element( $products, $i * 2 ) . ' x ' . qem_get_element( $values, 'qtyproduct' . $i ) . ' ';
+        
+        if ( !is_array( $product ) ) {
+            $products = explode( ',', trim( $product, ',' ) );
+            $values['products'] = ' (';
+            for ( $i = 0 ;  $i < 4 ;  $i++ ) {
+                if ( qem_get_element( $products, $i * 2 ) ) {
+                    $values['products'] .= qem_get_element( $products, $i * 2 ) . ' x ' . qem_get_element( $values, 'qtyproduct' . $i ) . ' ';
+                }
             }
+            $values['products'] .= ')';
+        } else {
+            $products = $product;
+            $values['products'] = '(';
+            for ( $i = 0 ;  $i < 4 ;  $i++ ) {
+                if ( qem_get_element( $product, $i ) ) {
+                    $values['products'] .= qem_get_element( $product[$i], 'label' ) . ' x ' . qem_get_element( $values, 'qtyproduct' . $i ) . ' ';
+                }
+            }
+            $values['products'] .= ')';
         }
-        $values['products'] .= ')';
+        
         $values['yourplaces'] = qem_get_element( $values, 'qtyproduct0', 0 ) + qem_get_element( $values, 'qtyproduct1', 0 ) + qem_get_element( $values, 'qtyproduct2', 0 ) + qem_get_element( $values, 'qtyproduct3', 0 );
     }
     
@@ -1791,13 +1810,25 @@ function qem_build_event_message( $values, $register )
                 
                 if ( $useproducts ) {
                     $product = get_post_meta( $id, 'event_productlist', true );
-                    $products = explode( ',', trim( $product, ',' ) );
-                    $content .= '<p>';
-                    for ( $i = 0 ;  $i < 4 ;  $i++ ) {
-                        if ( $products[$i * 2] ) {
-                            $content .= $products[$i * 2] . ' x ' . $values['qtyproduct' . $i] . '<br>';
+                    
+                    if ( !is_array( $product ) ) {
+                        $products = explode( ',', trim( $product, ',' ) );
+                        $content .= '<p>';
+                        for ( $i = 0 ;  $i < 4 ;  $i++ ) {
+                            if ( $products[$i * 2] ) {
+                                $content .= $products[$i * 2] . ' x ' . $values['qtyproduct' . $i] . '<br>';
+                            }
+                        }
+                    } else {
+                        $products = $product;
+                        $content .= '<p>';
+                        for ( $i = 0 ;  $i < 4 ;  $i++ ) {
+                            if ( isset( $product[$i] ) ) {
+                                $content .= $product[$i]['label'] . ' x ' . $values['qtyproduct' . $i] . '<br>';
+                            }
                         }
                     }
+                    
                     $content .= '</p>';
                 } elseif ( $register['useplaces'] && !$values['notattend'] ) {
                     $content .= '<p><b>' . $register['yourplaces'] . ': </b>' . strip_tags( stripslashes( $values['yourplaces'] ) ) . '</p>';
@@ -1942,17 +1973,17 @@ function qem_build_registration_table_esc(
                 break;
             case 'field6':
                 if ( isset( $register['usemessage'] ) && $register['usemessage'] ) {
-                    $content_escaped .= '<th class="yourmessage">' . wp_kses_post( $register['yourmessage'] ) . '</th>';
+                    $content_escaped .= '<th class="yourmessage">' . qem_wp_kses_post( $register['yourmessage'] ) . '</th>';
                 }
                 break;
             case 'field9':
                 if ( $register['useblank1'] ) {
-                    $content_escaped .= '<th class="yourblank1">' . wp_kses_post( $register['yourblank1'] ) . '</th>';
+                    $content_escaped .= '<th class="yourblank1">' . qem_wp_kses_post( $register['yourblank1'] ) . '</th>';
                 }
                 break;
             case 'field10':
                 if ( $register['useblank2'] ) {
-                    $content_escaped .= '<th class="yourblank2">' . wp_kses_post( $register['yourblank2'] ) . '</th>';
+                    $content_escaped .= '<th class="yourblank2">' . qem_wp_kses_post( $register['yourblank2'] ) . '</th>';
                 }
                 break;
             case 'field11':
@@ -1973,17 +2004,17 @@ function qem_build_registration_table_esc(
                 break;
             case 'field15':
                 if ( $register['useoptin'] ) {
-                    $content_escaped .= '<th class="optinblurb">' . wp_kses_post( $register['optinblurb'] ) . '</th>';
+                    $content_escaped .= '<th class="optinblurb">' . qem_wp_kses_post( $register['optinblurb'] ) . '</th>';
                 }
                 break;
             case 'field16':
                 if ( $register['usechecks'] ) {
-                    $content_escaped .= '<th class="checkslist">' . wp_kses_post( $register['checkslabel'] ) . '</th>';
+                    $content_escaped .= '<th class="checkslist">' . qem_wp_kses_post( $register['checkslabel'] ) . '</th>';
                 }
                 break;
             case 'field12':
                 if ( $register['usenumber1'] ) {
-                    $content_escaped .= '<th class="yournumber1">' . wp_kses_post( $register['yournumber1'] ) . '</th>';
+                    $content_escaped .= '<th class="yournumber1">' . qem_wp_kses_post( $register['yournumber1'] ) . '</th>';
                 }
                 break;
             case 'field17':
@@ -2075,7 +2106,7 @@ function qem_build_registration_table_esc(
                             if ( $qem_edit == 'selected' && qem_get_element( $selected, $i_array ) || $qem_edit == 'all' ) {
                                 $content_escaped .= '<input style="width:100%" type="number" required min="1" value="' . esc_attr( qem_get_element( $value, 'yourplaces' ) ) . '" name="message[' . esc_attr( qem_get_element( $value, 'orig_key' ) ) . '][yourplaces]">';
                             } else {
-                                $content_escaped .= wp_kses_post( qem_get_element( $value, 'yourplaces' ) . qem_get_element( $value, 'products' ) );
+                                $content_escaped .= qem_wp_kses_post( qem_get_element( $value, 'yourplaces' ) . qem_get_element( $value, 'products' ) );
                             }
                             
                             $content_escaped .= '</td>';
@@ -2096,7 +2127,7 @@ function qem_build_registration_table_esc(
                         break;
                     case 'field6':
                         if ( qem_get_element( $register, 'usemessage', false ) ) {
-                            $content_escaped .= '<td class="yourmessage">' . wp_kses_post( qem_get_element( $value, 'yourmessage' ) ) . '</td>';
+                            $content_escaped .= '<td class="yourmessage">' . qem_wp_kses_post( qem_get_element( $value, 'yourmessage' ) ) . '</td>';
                         }
                         break;
                     case 'field9':
@@ -2236,10 +2267,10 @@ function qem_build_registration_table_esc(
         $str = $number;
     }
     if ( $str ) {
-        $content_escaped .= wp_kses_post( qem_get_element( $event, 'numberattendingbefore' ) . ' ' . $str . ' ' . qem_get_element( $event, 'numberattendingafter' ) );
+        $content_escaped .= qem_wp_kses_post( qem_get_element( $event, 'numberattendingbefore' ) . ' ' . $str . ' ' . qem_get_element( $event, 'numberattendingafter' ) );
     }
     $usecounter = get_post_meta( $pid, 'event_number', true );
-    $content_escaped .= '<p class="placesavailable">' . wp_kses_post( qem_places(
+    $content_escaped .= '<p class="placesavailable">' . qem_wp_kses_post( qem_places(
         $register,
         $pid,
         $usecounter,
@@ -2271,7 +2302,7 @@ function qem_build_reg_input_esc(
         if ( $qem_edit == 'selected' && qem_get_element( $selected, $i_array ) || $qem_edit == 'all' ) {
             $content_escaped .= '<input style="width:100%" ' . esc_attr( $attrs ) . ' value="' . esc_attr( qem_get_element( $value, $item ) ) . '" name="message[' . esc_attr( qem_get_element( $value, 'orig_key' ) ) . '][' . esc_attr( $item ) . ']">';
         } else {
-            $content_escaped .= wp_kses_post( qem_get_element( $value, $item ) );
+            $content_escaped .= qem_wp_kses_post( qem_get_element( $value, $item ) );
         }
         
         $content_escaped .= '</td>';
@@ -2293,35 +2324,43 @@ function qem_add_message_key( $messages )
 
 function qem_sort_surname( $messages )
 {
-    usort( $messages, function ( $a, $b ) {
-        $a_name = qem_split_surname( qem_get_element( $a, 'yourname' ) );
-        $b_name = qem_split_surname( qem_get_element( $b, 'yourname' ) );
-        return strcmp( strtolower( $a_name[1] ), strtolower( $b_name[1] ) );
-    } );
+    if ( is_array( $messages ) ) {
+        usort( $messages, function ( $a, $b ) {
+            $a_name = qem_split_surname( qem_get_element( $a, 'yourname' ) );
+            $b_name = qem_split_surname( qem_get_element( $b, 'yourname' ) );
+            return strcmp( strtolower( $a_name[1] ), strtolower( $b_name[1] ) );
+        } );
+    }
     return $messages;
 }
 
 function qem_sort_email( $messages )
 {
-    usort( $messages, function ( $a, $b ) {
-        return strcmp( strtolower( $a['youremail'] ), strtolower( $b['youremail'] ) );
-    } );
+    if ( is_array( $messages ) ) {
+        usort( $messages, function ( $a, $b ) {
+            return strcmp( strtolower( $a['youremail'] ), strtolower( $b['youremail'] ) );
+        } );
+    }
     return $messages;
 }
 
 function qem_sort_date_desc( $messages )
 {
-    usort( $messages, function ( $a, $b ) {
-        return strcmp( strtolower( $b['datetime_added'] ), strtolower( $a['datetime_added'] ) );
-    } );
+    if ( is_array( $messages ) ) {
+        usort( $messages, function ( $a, $b ) {
+            return strcmp( strtolower( $b['datetime_added'] ), strtolower( $a['datetime_added'] ) );
+        } );
+    }
     return $messages;
 }
 
 function qem_sort_date_asc( $messages )
 {
-    usort( $messages, function ( $a, $b ) {
-        return strcmp( strtolower( $a['datetime_added'] ), strtolower( $b['datetime_added'] ) );
-    } );
+    if ( is_array( $messages ) ) {
+        usort( $messages, function ( $a, $b ) {
+            return strcmp( strtolower( $a['datetime_added'] ), strtolower( $b['datetime_added'] ) );
+        } );
+    }
     return $messages;
 }
 
@@ -2455,6 +2494,7 @@ function qem_messages()
         $message = get_option( 'qem_messages_' . $event );
         $len = count( $message );
         $auto = qem_get_stored_autoresponder();
+        $register = get_custom_registration_form( $event );
         for ( $i = 0 ;  $i < $len ;  $i++ ) {
             
             if ( isset( $_POST[$i] ) ) {
@@ -2690,11 +2730,11 @@ function qem_messages()
                 'freemius'        => $qem_fs,
             ) );
             $template_loader->get_template_part( 'upgrade_cta' );
-            echo  wp_kses_post( $template_loader->get_output() ) ;
+            echo  qem_wp_kses_post( $template_loader->get_output() ) ;
         }
     
     } else {
-        echo  wp_kses_post( $noregistration ) ;
+        echo  qem_wp_kses_post( $noregistration ) ;
     }
     
     echo  '</div></div>' ;

@@ -92,6 +92,9 @@ var qem_dont_cancel;
         }
 
         qem = f.closest('.qem');
+        if ( !qem.length ) {
+            qem = f.closest('.qem-columns');
+        }
         /*
             Update whoscoming and places
         */

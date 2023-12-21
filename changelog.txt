@@ -1,4 +1,13 @@
 == Changelog ==
+= 9.8.8 =
+* Fix fatal error for some scenarios on PHP 8.1 and various notices
+
+= 9.8.7 =
+* Fix Thank you page message on grid layout
+
+= 9.8.6 =
+* Fix for shortcode qemsendemail (Pro Only)
+
 = 9.8.5.9 =
 * remove attempt to load missing un-needed files
 

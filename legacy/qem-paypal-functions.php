@@ -44,13 +44,7 @@ function qem_ipn()
         $get_magic_quotes_exists = true;
     }
     foreach ( $myPost as $key => $value ) {
-        
-        if ( $get_magic_quotes_exists == true && get_magic_quotes_gpc() == 1 ) {
-            $value = urlencode( stripslashes( $value ) );
-        } else {
-            $value = urlencode( $value );
-        }
-        
+        $value = urlencode( $value );
         $req .= "&{$key}={$value}";
     }
     

@@ -145,7 +145,7 @@ function qem_setup()
     <p>' . esc_html__( 'That&#39;s pretty much it. All you need to do now is', 'quick-event-manager' ) . ' <a href="edit.php?post_type=event">' . esc_html__( 'create some events', 'quick-event-manager' ) . '</a>.</p>
     
     <h2>' . esc_html__( 'Help and Support', 'quick-event-manager' ) . '</h2>
-    <p>' . esc_html__( 'Use the Knowledge base at', 'quick-event-manager' ) . ' <a href="https://fullworksplugins.com/docs/quick-event-manager/" target="_blank">fullworksplugins.com/docs/quick-event-manager</a><p>' . wp_kses_post( $support_text ) . '</p></p>
+    <p>' . esc_html__( 'Use the Knowledge base at', 'quick-event-manager' ) . ' <a href="https://fullworksplugins.com/docs/quick-event-manager/" target="_blank">fullworksplugins.com/docs/quick-event-manager</a><p>' . qem_wp_kses_post( $support_text ) . '</p></p>
     </div>
     <div class="qem-options">' ;
     
@@ -156,7 +156,7 @@ function qem_setup()
             'freemius'        => $qem_fs,
         ) );
         $template_loader->get_template_part( 'upgrade_cta' );
-        echo  wp_kses_post( $template_loader->get_output() ) ;
+        echo  qem_wp_kses_post( $template_loader->get_output() ) ;
     }
     
     echo  '<h2>' . esc_html__( 'Event Manager Role', 'quick-event-manager' ) . '</h2>
@@ -1542,7 +1542,7 @@ function qem_register()
             
             if ( in_array( $item, array( 'replyblurb' ) ) ) {
                 //  textareas and allowed html
-                $register[$item] = wp_kses_post( $register[$item] );
+                $register[$item] = qem_wp_kses_post( $register[$item] );
             } else {
                 $register[$item] = sanitize_text_field( $register[$item] );
             }
@@ -1999,7 +1999,7 @@ function qem_register()
     </tr>
     <tr>
     <td colspan="2">' . esc_html__( 'Thank you message blurb ( some html e.g. links permitted here )', 'quick-event-manager' ) . '</td>
-    <td><textarea style="width:100%;height:100px;" name="replyblurb">' . wp_kses_post( qem_get_element( $register, 'replyblurb' ) ) . '</textarea></td>
+    <td><textarea style="width:100%;height:100px;" name="replyblurb">' . qem_wp_kses_post( qem_get_element( $register, 'replyblurb' ) ) . '</textarea></td>
     </tr>
     <tr>
     <td colspan="2">' . esc_html__( 'Error Message', 'quick-event-manager' ) . '</td>
@@ -2185,7 +2185,7 @@ function qem_autoresponse_page()
         foreach ( $options as $item ) {
             
             if ( 'message' === $item ) {
-                $auto[$item] = wp_kses_post( stripslashes( qem_get_element( $_POST, $item ) ) );
+                $auto[$item] = qem_wp_kses_post( stripslashes( qem_get_element( $_POST, $item ) ) );
             } else {
                 $auto[$item] = sanitize_text_field( stripslashes( qem_get_element( $_POST, $item ) ) );
                 $auto[$item] = filter_var( qem_get_element( $auto, $item ), FILTER_SANITIZE_STRING );
@@ -2291,7 +2291,7 @@ function qem_payment()
             $field = stripslashes( qem_get_element( $_POST, $item ) );
             
             if ( in_array( $item, array( 'message', 'pendingcleardownmsg' ) ) ) {
-                $payment[$item] = wp_kses_post( $field );
+                $payment[$item] = qem_wp_kses_post( $field );
             } else {
                 $payment[$item] = sanitize_text_field( $field );
             }
@@ -2394,7 +2394,7 @@ function qem_payment()
     <p><input type="checkbox" name="usependingcleardown" ' . esc_attr( qem_get_element( $payment, 'usependingcleardown' ) ) . ' value="checked" /> ' . esc_html__( 'Enable auto clearing of pending payments', 'quick-event-manager' ) . '</a></p>
     <p><input type="checkbox" name="ipnblock"' . esc_attr( qem_get_element( $payment, 'ipnblock' ) ) . ' value="checked" />&nbsp;' . esc_html__( 'Hide registration details for pending payments ( Warning: if you limit number attending, hiding pending bookings can result in those limits being breached, so use with care with limited events )', 'quick-event-manager' ) . '.</p>
    <p class="description">' . esc_html__( 'Send a message when clearing down a pending payments (blank not to send).', 'quick-event-manager' ) . '</p>
-    <p><textarea name="pendingcleardownmsg" rows ="5">' . wp_kses_post( qem_get_element( $payment, 'pendingcleardownmsg' ) ) . '</textarea></p>
+    <p><textarea name="pendingcleardownmsg" rows ="5">' . qem_wp_kses_post( qem_get_element( $payment, 'pendingcleardownmsg' ) ) . '</textarea></p>
     <h2>' . esc_html__( 'Payment Report', 'quick-event-manager' ) . '</h2>
    
     <p>' . esc_html__( 'Payment Report Column header', 'quick-event-manager' ) . ':<br>
@@ -2496,7 +2496,7 @@ function event_page_init()
 function qem_admin_notice( $message = '' )
 {
     if ( !empty($message) ) {
-        echo  '<div class="updated"><p>' . wp_kses_post( $message ) . '</p></div>' ;
+        echo  '<div class="updated"><p>' . qem_wp_kses_post( $message ) . '</p></div>' ;
     }
 }
 

@@ -79,7 +79,7 @@ function qem_process_payment_form_esc( $values, &$val = array() )
         }
     }
     // build paypal form
-    $content_escaped = '<h2 id="qem_reload">' . wp_kses_post( $payments['waiting'] ) . '</h2>
+    $content_escaped = '<h2 id="qem_reload">' . qem_wp_kses_post( $payments['waiting'] ) . '</h2>
     <form action="' . esc_url_raw( $paypalurl ) . '" method="post" name="qempay" id="qempay">
     <input type="hidden" name="cmd" value="_xclick">
     <input type="hidden" name="item_name" value="' . esc_html__( 'Event', 'quick-event-manager' ) . ': ' . $reference . ' [ ' . strip_tags( $values['yourname'] ) . $privacy . ' ]"/>
