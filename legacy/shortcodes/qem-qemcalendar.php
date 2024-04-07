@@ -385,5 +385,5 @@ function qem_show_calendar_esc( $atts ) {
 	$eventdate = remove_empty( $eventdate );
 
 	//  escaped function - always return safe for output
-	return wp_kses_post( $calendar ) . "</div>";
+	return qem_wp_kses_post( $calendar ) . "</div>";
 }

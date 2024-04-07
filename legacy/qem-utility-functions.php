@@ -467,3 +467,12 @@ function qem_get_end( $rules ) {
 
 	return $end;
 }
+
+function qem_wp_kses_post( $post ) {
+	// required to avoid Deprecated: preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in /var/www/html/wp-includes/kses.php on line 1744
+	if ( ! empty($post) ) {
+		$post = wp_kses_post( $post );
+	}
+
+	return $post;
+}

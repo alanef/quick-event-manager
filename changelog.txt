@@ -1,4 +1,14 @@
 == Changelog ==
+= 9.9.0 =
+* Fix cutoff date not displaying on event list
+* Add total value and donation amount shortcodes for auto responders (Pro Only)
+
+= 9.8.9 =
+* Fix style on wait list attendees
+
+= 9.8.8 =
+* Fix fatal error for some scenarios on PHP 8.1 and various notices
+
 = 9.8.7 =
 * Fix Thank you page message on grid layout
 

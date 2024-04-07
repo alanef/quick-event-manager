@@ -25,11 +25,11 @@ if ( is_admin() ) {
     require_once plugin_dir_path( __FILE__ ) . '/quick-event-manager-settings.php';
 }
 // add admin body class filter
-// gtthe current admin page hook
+// get the current admin page hook
 global  $pagenow ;
 add_filter( 'admin_body_class', function ( $classes ) {
     global  $page_hook ;
-    if ( false !== strpos( $page_hook, 'qem' ) ) {
+    if ( !empty($page_hook) && false !== strpos( $page_hook, 'qem' ) ) {
         $classes .= ' qem-admin-page';
     }
     return $classes;

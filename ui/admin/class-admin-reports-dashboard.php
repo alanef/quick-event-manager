@@ -37,7 +37,7 @@ class Admin_Reports_Dashboard {
 			)
 		);
 		$template_loader->get_template_part( 'reports_dashboard' );
-		echo wp_kses_post( $template_loader->get_output() );
+		echo qem_wp_kses_post( $template_loader->get_output() );
 
 	}
 }

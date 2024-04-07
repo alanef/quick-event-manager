@@ -102,10 +102,10 @@ function qem_event_shortcode_esc( $atts, $widget )
         $content_escaped .= qem_kses_post_svg_form( qem_category_dropdown( $display ) );
     }
     if ( !$widget && $display['cat_border'] && ($display['showkeyabove'] || $atts['categorykeyabove']) ) {
-        $content_escaped .= wp_kses_post( qem_category_key( $cal, $style, '' ) );
+        $content_escaped .= qem_wp_kses_post( qem_category_key( $cal, $style, '' ) );
     }
     if ( $widget && $atts['usecategory'] && $atts['categorykeyabove'] ) {
-        $content_escaped .= wp_kses_post( qem_category_key( $cal, $style, '' ) );
+        $content_escaped .= qem_wp_kses_post( qem_category_key( $cal, $style, '' ) );
     }
     if ( $category && $display['showcategory'] ) {
         $content_escaped .= '<h2>' . esc_html( $display['showcategorycaption'] . ' ' . $catlabel ) . '</h2>';
@@ -234,10 +234,10 @@ function qem_event_shortcode_esc( $atts, $widget )
             $content_escaped .= '</div>';
         }
         if ( !$widget && $display['cat_border'] && ($display['showkeybelow'] || $atts['categorykeyabove']) ) {
-            $content_escaped .= wp_kses_post( qem_category_key( $cal, $style, '' ) );
+            $content_escaped .= qem_wp_kses_post( qem_category_key( $cal, $style, '' ) );
         }
         if ( $widget && $atts['usecategory'] && $atts['categorykeyabove'] ) {
-            $content_escaped .= wp_kses_post( qem_category_key( $cal, $style, '' ) );
+            $content_escaped .= qem_wp_kses_post( qem_category_key( $cal, $style, '' ) );
         }
         if ( $atts['listlink'] ) {
             $content_escaped .= '<p><a href="' . esc_url( $atts['listlinkurl'] ) . '">' . esc_html( $atts['listlinkanchor'] ) . '</a></p>';
@@ -246,7 +246,7 @@ function qem_event_shortcode_esc( $atts, $widget )
     }
     
     if ( !$event_found ) {
-        $output_escaped .= "<h2>" . wp_kses_post( $display['noevent'] ) . "</h2>";
+        $output_escaped .= "<h2>" . qem_wp_kses_post( $display['noevent'] ) . "</h2>";
     }
     wp_reset_postdata();
     wp_reset_query();

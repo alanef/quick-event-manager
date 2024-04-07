@@ -45,6 +45,6 @@ function qem_loop_esc( $atts = array() ) {
 		$values['answer'] = $digit1 - $digit2;
 	}
 	if ( ( is_user_logged_in() && qem_get_element( $values, 'registeredusers', false ) ) || ! qem_get_element( $values, 'registeredusers', false ) ) {
-		return wp_kses_post($wrap_open).qem_display_form_esc( $values, array(), null ).wp_kses_post($wrap_close);
+		return qem_wp_kses_post($wrap_open).qem_display_form_esc( $values, array(), null ).qem_wp_kses_post($wrap_close);
 	}
 }

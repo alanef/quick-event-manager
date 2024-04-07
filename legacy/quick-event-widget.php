@@ -166,13 +166,13 @@ class qem_widget extends WP_Widget {
 	function widget( $args, $instance ) {
 		extract( $args, EXTR_SKIP );
 		$title = apply_filters( 'widget_title', $instance['title'] );
-		echo wp_kses_post( $args['before_widget'] );
+		echo qem_wp_kses_post( $args['before_widget'] );
 		if ( ! empty( $title ) ) {
-			echo wp_kses_post( $args['before_title'] . $title . $args['after_title'] );
+			echo qem_wp_kses_post( $args['before_title'] . $title . $args['after_title'] );
 		}
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped --  qem_event_shortcode_esc function returns escaped outputs as used in multiple places shortcode, widget admin previews etc https://developer.wordpress.org/apis/security/escaping/#toc_4
 		echo qem_event_shortcode_esc( $instance, 'widget' );
-		echo wp_kses_post( $args['after_widget'] );
+		echo qem_wp_kses_post( $args['after_widget'] );
 	}
 }
 
@@ -301,9 +301,9 @@ class qem_calendar_widget extends WP_Widget {
 	function widget( $args, $instance ) {
 		extract( $args, EXTR_SKIP );
 		$title = apply_filters( 'widget_title', $instance['title'] );
-		echo wp_kses_post( $args['before_widget'] );
+		echo qem_wp_kses_post( $args['before_widget'] );
 		if ( ! empty( $title ) ) {
-			echo wp_kses_post( $args['before_title'] . $title . $args['after_title'] );
+			echo qem_wp_kses_post( $args['before_title'] . $title . $args['after_title'] );
 		}
 
 
@@ -328,7 +328,7 @@ class qem_calendar_widget extends WP_Widget {
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_strip_all_tags is a WP security function, qem_show_calendar_esc returns escaped data https://developer.wordpress.org/apis/security/escaping/#toc_4
 		echo '<div id="qem-calendar-widget"><style>' . wp_strip_all_tags( $smallicon . ' ' . $headerstyle ) . '</style>' . qem_show_calendar_esc( $instance ) . '</div>' . "\r\n";
 
-		echo wp_kses_post( $args['after_widget'] );
+		echo qem_wp_kses_post( $args['after_widget'] );
 	}
 }
 

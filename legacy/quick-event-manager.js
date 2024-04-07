@@ -206,7 +206,10 @@ var qem_dont_cancel;
 
     $(document).ready(function () {
 
-        $('.qem-register form').submit(qem_validate_form);
+        var form = document.querySelector('.qem-register form');
+        if(form) {
+            form.addEventListener('submit', qem_validate_form);
+        }
         $('.qem-register form input[type=submit], .qem-register form input[type=button]').click(qem_toggle_state);
 
         /*

@@ -1,12 +1,11 @@
 <?php
 
-function qem_process_payment_form_esc( $values, &$val = array() )
+function qem_calc_money_values( $values, $val = array() )
 {
     global  $post ;
     global  $qem_fs ;
     $payments = qem_get_stored_payment();
     $register = get_custom_registration_form( $post->ID );
-    $ic = qem_get_incontext();
     // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce not required user action.
     
     if ( isset( $_REQUEST['action'] ) && "qem_validate_form" == $_REQUEST['action'] ) {
@@ -16,10 +15,6 @@ function qem_process_payment_form_esc( $values, &$val = array() )
     }
     
     $reference = $post->post_title;
-    $paypalurl = 'https://www.paypal.com/cgi-bin/webscr';
-    if ( $payments['sandbox'] ) {
-        $paypalurl = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
-    }
     $cost = get_post_meta( $post->ID, 'event_cost', true );
     $register['event_donation'] = get_post_meta( $post->ID, 'event_donation', true );
     $quantity = ( $values['yourplaces'] < 1 ? 1 : strip_tags( $values['yourplaces'] ) );
@@ -52,10 +47,6 @@ function qem_process_payment_form_esc( $values, &$val = array() )
         $fixedprocess = preg_replace( '/[^.,0-9]/', '', $payments['processfixed'] );
     }
     $handling = $percentprocess + $fixedprocess;
-    if ( !$cost ) {
-        // no cost no payment form
-        return '';
-    }
     $cost = round( $cost, 2 );
     $handling = round( $handling, 2 );
     // $val array is passed by reference - ugh - warning
@@ -68,6 +59,23 @@ function qem_process_payment_form_esc( $values, &$val = array() )
     $val['amount'] = $cost;
     $val['custom'] = $values['ipn'];
     $val['handling'] = $handling;
+    return $val;
+}
+
+function qem_build_paypal_form_esc( $values, $val )
+{
+    global  $post ;
+    global  $qem_fs ;
+    $ic = qem_get_incontext();
+    // gate keep incase zero
+    if ( $val['amount'] == 0 ) {
+        return '';
+    }
+    $payments = qem_get_stored_payment();
+    $paypalurl = 'https://www.paypal.com/cgi-bin/webscr';
+    if ( $payments['sandbox'] ) {
+        $paypalurl = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
+    }
     $event_date = get_post_meta( $post->ID, 'event_date', true );
     $event_start = get_post_meta( $post->ID, 'event_start', true );
     $event_date = date_i18n( get_option( 'date_format' ), $event_date );
@@ -79,19 +87,19 @@ function qem_process_payment_form_esc( $values, &$val = array() )
         }
     }
     // build paypal form
-    $content_escaped = '<h2 id="qem_reload">' . wp_kses_post( $payments['waiting'] ) . '</h2>
+    $content_escaped = '<h2 id="qem_reload">' . qem_wp_kses_post( $payments['waiting'] ) . '</h2>
     <form action="' . esc_url_raw( $paypalurl ) . '" method="post" name="qempay" id="qempay">
     <input type="hidden" name="cmd" value="_xclick">
-    <input type="hidden" name="item_name" value="' . esc_html__( 'Event', 'quick-event-manager' ) . ': ' . $reference . ' [ ' . strip_tags( $values['yourname'] ) . $privacy . ' ]"/>
+    <input type="hidden" name="item_name" value="' . esc_html__( 'Event', 'quick-event-manager' ) . ': ' . $val['name'] . ' [ ' . strip_tags( $val['item_number'] ) . $privacy . ' ]"/>
     <input type="hidden" name="business" value="' . esc_html( $payments['paypalemail'] ) . '">
     <input type="hidden" name="bn" value="quickplugins_SP">
-    <input type="hidden" name="return" value="' . esc_url_raw( $redirect ) . '">
-    <input type="hidden" name="cancel_return" value="' . esc_url_raw( $page_url ) . '">
-    <input type="hidden" name="currency_code" value="' . esc_attr( strtoupper( $payments['currency'] ) ) . '">
+    <input type="hidden" name="return" value="' . esc_url_raw( $val['return'] ) . '">
+    <input type="hidden" name="cancel_return" value="' . esc_url_raw( $val['cancel'] ) . '">
+    <input type="hidden" name="currency_code" value="' . esc_attr( $val['currency_code'] ) . '">
     <input type="hidden" name="item_number" value="' . esc_attr( $event_date ) . '">
-    <input type="hidden" name="quantity" value="' . esc_attr( $quantity ) . '">
-    <input type="hidden" name="amount" value="' . esc_attr( $cost ) . '">
-    <input type="hidden" name="custom" value="' . esc_attr( $values['ipn'] ) . '">';
+    <input type="hidden" name="quantity" value="' . esc_attr( $val['quantity'] ) . '">
+    <input type="hidden" name="amount" value="' . esc_attr( $val['amount'] ) . '">
+    <input type="hidden" name="custom" value="' . esc_attr( $val['custom'] ) . '">';
     $globalredirect = $register['redirectionurl'];
     $eventredirect = get_post_meta( $post->ID, 'event_redirect', true );
     $redirect = ( $eventredirect ? $eventredirect : $globalredirect );
@@ -113,10 +121,10 @@ function qem_process_payment_form_esc( $values, &$val = array() )
         $content_escaped .= '<input type="hidden" name="return" value="' . esc_url_raw( $redirect ) . '">';
     }
     if ( $payments['useprocess'] ) {
-        $content_escaped .= '<input type="hidden" name="handling" value="' . esc_attr( $handling ) . '">';
+        $content_escaped .= '<input type="hidden" name="handling" value="' . esc_attr( $val['handling'] ) . '">';
     }
     $content_escaped .= '</form>
-    <script language="JavaScript">document.getElementById("qempay").submit();</script>';
+    <script>document.getElementById("qempay").submit();</script>';
     return $content_escaped;
 }
 

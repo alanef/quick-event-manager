@@ -110,7 +110,7 @@ function qem_download_files()
             // add commas except last one
             $row .= ( next( $headerrow ) ? qem_csv_a_cell( $header ) . ',' : qem_csv_a_cell( $header ) );
         }
-        echo  wp_kses_post( $row ) . PHP_EOL ;
+        echo  qem_wp_kses_post( $row ) . PHP_EOL ;
         foreach ( $message as $value ) {
             $cells = array();
             $value['morenames'] = preg_replace( "/\r|\n/", ", ", qem_get_element( $value, 'morenames' ) );
@@ -197,7 +197,7 @@ function qem_download_files()
                     $row .= ',';
                 }
             }
-            echo  wp_kses_post( $row ) . PHP_EOL ;
+            echo  qem_wp_kses_post( $row ) . PHP_EOL ;
         }
         exit;
     }
