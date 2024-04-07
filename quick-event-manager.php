@@ -25,7 +25,7 @@
  *
  *     Plugin URI: https://fullworksplugins.com/products/quick-event-manager/
  *     Description: A quick and easy to use Event Manager
- *     Version: 9.9.0
+ *     Version: 9.9.1
  *     Requires at least: 4.6
  *     Requires PHP: 5.6
  *     Author: Fullworks

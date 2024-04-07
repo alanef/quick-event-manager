@@ -1,4 +1,7 @@
 == Changelog ==
+= 9.9.1 =
+* improve settings description
+
 = 9.9.0 =
 * Fix cutoff date not displaying on event list
 * Add total value and donation amount shortcodes for auto responders (Pro Only)

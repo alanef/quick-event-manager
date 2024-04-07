@@ -2240,9 +2240,11 @@ function qem_autoresponse_page()
     <tr><td>[location]</td><td>' . esc_html__( 'Event location (not the address)', 'quick-event-manager' ) . '</td></tr>
     <tr><td>[start]</td><td>' . esc_html__( 'Start time', 'quick-event-manager' ) . '</td></tr>
     <tr><td>[finish]</td><td>' . esc_html__( 'Finish time', 'quick-event-manager' ) . '</td></tr>' ;
+    echo  '<tr><td colspan="2"><a href="' . esc_url( $qem_fs->get_upgrade_url() ) . '"><h3>' . esc_html__( 'Upgrade to any pro plan to use the following', 'quick-event-manager' ) . '</a></h3></td></tr>' ;
+    echo  '<tr><td>[total]</td><td>' . esc_html__( 'Total Amount for the registration', 'quick-event-manager' ) . '</td></tr>' ;
+    echo  '<tr><td>[donation_amount]</td><td>' . esc_html__( 'User selected donation amount', 'quick-event-manager' ) . '</td></tr>' ;
     echo  '<tr><td colspan="2"><a href="' . esc_url( $qem_fs->get_upgrade_url() ) . '"><h3>' . esc_html__( 'Upgrade to GOLD plan to use the following', 'quick-event-manager' ) . '</a></h3></td></tr>' ;
-    echo  '<tr><td>[ticket_no]</td><td>' . esc_html__( 'Auto generated ticket number (Gold Plan)', 'quick-event-manager' ) . '</td></tr>' ;
-    echo  '<tr><td>[total]</td><td>' . esc_html__( 'Total Amount for the registration (Gold Plan)', 'quick-event-manager' ) . '</td></tr>' ;
+    echo  '<tr><td>[ticket_no]</td><td>' . esc_html__( 'Auto generated ticket number', 'quick-event-manager' ) . '</td></tr>' ;
     echo  '</table>' ;
     echo  '<p><input type="checkbox" name="useregistrationdetails"' . esc_attr( qem_get_element( $auto, 'useregistrationdetails' ) ) . ' value="checked" />&nbsp;' . esc_html__( 'Add registration details to the email', 'quick-event-manager' ) . '</p>
     <p>' . esc_html__( 'Registration details blurb', 'quick-event-manager' ) . '<br>
