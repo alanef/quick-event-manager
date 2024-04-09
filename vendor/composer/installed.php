@@ -3,7 +3,7 @@
         'name' => 'fullworks/quick-event-manager',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '99bb21cbcf1ed630bc36ca8548b2590174e492be',
+        'reference' => 'abe91cd8cbd136012d0ba7dc09606a6ba76a17f5',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -33,7 +33,7 @@
         'fullworks/quick-event-manager' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '99bb21cbcf1ed630bc36ca8548b2590174e492be',
+            'reference' => 'abe91cd8cbd136012d0ba7dc09606a6ba76a17f5',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
