@@ -36,6 +36,15 @@ function qem_calc_money_values( $values, $val = array() )
         $quantity = 1;
     }
     $cost = preg_replace( '/[^.0-9]/', '', $cost );
+    
+    if ( substr_count( $cost, '.' ) > 1 ) {
+        // There are multiple decimal points in the cost
+        $split = explode( '.', $cost );
+        $last = array_pop( $split );
+        $cost = implode( '', $split ) . '.' . $last;
+    }
+    
+    $cost = (double) $cost;
     $redirect = qem_get_redirect( $post->ID, $register, $page_url );
     
     if ( qem_get_element( $payments, 'useprocess', false ) && qem_get_element( $payments, 'processpercent', false ) ) {

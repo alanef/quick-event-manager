@@ -1,4 +1,7 @@
 == Changelog ==
+= 9.9.2 =
+* Ensure string cost is converted properly to avoid possibility of issues on PHP8.+
+
 = 9.9.1 =
 * improve settings description
 
