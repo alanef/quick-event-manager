@@ -1,6 +1,6 @@
 <?php
 
-use  Quick_Event_Manager\Plugin\Control\Admin_Template_Loader ;
+use Quick_Event_Manager\Plugin\Control\Admin_Template_Loader;
 add_action( "init", "qem_settings_init" );
 add_action( "admin_menu", "event_page_init" );
 add_action( "save_post", "save_event_details" );
@@ -15,8 +15,7 @@ add_action(
     2
 );
 add_action( "pre_get_posts", "manage_wp_posts_be_qe_pre_get_posts", 1 );
-function manage_wp_posts_be_qe_pre_get_posts( $query )
-{
+function manage_wp_posts_be_qe_pre_get_posts(  $query  ) {
     if ( $query->is_main_query() && ($orderby = $query->get( 'orderby' )) ) {
         switch ( $orderby ) {
             case 'event_date':
@@ -43,11 +42,9 @@ function manage_wp_posts_be_qe_pre_get_posts( $query )
     }
 }
 
-function qem_tabbed_page()
-{
-    global  $qem_fs ;
-    echo  '<h1>' . esc_html__( 'Quick Event Manager', 'quick-event-manager' ) . '</h1>' ;
-    
+function qem_tabbed_page() {
+    global $qem_fs;
+    echo '<h1>' . esc_html__( 'Quick Event Manager', 'quick-event-manager' ) . '</h1>';
     if ( isset( $_GET['tab'] ) ) {
         qem_admin_tabs( $_GET['tab'] );
         $tab = sanitize_text_field( $_GET['tab'] );
@@ -55,7 +52,6 @@ function qem_tabbed_page()
         qem_admin_tabs( 'setup' );
         $tab = 'setup';
     }
-    
     switch ( $tab ) {
         case 'setup':
             qem_setup();
@@ -100,9 +96,8 @@ function qem_tabbed_page()
     }
 }
 
-function qem_admin_tabs( $current = 'settings' )
-{
-    global  $qem_fs ;
+function qem_admin_tabs(  $current = 'settings'  ) {
+    global $qem_fs;
     $qemkey = get_option( 'qem_freemius_state' );
     $tabs = array(
         'setup'    => esc_html__( 'Setup', 'quick-event-manager' ),
@@ -114,28 +109,27 @@ function qem_admin_tabs( $current = 'settings' )
         'auto'     => esc_html__( 'Auto Responder', 'quick-event-manager' ),
         'payment'  => esc_html__( 'Event Payment', 'quick-event-manager' ),
     );
-    echo  '<div id="icon-themes" class="icon32"><br></div>' ;
-    echo  '<h2 class="nav-tab-wrapper">' ;
+    echo '<div id="icon-themes" class="icon32"><br></div>';
+    echo '<h2 class="nav-tab-wrapper">';
     foreach ( $tabs as $tab => $name ) {
-        if ( empty($name) ) {
+        if ( empty( $name ) ) {
             continue;
         }
         $class = ( $tab == $current ? ' nav-tab-active' : '' );
-        echo  '<a class="nav-tab' . esc_attr( $class ) . '" href="?page=' . esc_attr( QUICK_EVENT_MANAGER_PLUGIN_NAME ) . '&tab=' . esc_attr( $tab ) . '">' . esc_html( $name ) . '</a>' ;
+        echo '<a class="nav-tab' . esc_attr( $class ) . '" href="?page=' . esc_attr( QUICK_EVENT_MANAGER_PLUGIN_NAME ) . '&tab=' . esc_attr( $tab ) . '">' . esc_html( $name ) . '</a>';
     }
-    echo  '</h2>' ;
+    echo '</h2>';
 }
 
-function qem_setup()
-{
-    global  $qem_fs ;
+function qem_setup() {
+    global $qem_fs;
     $support_text = sprintf(
         __( 'or visit the community support forum %1$shere%2$s, if you require urgent or personalised support please upgrade to %3$sa paid plan here%2$s', 'quick-event-manager' ),
         '<a href="https://wordpress.org/support/plugin/quick-event-manager/" target="_blank">',
         '</a>',
         '<a href="' . esc_url( $qem_fs->get_upgrade_url() ) . '">'
     );
-    echo  '<div class="qem-settings"><div class="qem-options">
+    echo '<div class="qem-settings"><div class="qem-options">
     <h2>' . esc_html__( 'Setting up and using the plugin', 'quick-event-manager' ) . '</h2>
     <p><span style="color:red; font-weight:bold;">' . esc_html__( 'Important!', 'quick-event-manager' ) . '</span> ' . esc_html__( 'If you get an error when trying to view events, resave your', 'quick-event-manager' ) . ' <a href="options-permalink.php">permalinks</a>.</p>
     <p>' . esc_html__( 'Create new events using the', 'quick-event-manager' ) . ' <a href="edit.php?post_type=event">Events</a> ' . esc_html__( 'link on your dashboard menu', 'quick-event-manager' ) . '.</p>
@@ -147,8 +141,7 @@ function qem_setup()
     <h2>' . esc_html__( 'Help and Support', 'quick-event-manager' ) . '</h2>
     <p>' . esc_html__( 'Use the Knowledge base at', 'quick-event-manager' ) . ' <a href="https://fullworksplugins.com/docs/quick-event-manager/" target="_blank">fullworksplugins.com/docs/quick-event-manager</a><p>' . qem_wp_kses_post( $support_text ) . '</p></p>
     </div>
-    <div class="qem-options">' ;
-    
+    <div class="qem-options">';
     if ( !$qem_fs->can_use_premium_code() ) {
         $template_loader = new Admin_Template_Loader();
         $template_loader->set_template_data( array(
@@ -156,10 +149,9 @@ function qem_setup()
             'freemius'        => $qem_fs,
         ) );
         $template_loader->get_template_part( 'upgrade_cta' );
-        echo  qem_wp_kses_post( $template_loader->get_output() ) ;
+        echo qem_wp_kses_post( $template_loader->get_output() );
     }
-    
-    echo  '<h2>' . esc_html__( 'Event Manager Role', 'quick-event-manager' ) . '</h2>
+    echo '<h2>' . esc_html__( 'Event Manager Role', 'quick-event-manager' ) . '</h2>
     <p>' . esc_html__( 'There is a user role called <em>Event Manager</em>. Users with this role only have access to events, they cannot edit posts or pages.', 'quick-event-manager' ) . '</p>
     <h2>' . esc_html__( 'Settings', 'quick-event-manager' ) . '</h2>
     <h3><a href="?page=' . esc_attr( QUICK_EVENT_MANAGER_PLUGIN_NAME ) . '&tab=settings">' . esc_html__( 'Settings', 'quick-event-manager' ) . '</a></h3>
@@ -177,8 +169,8 @@ function qem_setup()
     <h3><a href="?page=' . esc_attr( QUICK_EVENT_MANAGER_PLUGIN_NAME ) . '&tab=payment">' . esc_html__( 'Payment', 'quick-event-manager' ) . '</a></h3>
     <p>' . esc_html__( 'Configure event payments', 'quick-event-manager' ) . '</p>
     <h3><a href="?page=qem-registration">' . esc_html__( 'Registration Reports', 'quick-event-manager' ) . '</a></h3>
-    <p>' . esc_html__( 'View, edit and download event registrations', 'quick-event-manager' ) . '. ' . esc_html__( 'Access using the', 'quick-event-manager' ) . ' <strong>' . esc_html__( 'Registration', 'quick-event-manager' ) . '</strong> ' . esc_html__( 'link on your dashboard menu', 'quick-event-manager' ) . '.</p>' ;
-    echo  '<h2>' . esc_html__( 'Primary Shortcodes', 'quick-event-manager' ) . '</h2>
+    <p>' . esc_html__( 'View, edit and download event registrations', 'quick-event-manager' ) . '. ' . esc_html__( 'Access using the', 'quick-event-manager' ) . ' <strong>' . esc_html__( 'Registration', 'quick-event-manager' ) . '</strong> ' . esc_html__( 'link on your dashboard menu', 'quick-event-manager' ) . '.</p>';
+    echo '<h2>' . esc_html__( 'Primary Shortcodes', 'quick-event-manager' ) . '</h2>
     <table>
     <tbody>
     <tr>
@@ -203,12 +195,11 @@ function qem_setup()
     </tr>
     </tbody>
     </table>
-    <p>' . esc_html__( 'There are loads more shortcode options listed on the', 'quick-event-manager' ) . ' <a href="https://fullworksplugins.com/docs/quick-event-manager/usage-quick-event-manager/all-the-shortcodes/" target="_blank">' . esc_html__( 'Plugin Website', 'quick-event-manager' ) . '</a> (' . esc_html__( 'link opens in a new tab', 'quick-event-manager' ) . ').' ;
-    echo  '</div></div>' ;
+    <p>' . esc_html__( 'There are loads more shortcode options listed on the', 'quick-event-manager' ) . ' <a href="https://fullworksplugins.com/docs/quick-event-manager/usage-quick-event-manager/all-the-shortcodes/" target="_blank">' . esc_html__( 'Plugin Website', 'quick-event-manager' ) . '</a> (' . esc_html__( 'link opens in a new tab', 'quick-event-manager' ) . ').';
+    echo '</div></div>';
 }
 
-function qem_event_settings()
-{
+function qem_event_settings() {
     $active_buttons = array(
         'field1',
         'field2',
@@ -226,7 +217,6 @@ function qem_event_settings()
         'field14',
         'field17'
     );
-    
     if ( isset( $_POST['Submit'] ) && check_admin_referer( "save_qem" ) ) {
         foreach ( $active_buttons as $item ) {
             $event['active_buttons'][$item] = ( (isset( $_POST['event_settings_active_' . $item] ) and $_POST['event_settings_active_' . $item] == 'on') ? true : false );
@@ -235,12 +225,10 @@ function qem_event_settings()
             $event['italic'][$item] = isset( $_POST['italic_' . $item] );
             $event['colour'][$item] = filter_var( qem_get_element( $_POST, 'colour_' . $item ), FILTER_SANITIZE_STRING );
             $event['size'][$item] = filter_var( qem_get_element( $_POST, 'size_' . $item ), FILTER_SANITIZE_STRING );
-            
-            if ( isset( $_POST['label_' . $item] ) && !empty($_POST['label_' . $item]) ) {
+            if ( isset( $_POST['label_' . $item] ) && !empty( $_POST['label_' . $item] ) ) {
                 $event['label'][$item] = sanitize_text_field( stripslashes( $_POST['label_' . $item] ) );
                 $event['label'][$item] = filter_var( $event['label'][$item], FILTER_SANITIZE_STRING );
             }
-        
         }
         $option = array(
             'sort',
@@ -277,17 +265,14 @@ function qem_event_settings()
         update_option( 'event_settings', $event );
         qem_admin_notice( esc_html__( 'The form settings have been updated', 'quick-event-manager' ) );
     }
-    
-    
     if ( isset( $_POST['Reset'] ) && check_admin_referer( "save_qem" ) ) {
         delete_option( 'event_settings' );
         $event = event_get_stored_options();
         update_option( 'event_settings', $event );
         qem_admin_notice( esc_html__( 'The event settings have been reset', 'quick-event-manager' ) );
     }
-    
     $event = event_get_stored_options();
-    echo  '<script>
+    echo '<script>
     jQuery(function() {var qem_sort = jQuery( "#qem_sort" ).sortable({axis: "y",update:function(e,ui) {var order = qem_sort.sortable("toArray").join();jQuery("#qem_settings_sort").val(order);}});});
     </script>
     <div class ="qem-options" style="width:98%">
@@ -304,42 +289,40 @@ function qem_event_settings()
     <th width="12%">' . esc_html__( 'Font attributes', 'quick-event-manager' ) . '</th>
     <th>' . esc_html__( 'Caption and display options', 'quick-event-manager' ) . ':</th>
     </tr>
-    </thead><tbody id="qem_sort">' ;
+    </thead><tbody id="qem_sort">';
     foreach ( explode( ',', $event['sort'] ) as $name ) {
-        $li_class = ( qem_get_element( $event, array( 'active_buttons', $name ) ) ? 'button_active' : 'button_inactive' );
-        $a = checked( qem_get_element( $event, array( 'active_buttons', $name ) ), true, false );
-        $b = qem_get_element( $event, array( 'active_buttons', $name ) );
-        echo  '<tr class="ui-state-default ' . esc_attr( $li_class ) . '" id="' . esc_attr( $name ) . '">
-        <td><input type="checkbox" class="button_activate" name="event_settings_active_' . esc_attr( $name ) . '" ' . checked( qem_get_element( $event, array( 'active_buttons', $name ) ), true, false ) . ' /><b>' . esc_html( qem_get_element( $event, array( 'label', $name ) ) ) . '</b></td>
-        <td>' ;
+        $li_class = ( qem_get_element( $event, array('active_buttons', $name) ) ? 'button_active' : 'button_inactive' );
+        $a = checked( qem_get_element( $event, array('active_buttons', $name) ), true, false );
+        $b = qem_get_element( $event, array('active_buttons', $name) );
+        echo '<tr class="ui-state-default ' . esc_attr( $li_class ) . '" id="' . esc_attr( $name ) . '">
+        <td><input type="checkbox" class="button_activate" name="event_settings_active_' . esc_attr( $name ) . '" ' . checked( qem_get_element( $event, array('active_buttons', $name) ), true, false ) . ' /><b>' . esc_html( qem_get_element( $event, array('label', $name) ) ) . '</b></td>
+        <td>';
         if ( $name != 'field12' ) {
-            echo  '<input type="checkbox" name="summary_' . esc_attr( $name ) . '" ' . checked( qem_get_element( $event, array( 'summary', $name ) ), true, false ) . ' />' ;
+            echo '<input type="checkbox" name="summary_' . esc_attr( $name ) . '" ' . checked( qem_get_element( $event, array('summary', $name) ), true, false ) . ' />';
         }
-        echo  '</td>' ;
-        $exclude = array( 'field8', 'field12', 'field14' );
-        
+        echo '</td>';
+        $exclude = array('field8', 'field12', 'field14');
         if ( !in_array( $name, $exclude ) ) {
-            echo  '<td><input type="text" class="qem-color" name="colour_' . esc_attr( $name ) . '" value ="' . esc_attr( qem_get_element( $event, array( 'colour', $name ) ) ) . '" /></td>
-        	<td><input type="text" style="width:3em;border: 1px solid #343838;" name="size_' . esc_attr( $name ) . '" value ="' . esc_attr( qem_get_element( $event, array( 'size', $name ) ) ) . '" />%</td>
-        	<td><input type="checkbox" name="bold_' . esc_attr( $name ) . '" ' . checked( qem_get_element( $event, array( 'bold', $name ) ), true, false ) . ' /> ' . esc_html__( 'Bold', 'quick-event-manager' ) . ' <input type="checkbox" name="italic_' . esc_attr( $name ) . '" ' . checked( qem_get_element( $event, array( 'italic', $name ) ), true, false ) . ' /> ' . esc_html__( 'Italics', 'quick-event-manager' ) . '</td>
-       		<td>' ;
+            echo '<td><input type="text" class="qem-color" name="colour_' . esc_attr( $name ) . '" value ="' . esc_attr( qem_get_element( $event, array('colour', $name) ) ) . '" /></td>
+        	<td><input type="text" style="width:3em;border: 1px solid #343838;" name="size_' . esc_attr( $name ) . '" value ="' . esc_attr( qem_get_element( $event, array('size', $name) ) ) . '" />%</td>
+        	<td><input type="checkbox" name="bold_' . esc_attr( $name ) . '" ' . checked( qem_get_element( $event, array('bold', $name) ), true, false ) . ' /> ' . esc_html__( 'Bold', 'quick-event-manager' ) . ' <input type="checkbox" name="italic_' . esc_attr( $name ) . '" ' . checked( qem_get_element( $event, array('italic', $name) ), true, false ) . ' /> ' . esc_html__( 'Italics', 'quick-event-manager' ) . '</td>
+       		<td>';
             qem_options_e( $name, $event );
-            echo  '</td>' ;
+            echo '</td>';
         } else {
-            echo  '<td colspan="5">' ;
+            echo '<td colspan="5">';
             qem_options_e( $name, $event );
-            echo  '</td>' ;
+            echo '</td>';
         }
-        
-        echo  '</tr>' ;
+        echo '</tr>';
     }
-    echo  '</tbody></table>
+    echo '</tbody></table>
     <h2>Publication Date</h2>
     <p><input type="checkbox" name="publicationdate" value="checked" ' . checked( qem_get_element( $event, 'publicationdate' ), 'checked', false ) . ' /></td><td> ' . esc_html__( 'Make publication date the same as the event date', 'quick-event-manager' ) . '</p>
     <input type="hidden" id="qem_settings_sort" name="sort" value="' . esc_attr( qem_get_element( $event, 'sort' ) ) . '" />
-	<p><input type="submit" name="Submit" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Save Changes', 'quick-event-manager' ) . '" /> <input type="submit" name="Reset" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Reset', 'quick-event-manager' ) . '" onclick="return window.confirm( \' ' . esc_html__( 'Are you sure you want to reset the display settings?', 'quick-event-manager' ) . '\' );"/></p>' ;
+	<p><input type="submit" name="Submit" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Save Changes', 'quick-event-manager' ) . '" /> <input type="submit" name="Reset" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Reset', 'quick-event-manager' ) . '" onclick="return window.confirm( \' ' . esc_html__( 'Are you sure you want to reset the display settings?', 'quick-event-manager' ) . '\' );"/></p>';
     wp_nonce_field( "save_qem" );
-    echo  '</form>
+    echo '</form>
     <h2>' . esc_html__( 'Shortcode and Widget Field Selection', 'quick-event-manager' ) . '</h2>
     <p>' . esc_html__( 'If you want a custom layout for a specific list you can use the shortcode [qem fields=1,2,5].', 'quick-event-manager' ) . ' ' . esc_html__( 'On the', 'quick-event-manager' ) . '<a href="/wp-admin/widgets.php">' . esc_html__( 'widget', 'quick-event-manager' ) . '</a> ' . esc_html__( 'just enter the field numbers separated with commas.', 'quick-event-manager' ) . '<p>
     <p>' . esc_html__( 'The numbers correspond to the fields like this', 'quick-event-manager' ) . ': <p>
@@ -359,64 +342,61 @@ function qem_event_settings()
     <li>' . esc_html__( 'Category', 'quick-event-manager' ) . '</li>
     <li>' . esc_html__( 'Sharing', 'quick-event-manager' ) . '</li>
     </ol>
-    <p>' . esc_html__( 'The order of the fields and other options is set using the drag and drop selectors above', 'quick-event-manager' ) . '</p></div>' ;
+    <p>' . esc_html__( 'The order of the fields and other options is set using the drag and drop selectors above', 'quick-event-manager' ) . '</p></div>';
 }
 
-function qem_options_e( $name, $event )
-{
+function qem_options_e(  $name, $event  ) {
     switch ( $name ) {
         case 'field1':
-            echo  '<input type="text" style="border:1px solid blue; width:10em;" name="description_label" . value ="' . esc_attr( qem_get_element( $event, 'description_label' ) ) . '" /> {' . esc_html__( 'description', 'quick-event-manager' ) . '}' ;
+            echo '<input type="text" style="border:1px solid blue; width:10em;" name="description_label" . value ="' . esc_attr( qem_get_element( $event, 'description_label' ) ) . '" /> {' . esc_html__( 'description', 'quick-event-manager' ) . '}';
             break;
         case 'field2':
-            echo  '<input type="text" style="width:10em;" name="start_label" . value ="' . esc_attr( qem_get_element( $event, 'start_label' ) ) . '" /> {' . esc_html__( 'start time', 'quick-event-manager' ) . '} <input type="text" style="border:1px solid blue; width:10em;" name="finish_label" . value ="' . esc_attr( qem_get_element( $event, 'finish_label' ) ) . '" /> {' . esc_html__( 'end time', 'quick-event-manager' ) . '}' ;
+            echo '<input type="text" style="width:10em;" name="start_label" . value ="' . esc_attr( qem_get_element( $event, 'start_label' ) ) . '" /> {' . esc_html__( 'start time', 'quick-event-manager' ) . '} <input type="text" style="border:1px solid blue; width:10em;" name="finish_label" . value ="' . esc_attr( qem_get_element( $event, 'finish_label' ) ) . '" /> {' . esc_html__( 'end time', 'quick-event-manager' ) . '}';
             break;
         case 'field3':
-            echo  '<input type="text" style="width:6em;" name="location_label" . value ="' . esc_attr( qem_get_element( $event, 'location_label' ) ) . '" /> {' . esc_html__( 'venue', 'quick-event-manager' ) . '}' ;
+            echo '<input type="text" style="width:6em;" name="location_label" . value ="' . esc_attr( qem_get_element( $event, 'location_label' ) ) . '" /> {' . esc_html__( 'venue', 'quick-event-manager' ) . '}';
             break;
         case 'field4':
-            echo  '<input type="text" style="width:10em;" name="address_label" . value ="' . esc_attr( qem_get_element( $event, 'address_label' ) ) . '" /> {' . esc_html__( 'address', 'quick-event-manager' ) . '}' ;
+            echo '<input type="text" style="width:10em;" name="address_label" . value ="' . esc_attr( qem_get_element( $event, 'address_label' ) ) . '" /> {' . esc_html__( 'address', 'quick-event-manager' ) . '}';
             break;
         case 'field5':
-            echo  '<input type="text" style="width:10em;" name="url_label" . value ="' . esc_attr( qem_get_element( $event, 'url_label' ) ) . '" /> {url}' ;
+            echo '<input type="text" style="width:10em;" name="url_label" . value ="' . esc_attr( qem_get_element( $event, 'url_label' ) ) . '" /> {url}';
             break;
         case 'field6':
-            echo  '<input type="text" style="width:8em;" name="cost_label" . value ="' . esc_attr( qem_get_element( $event, 'cost_label' ) ) . '" /> {' . esc_html__( 'cost', 'quick-event-manager' ) . '} (<input type="text" style="width:8em;" name="deposit_before_label" . value ="' . esc_attr( qem_get_element( $event, 'deposit_before_label' ) ) . '" /> {deposit} <input type="text" style="width:8em;" name="deposit_after_label" . value ="' . esc_attr( qem_get_element( $event, 'deposit_after_label' ) ) . '" />)' ;
+            echo '<input type="text" style="width:8em;" name="cost_label" . value ="' . esc_attr( qem_get_element( $event, 'cost_label' ) ) . '" /> {' . esc_html__( 'cost', 'quick-event-manager' ) . '} (<input type="text" style="width:8em;" name="deposit_before_label" . value ="' . esc_attr( qem_get_element( $event, 'deposit_before_label' ) ) . '" /> {deposit} <input type="text" style="width:8em;" name="deposit_after_label" . value ="' . esc_attr( qem_get_element( $event, 'deposit_after_label' ) ) . '" />)';
             break;
         case 'field7':
-            echo  '<input type="text" style="width:10em;" name="organiser_label" . value ="' . esc_attr( qem_get_element( $event, 'organiser_label' ) ) . '" /> {' . esc_html__( 'organiser', 'quick-event-manager' ) . '}&nbsp;<input type="checkbox" name="show_telephone"' . esc_attr( qem_get_element( $event, 'show_telephone' ) ) . ' value="checked" /> ' . esc_html__( 'Show organiser\'s contact details', 'quick-event-manager' ) . ' ' ;
+            echo '<input type="text" style="width:10em;" name="organiser_label" . value ="' . esc_attr( qem_get_element( $event, 'organiser_label' ) ) . '" /> {' . esc_html__( 'organiser', 'quick-event-manager' ) . '}&nbsp;<input type="checkbox" name="show_telephone"' . esc_attr( qem_get_element( $event, 'show_telephone' ) ) . ' value="checked" /> ' . esc_html__( 'Show organiser\'s contact details', 'quick-event-manager' ) . ' ';
             break;
         case 'field8':
-            echo  esc_html__( 'The contents of the event detail editing box.', 'quick-event-manager' ) ;
+            echo esc_html__( 'The contents of the event detail editing box.', 'quick-event-manager' );
             break;
         case 'field9':
-            echo  '<input type="text" style="width:40%;" name="oneattendingbefore" value="' . esc_attr( qem_get_element( $event, 'oneattendingbefore' ) ) . '" /><br>
-            <input type="text" style="width:40%; " name="numberattendingbefore" value="' . esc_attr( qem_get_element( $event, 'numberattendingbefore' ) ) . '" /> {number} <input type="text" style="width:40%; " name="numberattendingafter" value="' . esc_attr( qem_get_element( $event, 'numberattendingafter' ) ) . '" />' ;
+            echo '<input type="text" style="width:40%;" name="oneattendingbefore" value="' . esc_attr( qem_get_element( $event, 'oneattendingbefore' ) ) . '" /><br>
+            <input type="text" style="width:40%; " name="numberattendingbefore" value="' . esc_attr( qem_get_element( $event, 'numberattendingbefore' ) ) . '" /> {number} <input type="text" style="width:40%; " name="numberattendingafter" value="' . esc_attr( qem_get_element( $event, 'numberattendingafter' ) ) . '" />';
             break;
         case 'field10':
-            echo  '<input type="text" style="width:10em;" name="whoscomingmessage" value="' . esc_attr( qem_get_element( $event, 'whoscomingmessage' ) ) . '" />&nbsp;<input type="checkbox" name="whoscoming" ' . esc_attr( qem_get_element( $event, 'whoscoming' ) ) . ' value="checked" />&nbsp;' . esc_html__( 'Show names', 'quick-event-manager' ) . '&nbsp;<input type="checkbox" name="whosavatar" ' . esc_attr( qem_get_element( $event, 'whosavatar' ) ) . ' value="checked" />&nbsp;' . esc_html__( 'Show Avatar', 'quick-event-manager' ) . '' ;
+            echo '<input type="text" style="width:10em;" name="whoscomingmessage" value="' . esc_attr( qem_get_element( $event, 'whoscomingmessage' ) ) . '" />&nbsp;<input type="checkbox" name="whoscoming" ' . esc_attr( qem_get_element( $event, 'whoscoming' ) ) . ' value="checked" />&nbsp;' . esc_html__( 'Show names', 'quick-event-manager' ) . '&nbsp;<input type="checkbox" name="whosavatar" ' . esc_attr( qem_get_element( $event, 'whosavatar' ) ) . ' value="checked" />&nbsp;' . esc_html__( 'Show Avatar', 'quick-event-manager' ) . '';
             break;
         case 'field11':
-            echo  '<input type="text" style="width:40%;" name="oneplacebefore" value="' . esc_attr( qem_get_element( $event, 'oneplacebefore' ) ) . '" /><br>
+            echo '<input type="text" style="width:40%;" name="oneplacebefore" value="' . esc_attr( qem_get_element( $event, 'oneplacebefore' ) ) . '" /><br>
             <input type="text" style="width:40%;" name="placesbefore" value="' . esc_attr( qem_get_element( $event, 'placesbefore' ) ) . '" /> {number} <input type="text" style="width:40%;" name="placesafter" value="' . esc_attr( qem_get_element( $event, 'placesafter' ) ) . '" /><br>
-            ' . esc_html__( 'Only show message if less than', 'quick-event-manager' ) . ' <input type="text" style="width:3em" name="iflessthan" value="' . esc_attr( qem_get_element( $event, 'iflessthan' ) ) . '" /> ' . esc_html__( 'places available', 'quick-event-manager' ) . '. <span class="description">Leave blank to show on all events</span>' ;
+            ' . esc_html__( 'Only show message if less than', 'quick-event-manager' ) . ' <input type="text" style="width:3em" name="iflessthan" value="' . esc_attr( qem_get_element( $event, 'iflessthan' ) ) . '" /> ' . esc_html__( 'places available', 'quick-event-manager' ) . '. <span class="description">Leave blank to show on all events</span>';
             break;
         case 'field12':
-            echo  esc_html__( 'Enable the registration form', 'quick-event-manager' ) . '.&nbsp;<a style="color:blue;text-decoration:underline;" href="?page=' . esc_attr( QUICK_EVENT_MANAGER_PLUGIN_NAME ) . '&tab=register">' . esc_html__( 'Registration form settings', 'quick-event-manager' ) . '</a><br>
-            <span class="description">' . esc_html__( 'To add a registration form to individual events use the event editor', 'quick-event-manager' ) . '.</span>' ;
+            echo esc_html__( 'Enable the registration form', 'quick-event-manager' ) . '.&nbsp;<a style="color:blue;text-decoration:underline;" href="?page=' . esc_attr( QUICK_EVENT_MANAGER_PLUGIN_NAME ) . '&tab=register">' . esc_html__( 'Registration form settings', 'quick-event-manager' ) . '</a><br>
+            <span class="description">' . esc_html__( 'To add a registration form to individual events use the event editor', 'quick-event-manager' ) . '.</span>';
             break;
         case 'field13':
-            echo  '<input type="text" style="border:1px solid blue; width:10em;" name="category_label" . value ="' . esc_attr( qem_get_element( $event, 'category_label' ) ) . '" /> {' . esc_html__( 'category', 'quick-event-manager' ) . '}' ;
+            echo '<input type="text" style="border:1px solid blue; width:10em;" name="category_label" . value ="' . esc_attr( qem_get_element( $event, 'category_label' ) ) . '" /> {' . esc_html__( 'category', 'quick-event-manager' ) . '}';
             break;
         case 'field14':
-            echo  'Facebook: <input type="text" style="border:1px solid blue; width:10em;" name="facebook_label" . value ="' . esc_attr( qem_get_element( $event, 'facebook_label' ) ) . '" /> Twitter: <input type="text" style="border:1px solid blue; width:10em;" name="twitter_label" . value ="' . esc_attr( qem_get_element( $event, 'twitter_label' ) ) . '" /> Calendar Download: <input type="text" style="border:1px solid blue; width:10em;" name="ics_label" . value ="' . esc_attr( qem_get_element( $event, 'ics_label' ) ) . '" />' ;
+            echo 'Facebook: <input type="text" style="border:1px solid blue; width:10em;" name="facebook_label" . value ="' . esc_attr( qem_get_element( $event, 'facebook_label' ) ) . '" /> Twitter: <input type="text" style="border:1px solid blue; width:10em;" name="twitter_label" . value ="' . esc_attr( qem_get_element( $event, 'twitter_label' ) ) . '" /> Calendar Download: <input type="text" style="border:1px solid blue; width:10em;" name="ics_label" . value ="' . esc_attr( qem_get_element( $event, 'ics_label' ) ) . '" />';
             break;
     }
 }
 
-function qem_display_page()
-{
-    
+function qem_display_page() {
     if ( isset( $_POST['Submit'] ) && check_admin_referer( "save_qem" ) ) {
         $option = array(
             'show_end_date',
@@ -493,13 +473,10 @@ function qem_display_page()
         update_option( 'qem_display', $display );
         qem_admin_notice( esc_html__( 'The display settings have been updated', 'quick-event-manager' ) );
     }
-    
-    
     if ( isset( $_POST['Reset'] ) && check_admin_referer( "save_qem" ) ) {
         delete_option( 'qem_display' );
         qem_admin_notice( esc_html__( 'The display settings have been reset', 'quick-event-manager' ) );
     }
-    
     $masonry = $traditional = $short = $full = $title = $date = $my = $ym = '';
     $display = event_get_stored_display();
     if ( isset( $display['show_end_date'] ) ) {
@@ -512,7 +489,7 @@ function qem_display_page()
     if ( isset( $display['eventmasonry'] ) ) {
         ${$display['eventmasonry']} = 'checked';
     }
-    echo  '<div class="qem-settings">
+    echo '<div class="qem-settings">
     <div class="qem-options">
     <form id="event_settings_form" method="post" action="">
     <table>
@@ -795,22 +772,20 @@ function qem_display_page()
     <tr>
     <td colspan="2"><input type="submit" name="Submit" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Save Changes', 'quick-event-manager' ) . '" /> <input type="submit" name="Reset" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Reset', 'quick-event-manager' ) . '" onclick="return window.confirm( \' ' . esc_html__( 'Are you sure you want to reset the display settings?', 'quick-event-manager' ) . '\' );"/></td>
     </tr>
-    </table>' ;
+    </table>';
     wp_nonce_field( "save_qem" );
-    echo  '</form>
+    echo '</form>
     </div>
     <div class="qem-options   qem-preview">
-    <h2>' . esc_html__( 'Event List Preview', 'quick-event-manager' ) . '</h2>' ;
+    <h2>' . esc_html__( 'Event List Preview', 'quick-event-manager' ) . '</h2>';
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped --  qem_event_shortcode_esc function returns escaped outputs as used in multiple places shortcode, widget admin previews etc https://developer.wordpress.org/apis/security/escaping/#toc_4
-    echo  qem_event_shortcode_esc( array(
+    echo qem_event_shortcode_esc( array(
         'posts' => '3',
-    ), '' ) ;
-    echo  '</div></div>' ;
+    ), '' );
+    echo '</div></div>';
 }
 
-function qem_styles()
-{
-    
+function qem_styles() {
     if ( isset( $_POST['Submit'] ) && check_admin_referer( "save_qem" ) ) {
         $options = array(
             'font',
@@ -875,13 +850,10 @@ function qem_styles()
         update_option( 'qem_style', $style );
         qem_admin_notice( esc_html__( 'The form styles have been updated', 'quick-event-manager' ) );
     }
-    
-    
     if ( isset( $_POST['Reset'] ) && check_admin_referer( "save_qem" ) ) {
         delete_option( 'qem_style' );
         qem_admin_notice( esc_html__( 'The style settings have been reset', 'quick-event-manager' ) );
     }
-    
     $pixel = $percent = $plugin = $theme = $small = $medium = $large = $square = $rounded = $month = $year = $dm = $md = $grey = $red = $color = $category = '';
     $bgwhite = $bgtheme = $bgcolor = $colour = $mwhite = $php = $head = '';
     $style = qem_get_stored_style();
@@ -894,7 +866,7 @@ function qem_styles()
     ${$style['icon_corners']} = 'checked';
     ${$style['iconorder']} = 'checked';
     ${$style['calender_size']} = 'checked';
-    echo  '<div class="qem-settings">
+    echo '<div class="qem-settings">
     <div class="qem-options">
     <form method="post" action="">
     <table>
@@ -1033,7 +1005,7 @@ function qem_styles()
     <table>
     <tr>
     <th>' . esc_html__( 'Category', 'quick-event-manager' ) . '</th><th colspan="1">' . esc_html__( 'Background', 'quick-event-manager' ) . '</th><th colspan="1">' . esc_html__( 'Text', 'quick-event-manager' ) . '</th>
- <tr>' ;
+ <tr>';
     $arr = array(
         'a',
         'b',
@@ -1047,31 +1019,29 @@ function qem_styles()
         'j'
     );
     foreach ( $arr as $i ) {
-        echo  '<tr><td>' ;
+        echo '<tr><td>';
         qem_categories_e( 'cat' . $i, qem_get_element( $style, 'cat' . $i ) );
-        echo  '</td>
+        echo '</td>
         <td><input type="text" class="qem-color" label="cat' . esc_attr( $i ) . 'back" name="cat' . esc_attr( $i ) . 'back" value="' . esc_attr( qem_get_element( $style, 'cat' . $i . 'back' ) ) . '" /></td>
-        <td><input type="text" class="qem-color" 1Glabel="cat' . esc_attr( $i ) . 'text" name="cat' . esc_attr( $i ) . 'text" value="' . esc_attr( qem_get_element( $style, 'cat' . $i . 'text' ) ) . '" /></td></tr>' ;
+        <td><input type="text" class="qem-color" 1Glabel="cat' . esc_attr( $i ) . 'text" name="cat' . esc_attr( $i ) . 'text" value="' . esc_attr( qem_get_element( $style, 'cat' . $i . 'text' ) ) . '" /></td></tr>';
     }
-    echo  '</table></div>
-	<p><input type="submit" name="Submit" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Save Changes', 'quick-event-manager' ) . '" /> <input type="submit" name="Reset" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Reset', 'quick-event-manager' ) . '" onclick="return window.confirm( \'' . esc_html__( 'Are you sure you want to reset the style settings?', 'quick-event-manager' ) . '\' );"/></p>' ;
+    echo '</table></div>
+	<p><input type="submit" name="Submit" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Save Changes', 'quick-event-manager' ) . '" /> <input type="submit" name="Reset" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Reset', 'quick-event-manager' ) . '" onclick="return window.confirm( \'' . esc_html__( 'Are you sure you want to reset the style settings?', 'quick-event-manager' ) . '\' );"/></p>';
     wp_nonce_field( "save_qem" );
-    echo  '</form>
+    echo '</form>
     </div>
     </div>
     <div class="qem-options qem-preview">
     <h2>' . esc_html__( 'Event List Preview', 'quick-event-manager' ) . '</h2>
-    <p>' . esc_html__( 'Check the event list in your site as the Wordpress Dashboard can do funny things with styles', 'quick-event-manager' ) . '</p>' ;
+    <p>' . esc_html__( 'Check the event list in your site as the Wordpress Dashboard can do funny things with styles', 'quick-event-manager' ) . '</p>';
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped --  qem_event_shortcode_esc function returns escaped outputs as used in multiple places shortcode, widget admin previews etc https://developer.wordpress.org/apis/security/escaping/#toc_4
-    echo  qem_event_shortcode_esc( array(
+    echo qem_event_shortcode_esc( array(
         'posts' => '3',
-    ), '' ) ;
-    echo  '</div>' ;
+    ), '' );
+    echo '</div>';
 }
 
-function qem_calendar()
-{
-    
+function qem_calendar() {
     if ( isset( $_POST['Submit'] ) && check_admin_referer( "save_qem" ) ) {
         $options = array(
             'calday',
@@ -1140,13 +1110,10 @@ function qem_calendar()
         update_option( 'qem_calendar', $cal );
         qem_admin_notice( esc_html__( 'The calendar settings have been updated', 'quick-event-manager' ) );
     }
-    
-    
     if ( isset( $_POST['Reset'] ) && check_admin_referer( "save_qem" ) ) {
         delete_option( 'qem_calendar' );
         qem_admin_notice( esc_html__( 'The calendar settings have been reset', 'quick-event-manager' ) );
     }
-    
     $linkpage = $colorAsBorder = $rounded = $my = $ym = $linkpopup = $none = $arrows = $unicodes = $h2 = $h3 = $h4 = $trim = $arrow = $box = $square = $asterix = $blank = $other = $sunday = $monday = '';
     $colorAsBG = 'checked';
     $calendar = qem_get_stored_calendar();
@@ -1160,19 +1127,15 @@ function qem_calendar()
     ${$calendar['header']} = 'checked';
     ${$calendar['event_corner']} = 'checked';
     ${$calendar['headerorder']} = 'checked';
-    
     if ( $calendar['navicon'] == 'arrows' ) {
         $leftnavicon = '&#9668; ';
         $rightnavicon = ' &#9658;';
     }
-    
-    
     if ( $calendar['navicon'] == 'unicodes' ) {
         $leftnavicon = $cal['leftunicode'] . ' ';
         $rightnavicon = ' ' . $cal['rightunicode'];
     }
-    
-    echo  '<div class="qem-settings"><div class="qem-options">
+    echo '<div class="qem-settings"><div class="qem-options">
     <h2>' . esc_html__( 'Using the Calendar', 'quick-event-manager' ) . '</h2>
     <p>' . esc_html__( 'To add a calendar to your site use the shortcode: [qemcalendar]', 'quick-event-manager' ) . '.</p>
     <form method="post" action="">
@@ -1396,43 +1359,38 @@ Header CSS:<br>
     <h2>' . esc_html__( 'Start the Week', 'quick-event-manager' ) . '</h2>
     <p><input type="radio" name="startday" value="sunday" ' . esc_attr( $sunday ) . ' /> ' . esc_html__( 'On Sunday', 'quick-event-manager' ) . '<br />
     <input type="radio" name="startday" value="monday" ' . esc_attr( $monday ) . ' /> ' . esc_html__( 'On Monday', 'quick-event-manager' ) . '</p>
-    <p><input type="submit" name="Submit" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Save Changes', 'quick-event-manager' ) . '" /> <input type="submit" name="Reset" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Reset', 'quick-event-manager' ) . '" onclick="return window.confirm( \'' . esc_html__( 'Are you sure you want to reset the calendar settings?', 'quick-event-manager' ) . '\' );"/></p>' ;
+    <p><input type="submit" name="Submit" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Save Changes', 'quick-event-manager' ) . '" /> <input type="submit" name="Reset" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Reset', 'quick-event-manager' ) . '" onclick="return window.confirm( \'' . esc_html__( 'Are you sure you want to reset the calendar settings?', 'quick-event-manager' ) . '\' );"/></p>';
     wp_nonce_field( "save_qem" );
-    echo  '</form>
+    echo '</form>
     </div>
     <div class="qem-options">
     <h2>' . esc_html__( 'Calendar Preview', 'quick-event-manager' ) . '</h2>
-    <p>' . esc_html__( 'The', 'quick-event-manager' ) . ' <em>' . esc_html__( 'prev', 'quick-event-manager' ) . '</em> ' . esc_html__( 'and', 'quick-event-manager' ) . ' <em>' . esc_html__( 'next', 'quick-event-manager' ) . '</em> ' . esc_html__( 'buttons only work on your Posts and Pages - so don\'t click on them!', 'quick-event-manager' ) . '</p>' ;
+    <p>' . esc_html__( 'The', 'quick-event-manager' ) . ' <em>' . esc_html__( 'prev', 'quick-event-manager' ) . '</em> ' . esc_html__( 'and', 'quick-event-manager' ) . ' <em>' . esc_html__( 'next', 'quick-event-manager' ) . '</em> ' . esc_html__( 'buttons only work on your Posts and Pages - so don\'t click on them!', 'quick-event-manager' ) . '</p>';
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped --  qem_show_calendar_esc function returns escaped outputs as used in multiple places shortcode, widget admin previews etc https://developer.wordpress.org/apis/security/escaping/#toc_4
-    echo  qem_show_calendar_esc( '' ) ;
-    echo  '</div></div>' ;
+    echo qem_show_calendar_esc( '' );
+    echo '</div></div>';
 }
 
-function qem_categories_e( $catxxx, $thecat )
-{
+function qem_categories_e(  $catxxx, $thecat  ) {
     $arr = get_categories();
-    echo  '<select name="' . esc_attr( $catxxx ) . '" style="width:8em;">' ;
-    echo  '<option value=""></option>' ;
+    echo '<select name="' . esc_attr( $catxxx ) . '" style="width:8em;">';
+    echo '<option value=""></option>';
     foreach ( $arr as $option ) {
-        
         if ( $thecat == $option->slug ) {
             $selected = 'selected';
         } else {
             $selected = '';
         }
-        
-        echo  '<option value="' . esc_attr( $option->slug ) . '" ' . esc_attr( $selected ) . '>' . esc_html( $option->name ) . '</option>' ;
+        echo '<option value="' . esc_attr( $option->slug ) . '" ' . esc_attr( $selected ) . '>' . esc_html( $option->name ) . '</option>';
     }
-    echo  '</select>' ;
+    echo '</select>';
 }
 
-function qem_register()
-{
-    global  $qem_fs ;
+function qem_register() {
+    global $qem_fs;
     $corner = '';
     $none = '';
     $processpercent = $processfixed = $qem_apikey = $addtoall = $formwidth = $notarchive = false;
-    
     if ( isset( $_POST['Settings'] ) && check_admin_referer( "save_qem" ) ) {
         $options = array(
             'addtoall',
@@ -1539,26 +1497,20 @@ function qem_register()
         );
         foreach ( $options as $item ) {
             $register[$item] = stripslashes( sanitize_text_field( qem_get_element( $_POST, $item, false ) ) );
-            
-            if ( in_array( $item, array( 'replyblurb' ) ) ) {
+            if ( in_array( $item, array('replyblurb') ) ) {
                 //  textareas and allowed html
                 $register[$item] = qem_wp_kses_post( $register[$item] );
             } else {
                 $register[$item] = sanitize_text_field( $register[$item] );
             }
-        
         }
         update_option( 'qem_register', $register );
         qem_admin_notice( esc_html__( 'The registration form settings have been updated', 'quick-event-manager' ) );
     }
-    
-    
     if ( isset( $_POST['Reset'] ) && check_admin_referer( "save_qem" ) ) {
         delete_option( 'qem_register' );
         qem_admin_notice( esc_html__( 'The registration form settings have been reset', 'quick-event-manager' ) );
     }
-    
-    
     if ( isset( $_POST['Styles'] ) && check_admin_referer( "save_qem" ) ) {
         $options = array(
             'font-colour',
@@ -1591,7 +1543,6 @@ function qem_register()
             $style[$item] = stripslashes( qem_get_element( $_POST, $item ) );
             $style[$item] = filter_var( $style[$item], FILTER_SANITIZE_STRING );
         }
-        
         if ( qem_get_element( $style, 'form-width', false ) ) {
             $formwidth = preg_split( '#(?<=\\d)(?=[a-z%])#i', qem_get_element( $style, 'form-width' ) );
             if ( false === $formwidth && !$formwidth[1] ) {
@@ -1599,17 +1550,13 @@ function qem_register()
             }
             $style['width'] = $formwidth[0] . $formwidth[1];
         }
-        
         update_option( 'qem_register_style', $style );
         qem_admin_notice( "The form styles have been updated." );
     }
-    
-    
     if ( isset( $_POST['Resetstyles'] ) && check_admin_referer( "save_qem" ) ) {
         delete_option( 'qem_register_style' );
         qem_admin_notice( "The form styles have been reset." );
     }
-    
     $style = qem_get_register_style();
     $wpmail = 'checked';
     $right = $left = $yourblank1textarea = $yourblank2textarea = '';
@@ -1639,7 +1586,7 @@ function qem_register()
     if ( isset( $register['yourblank2textarea'] ) ) {
         ${$register['yourblank2textarea']} = 'checked';
     }
-    echo  '<div class="qem-settings"><div class="qem-options">
+    echo '<div class="qem-settings"><div class="qem-options">
     <form id="" method="post" action="">
     <p>' . esc_html__( 'Use the', 'quick-event-manager' ) . ' <a href="?page=' . esc_attr( QUICK_EVENT_MANAGER_PLUGIN_NAME ) . '&tab=settings">Settings</a> ' . esc_html__( 'Settings', 'quick-event-manager' ) . '</a> ' . esc_html__( 'to enable the registration form. You can then manage forms for individual events using the event editor', 'quick-event-manager' ) . '</p>
     <table width="100%">
@@ -1684,46 +1631,42 @@ function qem_register()
     </tr>
     <tr>
     <td colspan="3"><a href="#styling">' . esc_html__( 'Click Here for Form Styling', 'quick-event-manager' ) . '</a></td>
-    </tr>' ;
-    echo  '<tr><td colspan="3">' ;
+    </tr>';
+    echo '<tr><td colspan="3">';
     $fs = array_key_exists( 'fwantispam_fs', $GLOBALS );
-    
     if ( $fs ) {
-        global  $fwantispam_fs ;
-        
+        global $fwantispam_fs;
         if ( $fwantispam_fs->can_use_premium_code() ) {
-            echo  '<h2>' . esc_html__( 'Anti Spam Protection', 'quick-event-manager' ) . '</h2>
+            echo '<h2>' . esc_html__( 'Anti Spam Protection', 'quick-event-manager' ) . '</h2>
 <div style="border: 1px solid black; padding: 10px; background-color: #90ee90;">
     <p>' . esc_html__( 'Brilliant - you are automatically protected from spam', 'quick-event-manager' ) . '</p> 
     <p>' . esc_html__( 'By', 'quick-event-manager' ) . ' <a href="' . esc_url( get_admin_url() ) . 'options-general.php?page=fullworks-anti-spam-settings" >' . esc_html__( 'Fullworks\' Anti Spam - see the settings here', 'quick-event-manager' ) . '</a> </p>
-	</div>' ;
+	</div>';
         } else {
-            echo  '<h2>' . esc_html__( 'Anti Spam Protection', 'quick-event-manager' ) . '</h2>
+            echo '<h2>' . esc_html__( 'Anti Spam Protection', 'quick-event-manager' ) . '</h2>
 <div style="border: 1px solid black; padding: 10px; background-color: #ffcccb;">
     <p>' . esc_html__( 'You have FULLWORKS ANTI SPAM installed but you need to enable the ANTI SPAM licence to get spam protection for Quick Event Manager ', 'quick-event-manager' ) . '</p> 
     <p>' . esc_html__( 'Get your licence', 'quick-event-manager' ) . ' <a href="' . esc_url( get_admin_url() ) . 'options-general.php?page=fullworks-anti-spam-settings-pricing" >' . esc_html__( 'Fullworks\' Anti Spam', 'quick-event-manager' ) . '</a> </p>
-	</div>' ;
+	</div>';
         }
-    
     } else {
-        echo  '<h2>' . esc_html__( 'Anti Spam Protection', 'quick-event-manager' ) . '</h2>
+        echo '<h2>' . esc_html__( 'Anti Spam Protection', 'quick-event-manager' ) . '</h2>
 <div style="border: 1px solid black; padding: 10px; background-color: #ffcccb;">
     <p>' . esc_html__( 'Protect your forms from annoying spam', 'quick-event-manager' ) . '</p> 
     <p>' . esc_html__( 'Simply install', 'quick-event-manager' ) . ' <a href="https://fullworksplugins.com/products/anti-spam/" target="_blank">' . esc_html__( 'Fullworks\' Anti Spam', 'quick-event-manager' ) . '</a></p>
     <p>' . esc_html__( 'No Recaptcha, no annoying quizes or images, simply effective. Free trial available.', 'quick-event-manager' ) . '</p>
-	</div>' ;
+	</div>';
     }
-    
-    echo  '</td></tr><tr>
+    echo '</td></tr><tr>
     <td colspan="3"><h2>' . esc_html__( 'Notifications', 'quick-event-manager' ) . '</h2></td>
     <tr>
     <td colspan="2">' . esc_html__( 'Primary Email Address', 'quick-event-manager' ) . '</td>
     <td><input type="text" style="" name="sendemail" value="' . esc_attr( qem_get_element( $register, 'sendemail' ) ) . '" /><br><span class="description">' . esc_html__( 'This is where registration notifications will be sent from and sent to, make sure it is a good email address', 'quick-event-manager' ) . '</span></td>
-    </tr>' ;
-    echo  '<td colspan="2">' . esc_html__( 'Copy notifications', 'quick-event-manager' ) . '</td>
+    </tr>';
+    echo '<td colspan="2">' . esc_html__( 'Copy notifications', 'quick-event-manager' ) . '</td>
     <td><span class="description">' . esc_html__( 'Upgrade to a premium version to enable multiple admin registration notification addreses', 'quick-event-manager' ) . '</span></td>
-    </tr>' ;
-    echo  '</tr><tr>
+    </tr>';
+    echo '</tr><tr>
     <td width="5%"><input type="checkbox" name="nonotifications" ' . esc_attr( qem_get_element( $register, 'nonotifications' ) ) . ' value="checked" /></td>
     <td colspan="2">' . esc_html__( 'Do not send notifications' ) . '</td>
     </tr>
@@ -1759,10 +1702,10 @@ function qem_register()
     <th width="20%">' . esc_html__( 'Field', 'quick-event-manager' ) . '</th>
     <th>' . esc_html__( 'Label', 'quick-event-manager' ) . '</th>
     </tr>
-    </thead><tbody id="qem_rsort">' ;
+    </thead><tbody id="qem_rsort">';
     $sort = explode( ",", $register['sort'] );
     foreach ( $sort as $name ) {
-        echo  '<tr id="' . esc_attr( $name ) . '">' ;
+        echo '<tr id="' . esc_attr( $name ) . '">';
         switch ( $name ) {
             case 'field1':
                 qem_reg_fields_td_e(
@@ -1813,7 +1756,7 @@ function qem_register()
                     esc_html__( 'Places', 'quick-event-manager' ),
                     'yourplaces'
                 );
-                echo  '<input type="radio" name="placesposition" value="left" ' . esc_attr( $left ) . '> Before label <input type="radio" name="placesposition" value="right" ' . esc_attr( $right ) . '> After label' ;
+                echo '<input type="radio" name="placesposition" value="left" ' . esc_attr( $left ) . '> Before label <input type="radio" name="placesposition" value="right" ' . esc_attr( $right ) . '> After label';
                 break;
             case 'field6':
                 qem_reg_fields_td_e(
@@ -1855,7 +1798,7 @@ function qem_register()
                     esc_html__( 'User defined 1', 'quick-event-manager' ),
                     'yourblank1'
                 );
-                echo  '<input type="checkbox" name="yourblank1textarea" value="yourblank1textarea" ' . esc_attr( $yourblank1textarea ) . '> Make Textarea' ;
+                echo '<input type="checkbox" name="yourblank1textarea" value="yourblank1textarea" ' . esc_attr( $yourblank1textarea ) . '> Make Textarea';
                 break;
             case 'field10':
                 qem_reg_fields_td_e(
@@ -1866,7 +1809,7 @@ function qem_register()
                     esc_html__( 'User defined 2', 'quick-event-manager' ),
                     'yourblank2'
                 );
-                echo  '<input type="checkbox" name="yourblank2textarea" value="yourblank2textarea" ' . esc_attr( $yourblank2textarea ) . '> ' . esc_html__( 'Make Textarea', 'quick-event-manager' ) ;
+                echo '<input type="checkbox" name="yourblank2textarea" value="yourblank2textarea" ' . esc_attr( $yourblank2textarea ) . '> ' . esc_html__( 'Make Textarea', 'quick-event-manager' );
                 break;
             case 'field11':
                 qem_reg_fields_td_e(
@@ -1898,7 +1841,7 @@ function qem_register()
                     'addinfo'
                 );
                 esc_html_e( '(displays as plain text)', 'quick-event-manager' );
-                echo  '<input type="checkbox" name="paypaladdinfo" value="checked" ' . esc_attr( qem_get_element( $register, 'paypaladdinfo' ) ) . '> ' ;
+                echo '<input type="checkbox" name="paypaladdinfo" value="checked" ' . esc_attr( qem_get_element( $register, 'paypaladdinfo' ) ) . '> ';
                 esc_html_e( 'Only show if payment is required', 'quick-event-manager' );
                 break;
             case 'field14':
@@ -1930,7 +1873,7 @@ function qem_register()
                     esc_html__( 'Options', 'quick-event-manager' ),
                     'checkslabel'
                 );
-                echo  '<input type="text" name="checkslist" value="' . esc_attr( qem_get_element( $register, 'checkslist' ) ) . '" >' . esc_html__( 'Display as radio buttons: ', 'quick-event-manager' ) . '<input type="checkbox" name="usechecksradio" value="checked" ' . esc_attr( qem_get_element( $register, 'usechecksradio' ) ) . '>' ;
+                echo '<input type="text" name="checkslist" value="' . esc_attr( qem_get_element( $register, 'checkslist' ) ) . '" >' . esc_html__( 'Display as radio buttons: ', 'quick-event-manager' ) . '<input type="checkbox" name="usechecksradio" value="checked" ' . esc_attr( qem_get_element( $register, 'usechecksradio' ) ) . '>';
                 break;
             case 'field17':
                 qem_reg_fields_td_e(
@@ -1942,12 +1885,12 @@ function qem_register()
                     'donation',
                     'disabled'
                 );
-                echo  '<a href="' . esc_url( $qem_fs->get_upgrade_url() ) . '" target="_blank">' . esc_html__( 'Upgrade for donation feature', 'quick-event-manager' ) . '</a>' ;
+                echo '<a href="' . esc_url( $qem_fs->get_upgrade_url() ) . '" target="_blank">' . esc_html__( 'Upgrade for donation feature', 'quick-event-manager' ) . '</a>';
                 break;
         }
-        echo  '</td></tr>' ;
+        echo '</td></tr>';
     }
-    echo  '</tbody>
+    echo '</tbody>
     </table>
     <input type="hidden" id="qem_register_sort" name="sort" value="' . esc_attr( qem_get_element( $register, 'sort' ) ) . '" />
 
@@ -2113,30 +2056,30 @@ function qem_register()
     <tr>
     <td width="5%"></td>
     <td colspan="2"><input type="text" name="listblurb" value="' . esc_attr( qem_get_element( $register, 'listblurb' ) ) . '" /><br>
-    <span class="description">Shortcodes: [name],[email],[mailto],[places],[telephone],[user1],[user2]<br>' ;
-    echo  'Upgrade to premium for: [dropdown1],[dropdown1],[options]<br>' ;
+    <span class="description">Shortcodes: [name],[email],[mailto],[places],[telephone],[user1],[user2]<br>';
+    echo 'Upgrade to premium for: [dropdown1],[dropdown1],[options]<br>';
     /* translators: leave [website]] */
-    echo  esc_html__( 'If you want a link to a website use first used defined field and the [website] shortcode.', 'quick-event-manager' ) ;
-    echo  '</span>
+    echo esc_html__( 'If you want a link to a website use first used defined field and the [website] shortcode.', 'quick-event-manager' );
+    echo '</span>
     </tr>
 
     </table>
     <p><input type="submit" name="Settings" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Save Settings', 'quick-event-manager' ) . '" />
     <input type="submit" name="Reset" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Reset', 'quick-event-manager' ) . '" onclick="return window.confirm( \'' . esc_html__( 'Are you sure you want to reset the registration form settings?', 'quick-event-manager' ) . '\' );"/></p>
-    <div id="styling"></div>' ;
+    <div id="styling"></div>';
     wp_nonce_field( "save_qem" );
-    echo  '</form>
-    <h2 style="color:blue;">' . esc_html__( 'Form Styling', 'quick-event-manager' ) . '</h2>' ;
-    echo  '<h2>' . esc_html__( 'Form Styling', 'quick-event-manager' ) . '</h2>
+    echo '</form>
+    <h2 style="color:blue;">' . esc_html__( 'Form Styling', 'quick-event-manager' ) . '</h2>';
+    echo '<h2>' . esc_html__( 'Form Styling', 'quick-event-manager' ) . '</h2>
         <p>' . esc_html__( 'Registration Form styling is only avaialble to Pro users.', 'quick-event-manager' ) . '</p>
-        <p><a href="?' . esc_url( $qem_fs->get_upgrade_url() ) . '">' . esc_html__( 'Find out more', 'quick-event-manager' ) . '</a></p>' ;
-    echo  '</div>
+        <p><a href="?' . esc_url( $qem_fs->get_upgrade_url() ) . '">' . esc_html__( 'Find out more', 'quick-event-manager' ) . '</a></p>';
+    echo '</div>
     <div class="qem-options qem-preview">
     <h2>' . esc_html__( 'Example form', 'quick-event-manager' ) . '</h2>
-    <p>' . esc_html__( 'This is an example of the form. When it appears on your site it will use your theme styles.', 'quick-event-manager' ) . '</p>' ;
+    <p>' . esc_html__( 'This is an example of the form. When it appears on your site it will use your theme styles.', 'quick-event-manager' ) . '</p>';
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- qem_loop_esc function calls only data from escaped or core functions for legacy code structure not sensible to use kses here
-    echo  qem_loop_esc() ;
-    echo  '</div></div>' ;
+    echo qem_loop_esc();
+    echo '</div></div>';
 }
 
 function qem_reg_fields_td_e(
@@ -2147,24 +2090,21 @@ function qem_reg_fields_td_e(
     $label,
     $input,
     $disabled = ''
-)
-{
-    echo  '<td width="5%"><input type="checkbox" name="' . esc_attr( $use ) . '" ' . esc_attr( qem_get_element( $register, $use ) ) . ' ' . esc_attr( $disabled ) . ' value="checked" /></td>
-        <td width="5%">' ;
+) {
+    echo '<td width="5%"><input type="checkbox" name="' . esc_attr( $use ) . '" ' . esc_attr( qem_get_element( $register, $use ) ) . ' ' . esc_attr( $disabled ) . ' value="checked" /></td>
+        <td width="5%">';
     if ( $req ) {
-        echo  '<input type="checkbox" name="' . esc_attr( $req ) . '" ' . esc_attr( qem_get_element( $register, $req ) ) . ' ' . esc_attr( $disabled ) . ' value="checked" />' ;
+        echo '<input type="checkbox" name="' . esc_attr( $req ) . '" ' . esc_attr( qem_get_element( $register, $req ) ) . ' ' . esc_attr( $disabled ) . ' value="checked" />';
     }
-    echo  '</td><td width="20%">' . esc_attr( $label ) . '</td><td>' ;
+    echo '</td><td width="20%">' . esc_attr( $label ) . '</td><td>';
     if ( $name == 'field7' ) {
-        echo  esc_html__( 'Adds a maths captcha to confuse the spammers.', 'quick-event-manager' ) ;
+        echo esc_html__( 'Adds a maths captcha to confuse the spammers.', 'quick-event-manager' );
     }
-    echo  '<input type="text" style="border: 1px solid #343838;" name="' . esc_attr( $input ) . '" value="' . esc_attr( qem_get_element( $register, $input ) ) . '" ' . esc_attr( $disabled ) . ' />' ;
+    echo '<input type="text" style="border: 1px solid #343838;" name="' . esc_attr( $input ) . '" value="' . esc_attr( qem_get_element( $register, $input ) ) . '" ' . esc_attr( $disabled ) . ' />';
 }
 
-function qem_autoresponse_page()
-{
-    global  $qem_fs ;
-    
+function qem_autoresponse_page() {
+    global $qem_fs;
     if ( isset( $_POST['Submit'] ) && check_admin_referer( "save_qem" ) ) {
         $options = array(
             'enable',
@@ -2183,31 +2123,26 @@ function qem_autoresponse_page()
             'permalink'
         );
         foreach ( $options as $item ) {
-            
             if ( 'message' === $item ) {
                 $auto[$item] = qem_wp_kses_post( stripslashes( qem_get_element( $_POST, $item ) ) );
             } else {
                 $auto[$item] = sanitize_text_field( stripslashes( qem_get_element( $_POST, $item ) ) );
                 $auto[$item] = filter_var( qem_get_element( $auto, $item ), FILTER_SANITIZE_STRING );
             }
-        
         }
         update_option( 'qem_autoresponder', $auto );
         qem_admin_notice( "The autoresponder settings have been updated." );
     }
-    
-    
     if ( isset( $_POST['Reset'] ) && check_admin_referer( "save_qem" ) ) {
         delete_option( 'qem_autoresponder' );
         qem_admin_notice( "The autoresponder settings have been reset." );
     }
-    
     $auto = qem_get_stored_autoresponder();
     $aftersubmission = $afterpayment = '';
     ${$auto['whenconfirm']} = 'checked';
     $message = $auto['message'];
     $after_msg = sprintf( esc_html__( 'Send only after confirmed payment - for paid events which go direct to PayPal (set if %1$sPayPal IPN%2$s is active), this will also defer admin notifications until after payment. Free Events and Events that do not redirect to payment automatically will still be notified immediately.', 'quick-event-manager' ), '<a href="?page=' . QUICK_EVENT_MANAGER_PLUGIN_NAME . '&tab=payment">', '</a>' );
-    echo  '<div class="qem-settings"><div class="qem-options" style="width:90%;">
+    echo '<div class="qem-settings"><div class="qem-options" style="width:90%;">
 	<h2 style="color:#B52C00">' . esc_html__( 'Auto responder settings', 'quick-event-manager' ) . '</h2>
     <p>' . esc_html__( 'The Auto Responder will send an email to the Registrant if enabled of if they choose to recieve a copy of their details', 'quick-event-manager' ) . '.</p>
     <form method="post" action="">
@@ -2224,13 +2159,13 @@ function qem_autoresponse_page()
     <input type="checkbox" name="subjectdate"' . esc_attr( qem_get_element( $auto, 'subjectdate' ) ) . ' value="checked" />&nbsp;' . esc_html__( 'Show date', 'quick-event-manager' ) . '</p>
     <h2>' . esc_html__( 'Message Content', 'quick-event-manager' ) . '</h2>
     <p>' . esc_html__( 'To create individual event messages use the \'Registration Confirmation Message\' option at the bottom of the', 'quick-event-manager' ) . ' <a href="post-new.php?post_type=event">' . esc_html__( 'Event Editor', 'quick-event-manager' ) . '</a>.</p>
-    <p>' . esc_html__( 'If you are taking payments on some events you can create a message for those events on the', 'quick-event-manager' ) . ' <a href="?page=' . esc_attr( QUICK_EVENT_MANAGER_PLUGIN_NAME ) . '&tab=payment">' . esc_html__( 'Payments settings page', 'quick-event-manager' ) . '</a>.</p>' ;
+    <p>' . esc_html__( 'If you are taking payments on some events you can create a message for those events on the', 'quick-event-manager' ) . ' <a href="?page=' . esc_attr( QUICK_EVENT_MANAGER_PLUGIN_NAME ) . '&tab=payment">' . esc_html__( 'Payments settings page', 'quick-event-manager' ) . '</a>.</p>';
     wp_editor( $message, 'message', $settings = array(
         'textarea_rows' => '20',
         'wpautop'       => false,
         'media_buttons' => false,
     ) );
-    echo  '<p>' . esc_html__( 'You can use the following shortcodes in the message body:', 'quick-event-manager' ) . '</p>
+    echo '<p>' . esc_html__( 'You can use the following shortcodes in the message body:', 'quick-event-manager' ) . '</p>
     <table>
     <tr><th>Shortcode</th><th>' . esc_html__( 'Replacement Text', 'quick-event-manager' ) . '</th></tr>
     <tr><td>[name]</td><td>' . esc_html__( 'The registrants name from the form', 'quick-event-manager' ) . '</td></tr>
@@ -2239,31 +2174,29 @@ function qem_autoresponse_page()
     <tr><td>[places]</td><td>' . esc_html__( 'Number of places required', 'quick-event-manager' ) . '</td></tr>
     <tr><td>[location]</td><td>' . esc_html__( 'Event location (not the address)', 'quick-event-manager' ) . '</td></tr>
     <tr><td>[start]</td><td>' . esc_html__( 'Start time', 'quick-event-manager' ) . '</td></tr>
-    <tr><td>[finish]</td><td>' . esc_html__( 'Finish time', 'quick-event-manager' ) . '</td></tr>' ;
-    echo  '<tr><td colspan="2"><a href="' . esc_url( $qem_fs->get_upgrade_url() ) . '"><h3>' . esc_html__( 'Upgrade to any pro plan to use the following', 'quick-event-manager' ) . '</a></h3></td></tr>' ;
-    echo  '<tr><td>[total]</td><td>' . esc_html__( 'Total Amount for the registration', 'quick-event-manager' ) . '</td></tr>' ;
-    echo  '<tr><td>[donation_amount]</td><td>' . esc_html__( 'User selected donation amount', 'quick-event-manager' ) . '</td></tr>' ;
-    echo  '<tr><td colspan="2"><a href="' . esc_url( $qem_fs->get_upgrade_url() ) . '"><h3>' . esc_html__( 'Upgrade to GOLD plan to use the following', 'quick-event-manager' ) . '</a></h3></td></tr>' ;
-    echo  '<tr><td>[ticket_no]</td><td>' . esc_html__( 'Auto generated ticket number', 'quick-event-manager' ) . '</td></tr>' ;
-    echo  '</table>' ;
-    echo  '<p><input type="checkbox" name="useregistrationdetails"' . esc_attr( qem_get_element( $auto, 'useregistrationdetails' ) ) . ' value="checked" />&nbsp;' . esc_html__( 'Add registration details to the email', 'quick-event-manager' ) . '</p>
+    <tr><td>[finish]</td><td>' . esc_html__( 'Finish time', 'quick-event-manager' ) . '</td></tr>';
+    echo '<tr><td colspan="2"><a href="' . esc_url( $qem_fs->get_upgrade_url() ) . '"><h3>' . esc_html__( 'Upgrade to any pro plan to use the following', 'quick-event-manager' ) . '</a></h3></td></tr>';
+    echo '<tr><td>[total]</td><td>' . esc_html__( 'Total Amount for the registration', 'quick-event-manager' ) . '</td></tr>';
+    echo '<tr><td>[donation_amount]</td><td>' . esc_html__( 'User selected donation amount', 'quick-event-manager' ) . '</td></tr>';
+    echo '<tr><td colspan="2"><a href="' . esc_url( $qem_fs->get_upgrade_url() ) . '"><h3>' . esc_html__( 'Upgrade to GOLD plan to use the following', 'quick-event-manager' ) . '</a></h3></td></tr>';
+    echo '<tr><td>[ticket_no]</td><td>' . esc_html__( 'Auto generated ticket number', 'quick-event-manager' ) . '</td></tr>';
+    echo '</table>';
+    echo '<p><input type="checkbox" name="useregistrationdetails"' . esc_attr( qem_get_element( $auto, 'useregistrationdetails' ) ) . ' value="checked" />&nbsp;' . esc_html__( 'Add registration details to the email', 'quick-event-manager' ) . '</p>
     <p>' . esc_html__( 'Registration details blurb', 'quick-event-manager' ) . '<br>
     <input type="text" style="" name="registrationdetailsblurb" value="' . esc_attr( qem_get_element( $auto, 'registrationdetailsblurb' ) ) . '" /></p>
     <p><input type="checkbox" name="useeventdetails"' . esc_attr( qem_get_element( $auto, 'useeventdetails' ) ) . ' value="checked" />&nbsp;' . esc_html__( 'Add event details to the email', 'quick-event-manager' ) . '</p>
     <p>' . esc_html__( 'Event details blurb', 'quick-event-manager' ) . '<br>
 <input type="text" style="" name="eventdetailsblurb" value="' . esc_attr( qem_get_element( $auto, 'eventdetailsblurb' ) ) . '" /></p
     <p><input type="checkbox" name="permalink"' . esc_attr( qem_get_element( $auto, 'permalink' ) ) . ' value="checked" />&nbsp;' . esc_html__( 'Include link to event page', 'quick-event-manager' ) . '</td>
-    <p><input type="submit" name="Submit" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Save Changes', 'quick-event-manager' ) . '" /> <input type="submit" name="Reset" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Reset', 'quick-event-manager' ) . '" onclick="return window.confirm( \'' . esc_html__( 'Are you sure you want to reset the auto responder settings?', 'quick-event-manager' ) . '\' );"/></p>' ;
+    <p><input type="submit" name="Submit" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Save Changes', 'quick-event-manager' ) . '" /> <input type="submit" name="Reset" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Reset', 'quick-event-manager' ) . '" onclick="return window.confirm( \'' . esc_html__( 'Are you sure you want to reset the auto responder settings?', 'quick-event-manager' ) . '\' );"/></p>';
     wp_nonce_field( "save_qem" );
-    echo  '</form>
+    echo '</form>
     </div>
-    </div>' ;
+    </div>';
 }
 
-function qem_payment()
-{
-    global  $qem_fs ;
-    
+function qem_payment() {
+    global $qem_fs;
     if ( isset( $_POST['Submit'] ) && check_admin_referer( "save_qem" ) ) {
         $options = array(
             'qppform',
@@ -2292,37 +2225,32 @@ function qem_payment()
         );
         foreach ( $options as $item ) {
             $field = stripslashes( qem_get_element( $_POST, $item ) );
-            
-            if ( in_array( $item, array( 'message', 'pendingcleardownmsg' ) ) ) {
+            if ( in_array( $item, array('message', 'pendingcleardownmsg') ) ) {
                 $payment[$item] = qem_wp_kses_post( $field );
             } else {
                 $payment[$item] = sanitize_text_field( $field );
             }
-        
         }
         update_option( 'qem_payment', $payment );
         qem_admin_notice( esc_html__( 'The payment form settings have been updated', 'quick-event-manager' ) );
     }
-    
-    
     if ( isset( $_POST['Reset'] ) && check_admin_referer( "save_qem" ) ) {
         delete_option( 'qem_payment' );
         qem_admin_notice( esc_html__( 'The payment form settings have been reset', 'quick-event-manager' ) );
     }
-    
     $payment = qem_get_stored_payment();
     $message = qem_get_element( $payment, 'message' );
     $paypal = ( isset( $payment['paypal'] ) ? $payment['paypal'] : '' );
-    echo  '<div class="qem-settings">
+    echo '<div class="qem-settings">
     <form id="" method="post" action="">
     <div class="qem-options">
     <h2>' . esc_html__( 'Event Payments', 'quick-event-manager' ) . '</h2>
-    <p>' . sprintf(
+    <p>' . sprintf( 
         /* translators: leave place holder they apply emphasic mark up */
         esc_html__( 'This setting only works if you have a simple cost on your event. This means %1$sEntry $10%2$s will be OK but %1$s&pound;5 for adults and &pound;3 for children%2$s may cause problems.', 'quick-event-manager' ),
         '<em>',
         '</em>'
-    ) . '</p>
+     ) . '</p>
     <table width="100%">
     <tr>
     <td colspan="3"><input type="checkbox" name="paypal"' . esc_attr( $paypal ) . ' value="checked" />&nbsp;' . esc_html__( 'Transfer to Payment Provider after registration', 'quick-event-manager' ) . '</td>
@@ -2384,8 +2312,8 @@ function qem_payment()
     <td>' . esc_html__( 'Waiting Message', 'quick-event-manager' ) . '</td>
     <td><input type="text" style="" name="waiting" value="' . esc_attr( qem_get_element( $payment, 'waiting' ) ) . '" /></td>
     </tr>
-    </table>' ;
-    echo  '<h2>' . esc_html__( 'Instant Payment Notification', 'quick-event-manager' ) . '</h2>
+    </table>';
+    echo '<h2>' . esc_html__( 'Instant Payment Notification', 'quick-event-manager' ) . '</h2>
     <p>' . esc_html__( 'IPN only works if you have a PayPal Business or Premier account and IPN has been set up on that account', 'quick-event-manager' ) . '.</p>
     <p>' . esc_html__( 'See the', 'quick-event-manager' ) . ' <a target="_blank" href="https://developer.paypal.com/docs/api-basics/notifications/ipn/IPNSetup/ ">' . esc_html__( 'PayPal IPN Integration Guide', 'quick-event-manager' ) . '</a> ' . esc_html__( 'for more information on how to set up IPN', 'quick-event-manager' ) . '.</p>
 
@@ -2407,16 +2335,16 @@ function qem_payment()
     
     <p><input type="hidden" name="qppform" value="' . esc_attr( qem_get_element( $payment, 'qppform' ) ) . '" />
     <h2>' . esc_html__( 'Payments Autoresponder', 'quick-event-manager' ) . '</h2>
-    <p>' . esc_html__( 'This is the message that will be sent for events linked to payments', 'quick-event-manager' ) . '. ' . esc_html__( 'See the', 'quick-event-manager' ) . ' <a href="?page=' . esc_attr( QUICK_EVENT_MANAGER_PLUGIN_NAME ) . '&tab=auto">' . esc_html__( 'Autoresponder settings page', 'quick-event-manager' ) . '</a> ' . esc_html__( 'for all other options', 'quick-event-manager' ) . '.</p>' ;
+    <p>' . esc_html__( 'This is the message that will be sent for events linked to payments', 'quick-event-manager' ) . '. ' . esc_html__( 'See the', 'quick-event-manager' ) . ' <a href="?page=' . esc_attr( QUICK_EVENT_MANAGER_PLUGIN_NAME ) . '&tab=auto">' . esc_html__( 'Autoresponder settings page', 'quick-event-manager' ) . '</a> ' . esc_html__( 'for all other options', 'quick-event-manager' ) . '.</p>';
     wp_editor( $message, 'message', $settings = array(
         'textarea_rows' => '20',
         'wpautop'       => false,
         'media_buttons' => false,
     ) );
-    echo  '<input type="submit" name="Submit" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Save Changes', 'quick-event-manager' ) . '" /> <input type="submit" name="Reset" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Reset', 'quick-event-manager' ) . '" onclick="return window.confirm( \'' . esc_html__( 'Are you sure you want to reset the settings?', 'quick-event-manager' ) . '\' );"/></p>
-    <p><input type="checkbox" name="sandbox" ' . esc_attr( qem_get_element( $payment, 'sandbox' ) ) . ' value="checked" />&nbsp;' . esc_html__( 'Use Paypal sandbox (developer use only)', 'quick-event-manager' ) . '</p>' ;
+    echo '<input type="submit" name="Submit" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Save Changes', 'quick-event-manager' ) . '" /> <input type="submit" name="Reset" class="button-primary" style="color: #FFF;" value="' . esc_html__( 'Reset', 'quick-event-manager' ) . '" onclick="return window.confirm( \'' . esc_html__( 'Are you sure you want to reset the settings?', 'quick-event-manager' ) . '\' );"/></p>
+    <p><input type="checkbox" name="sandbox" ' . esc_attr( qem_get_element( $payment, 'sandbox' ) ) . ' value="checked" />&nbsp;' . esc_html__( 'Use Paypal sandbox (developer use only)', 'quick-event-manager' ) . '</p>';
     wp_nonce_field( "save_qem" );
-    echo  '</form></div>
+    echo '</form></div>
     <div class="qem-options" style="float:right;">
     <h2>' . esc_html__( 'IPN Simulation', 'quick-event-manager' ) . '</h2>
     <p>' . esc_html__( 'IPN can be blocked or restricted by your server settings, theme or other plugins', 'quick-event-manager' ) . '. ' . esc_html__( 'The good news is you can simulate the notifications to check if all is working', 'quick-event-manager' ) . '.</p>
@@ -2433,21 +2361,18 @@ function qem_payment()
     <li>' . esc_html__( 'Click \'Send IPN\'. Scroll up the page and you should see an \'IPN Verified\' message', 'quick-event-manager' ) . '</li>
     <li>' . esc_html__( 'Go back to your Registration Report, you should now see the payment completed message on the event', 'quick-event-manager' ) . '.</li>
     </ol>
-    </div></div>' ;
+    </div></div>';
 }
 
-function qem_extend_notcoming()
-{
+function qem_extend_notcoming() {
     qem_extend_notcoming_report( null );
 }
 
-function qem_extend_registrations_setup__premoium_only()
-{
+function qem_extend_registrations_setup__premoium_only() {
     qem_extend_show_registrations();
 }
 
-function event_delete_options()
-{
+function event_delete_options() {
     delete_option( 'event_settings' );
     delete_option( 'qem_display' );
     delete_option( 'qem_style' );
@@ -2455,22 +2380,20 @@ function event_delete_options()
     delete_option( 'widget_qem_widget' );
 }
 
-function qem_settings_init()
-{
+function qem_settings_init() {
     qem_download_files();
     // has tobe called on init hook as sets headers
     qem_add_role_caps();
     return;
 }
 
-function qem_settings_scripts( $hook )
-{
+function qem_settings_scripts(  $hook  ) {
     wp_enqueue_media();
     wp_enqueue_style( 'wp-color-picker' );
     wp_enqueue_script(
         'qem-media-script',
         plugins_url( 'quick-event-media.js', __FILE__ ),
-        array( 'jquery', 'wp-color-picker' ),
+        array('jquery', 'wp-color-picker'),
         false,
         true
     );
@@ -2485,8 +2408,7 @@ function qem_settings_scripts( $hook )
 }
 
 add_action( 'admin_enqueue_scripts', 'qem_settings_scripts' );
-function event_page_init()
-{
+function event_page_init() {
     add_options_page(
         esc_html__( 'Event Manager', 'quick-event-manager' ),
         esc_html__( 'Event Manager', 'quick-event-manager' ),
@@ -2496,20 +2418,16 @@ function event_page_init()
     );
 }
 
-function qem_admin_notice( $message = '' )
-{
-    if ( !empty($message) ) {
-        echo  '<div class="updated"><p>' . qem_wp_kses_post( $message ) . '</p></div>' ;
+function qem_admin_notice(  $message = ''  ) {
+    if ( !empty( $message ) ) {
+        echo '<div class="updated"><p>' . qem_wp_kses_post( $message ) . '</p></div>';
     }
 }
 
-function qem_plugin_row_meta( $links, $file = '' )
-{
-    
+function qem_plugin_row_meta(  $links, $file = ''  ) {
     if ( $file == QUICK_EVENT_MANAGER_PLUGIN_FILE ) {
-        $new_links = array( '<a href="https://fullworksplugins.com/docs/quick-event-manager/"><strong>' . esc_html__( 'Documentation', 'quick-event-manager' ) . '</strong></a>' );
+        $new_links = array('<a href="https://fullworksplugins.com/docs/quick-event-manager/"><strong>' . esc_html__( 'Documentation', 'quick-event-manager' ) . '</strong></a>');
         $links = array_merge( $links, $new_links );
     }
-    
     return $links;
 }

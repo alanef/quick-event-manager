@@ -26,35 +26,31 @@ namespace Quick_Event_Manager\Plugin\Core;
 /**
  * used for shared data
  */
-class Utilities
-{
+class Utilities {
     /**
      * @var
      */
-    protected static  $instance ;
-    public function __construct()
-    {
+    protected static $instance;
+
+    public function __construct() {
     }
-    
+
     /**
      * @return Utilities
      */
-    public static function get_instance()
-    {
+    public static function get_instance() {
         if ( null == self::$instance ) {
             self::$instance = new self();
         }
         return self::$instance;
     }
-    
-    public function get_date_format()
-    {
+
+    public function get_date_format() {
         $fmt = get_option( 'date_format' );
         return apply_filters( 'qem_date_format', $fmt );
     }
-    
-    public function get_time_format()
-    {
+
+    public function get_time_format() {
         $fmt = get_option( 'time_format' );
         return apply_filters( 'qem_time_format', $fmt );
     }

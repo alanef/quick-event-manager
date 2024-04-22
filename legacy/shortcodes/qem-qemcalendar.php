@@ -333,7 +333,7 @@ function qem_show_calendar_esc( $atts ) {
 				$tdstart      = '<td class="eventday ' . $oldday . ' ' . $firstday . '"><' . $header . '>' . ( $i - $startday + 1 ) . '</' . $header . '>';
 				$img          = ( qem_get_element( $eventimage, $key, false ) &&
 				                  qem_get_element( $cal, 'eventimage', false ) &&
-				                  ! $widget ? '<br><img src="' . qem_get_element( $eventimage, $key, '' ) . '">' : '' );
+				                  ! $widget ? '<br><img quick-event-manager="' . qem_get_element( $eventimage, $key, '' ) . '">' : '' );
 				$tooltip      = '';
 				$tooltipclass = '';
 				if ( qem_get_element( $cal, 'usetooltip', false ) ) {

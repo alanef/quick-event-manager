@@ -1,6 +1,6 @@
 <?php
 
-global  $qem_fs ;
+global $qem_fs;
 // requires
 require_once plugin_dir_path( __FILE__ ) . 'quick-event-options.php';
 require_once plugin_dir_path( __FILE__ ) . 'quick-event-register.php';
@@ -26,10 +26,10 @@ if ( is_admin() ) {
 }
 // add admin body class filter
 // get the current admin page hook
-global  $pagenow ;
+global $pagenow;
 add_filter( 'admin_body_class', function ( $classes ) {
-    global  $page_hook ;
-    if ( !empty($page_hook) && false !== strpos( $page_hook, 'qem' ) ) {
+    global $page_hook;
+    if ( !empty( $page_hook ) && false !== strpos( $page_hook, 'qem' ) ) {
         $classes .= ' qem-admin-page';
     }
     return $classes;
@@ -38,11 +38,11 @@ add_filter( 'admin_body_class', function ( $classes ) {
 add_filter(
     'use_block_editor_for_post_type',
     function ( $bool, $post_type ) {
-    if ( 'event' === $post_type ) {
-        return false;
-    }
-    return $bool;
-},
+        if ( 'event' === $post_type ) {
+            return false;
+        }
+        return $bool;
+    },
     10,
     2
 );
@@ -99,7 +99,7 @@ add_action( 'template_redirect', 'qem_ipn' );
 register_activation_hook( __FILE__, 'qem_flush_rules' );
 register_activation_hook( __FILE__, 'qem_add_role' );
 // theme support
-add_theme_support( 'post-thumbnails', array( 'post', 'page', 'event' ) );
+add_theme_support( 'post-thumbnails', array('post', 'page', 'event') );
 $display = event_get_stored_display();
 if ( $display['recentposts'] ) {
     add_action( 'pre_get_posts', 'qem_add_custom_post_type_to_query' );

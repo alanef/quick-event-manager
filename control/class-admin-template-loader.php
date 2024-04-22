@@ -23,25 +23,26 @@
  */
 namespace Quick_Event_Manager\Plugin\Control;
 
-use  Gamajo_Template_Loader ;
-class Admin_Template_Loader extends Gamajo_Template_Loader
-{
-    public static  $html_output = '' ;
-    protected  $filter_prefix = 'quick-event-manager-admin' ;
-    protected  $theme_template_directory = 'quick-event-manager-admin' ;
-    protected  $plugin_directory = QUICK_EVENT_MANAGER_PLUGIN_DIR ;
-    protected  $plugin_template_directory = 'ui/admin/templates' ;
-    public function __construct()
-    {
+use Gamajo_Template_Loader;
+class Admin_Template_Loader extends Gamajo_Template_Loader {
+    public static $html_output = '';
+
+    protected $filter_prefix = 'quick-event-manager-admin';
+
+    protected $theme_template_directory = 'quick-event-manager-admin';
+
+    protected $plugin_directory = QUICK_EVENT_MANAGER_PLUGIN_DIR;
+
+    protected $plugin_template_directory = 'ui/admin/templates';
+
+    public function __construct() {
         add_filter( $this->filter_prefix . '_template_paths', function ( $file_paths ) {
             $root = trailingslashit( dirname( dirname( QUICK_EVENT_MANAGER_PLUGIN_DIR ) ) ) . trailingslashit( $this->filter_prefix );
-            
             if ( isset( $file_paths[1] ) ) {
                 $file_paths[2] = trailingslashit( $file_paths[1] ) . 'parts';
                 $file_paths[3] = trailingslashit( $file_paths[1] ) . 'loops';
                 $file_paths[4] = trailingslashit( $file_paths[1] ) . 'reports';
             }
-            
             $file_paths[11] = trailingslashit( $file_paths[10] ) . 'parts';
             $file_paths[12] = trailingslashit( $file_paths[10] ) . 'loops';
             $file_paths[13] = trailingslashit( $file_paths[10] ) . 'reports';
@@ -49,7 +50,7 @@ class Admin_Template_Loader extends Gamajo_Template_Loader
             $file_paths[21] = $root . 'quick-event-manager/parts';
             $file_paths[22] = $root . 'quick-event-manager/loops';
             $file_paths[23] = $root . 'quick-event-manager/reports';
-            global  $qem_fs ;
+            global $qem_fs;
             $file_paths[] = dirname( $this->plugin_directory . $this->plugin_template_directory ) . '/templates__free';
             $file_paths[] = dirname( $this->plugin_directory . $this->plugin_template_directory ) . '/templates__free/parts';
             $file_paths[] = dirname( $this->plugin_directory . $this->plugin_template_directory ) . '/templates__free/loops';
@@ -58,14 +59,12 @@ class Admin_Template_Loader extends Gamajo_Template_Loader
             return $file_paths;
         }, 0 );
     }
-    
-    public function set_output( $html )
-    {
+
+    public function set_output( $html ) {
         self::$html_output .= $html;
     }
-    
-    public function get_output()
-    {
+
+    public function get_output() {
         return self::$html_output;
     }
 

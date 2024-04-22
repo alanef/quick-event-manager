@@ -21,7 +21,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with  this plugin.  https://www.gnu.org/licenses/gpl-3.0.en.html
  */
-spl_autoload_register(
+spl_autoload_register( 
     /**
      * @param $class_name
      */
@@ -29,7 +29,7 @@ spl_autoload_register(
         /**
          * @var \Freemius $qem_fs Object for freemius.
          */
-        global  $qem_fs ;
+        global $qem_fs;
         /**
          * Autoloader based on tutorial by
          * Tom McFarlin https://tommcfarlin.com/  Licensed    GPL-2.0+
@@ -39,13 +39,11 @@ spl_autoload_register(
         }
         $file_parts = explode( '\\', $class_name );
         $namespace = '';
-        for ( $i = count( $file_parts ) - 1 ;  $i > 1 ;  $i-- ) {
+        for ($i = count( $file_parts ) - 1; $i > 1; $i--) {
             // >1 as we ignore the last bit
             $current = strtolower( $file_parts[$i] );
             $current = str_ireplace( '_', '-', $current );
-            
             if ( count( $file_parts ) - 1 === $i ) {
-                
                 if ( strpos( strtolower( $file_parts[count( $file_parts ) - 1] ), 'interface' ) ) {
                     $interface_name = explode( '_', $file_parts[count( $file_parts ) - 1] );
                     $interface_name = $interface_name[0];
@@ -53,20 +51,16 @@ spl_autoload_register(
                 } else {
                     $file_name_no_suffix = "class-{$current}";
                 }
-            
             } else {
                 $namespace = '/' . $current . $namespace;
             }
-        
         }
         $filepath = trailingslashit( dirname( dirname( __FILE__ ) ) . $namespace );
         $filepath .= $file_name_no_suffix;
-        
         if ( file_exists( $filepath . '.php' ) ) {
             include_once $filepath . '.php';
             return;
         }
-        
         if ( null !== $qem_fs ) {
         }
         // changed to be translatable
@@ -74,4 +68,4 @@ spl_autoload_register(
         trigger_error( esc_html( $msg ), E_USER_NOTICE );
         wp_die( esc_html( $msg ) );
     }
-);
+ );

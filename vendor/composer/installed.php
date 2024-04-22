@@ -3,7 +3,7 @@
         'name' => 'fullworks/quick-event-manager',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'abe91cd8cbd136012d0ba7dc09606a6ba76a17f5',
+        'reference' => 'c1dd74574e4582ff595d06a32c322989e84c8dbf',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'freemius/wordpress-sdk' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '9fc7bd56b1d8f5b1c880eb32a0c2186ac7617d45',
+            'reference' => '2dc1a3bdace10d057eac9740e327e7cb359970a0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../freemius/wordpress-sdk',
             'aliases' => array(
@@ -33,7 +33,7 @@
         'fullworks/quick-event-manager' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'abe91cd8cbd136012d0ba7dc09606a6ba76a17f5',
+            'reference' => 'c1dd74574e4582ff595d06a32c322989e84c8dbf',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

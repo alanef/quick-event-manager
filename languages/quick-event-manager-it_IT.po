@@ -4,15 +4,15 @@ msgstr ""
 "Project-Id-Version: Quick Event Manager\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-12-28 17:18+0000\n"
+"PO-Revision-Date: 2024-04-22 23:04+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Revision-Date: Sat Dec 05 2015 18:41:46 GMT+0000 (GMT)\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Revision-Date: Sat Dec 05 2015 18:41:46 GMT+0000 (GMT)\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-KeywordsList: _:1;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;"
@@ -20,7 +20,7 @@ msgstr ""
 "_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;"
 "esc_attr__:1;esc_html__:1;esc_attr_e:1;esc_html_e:1;esc_attr_x:1,2c;"
 "esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 3.0.1\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: src/quick-event-manager.php:81
@@ -32,10 +32,8 @@ msgstr ""
 "una versione gratuita disattivala e riprova"
 
 #: src/business/class-business.php:124
-#, fuzzy
-#| msgid "Payment Complete Label"
 msgid "Payment not completed for"
-msgstr "Etichetta di pagamento completato"
+msgstr "Pagamento non completato per"
 
 #: src/business/class-business.php:124,
 #: src/legacy/quick-event-register.php:1552
@@ -119,10 +117,8 @@ msgid "Sharing"
 msgstr "Condivisione"
 
 #: src/legacy/options.php:45
-#, fuzzy
-#| msgid "Allow multiple registrations"
 msgid "Allow variable donations"
-msgstr "Consenti registrazioni multiple"
+msgstr "Consenti donazioni variabili"
 
 #: src/legacy/options.php:59, src/legacy/quick-event-editor.php:263,
 #: src/legacy/quick-event-options.php:58
@@ -183,7 +179,7 @@ msgstr "posti disponibili."
 #: src/legacy/quick-event-options.php:76,
 #: src/legacy/quick-event-options.php:353
 msgid "people coming."
-msgstr "posti disponibili."
+msgstr "partecipanti."
 
 #: src/legacy/options.php:78, src/legacy/quick-event-options.php:77
 msgid "There is one place available"
@@ -271,7 +267,7 @@ msgstr "Ti contatteremo a breve"
 
 #: src/legacy/options.php:319, src/legacy/quick-event-options.php:316
 msgid "Please ensure you bring the registration fee to the event"
-msgstr "Assicurati di portare con te  il pagamento di registrazione all'evento"
+msgstr "Assicurati di portare con te la quota di registrazione all'evento"
 
 #: src/legacy/options.php:320, src/legacy/quick-event-options.php:317
 msgid "Your Name"
@@ -292,7 +288,7 @@ msgstr "Numero di posti richiesti"
 #: src/legacy/options.php:324, src/legacy/quick-event-options.php:321,
 #: src/legacy/quick-event-register.php:2062
 msgid "Donation Amount"
-msgstr ""
+msgstr "Importo della donazione"
 
 #: src/legacy/options.php:326, src/legacy/quick-event-editor.php:449,
 #: src/legacy/quick-event-options.php:323, src/legacy/settings.php:1849
@@ -426,6 +422,8 @@ msgid ""
 "Your payment for this event did not complete, please try again. If you have "
 "any issues please contact us"
 msgstr ""
+"Il tuo pagamento per questo evento non è andato a buon fine, riprova. Per "
+"qualsiasi problema, contattaci"
 
 #: src/legacy/options.php:536, src/legacy/quick-event-editor.php:617,
 #: src/legacy/quick-event-options.php:530
@@ -464,7 +462,7 @@ msgstr "I campi vuoti non vengono visualizzati"
 
 #: src/legacy/quick-event-editor.php:158, src/legacy/quick-event-editor.php:443
 msgid "See the plugin"
-msgstr "Vedi la pagina"
+msgstr "Vedi il plugin"
 
 #: src/legacy/quick-event-editor.php:158
 msgid "settings"
@@ -472,7 +470,7 @@ msgstr "impostazioni"
 
 #: src/legacy/quick-event-editor.php:158
 msgid "page for options"
-msgstr "per le opzioni del plugin"
+msgstr "pagina delle opzioni"
 
 #: src/legacy/quick-event-editor.php:162,
 #: src/legacy/quick-event-extensions__premium_only.php:620
@@ -511,21 +509,20 @@ msgid ""
 msgstr ""
 "Gli eventi saranno ordinati in base alla data e ora di inizio nel formato "
 "8.23 am/pm, 8.23, 8:23 e 08:23 . Tutti gli altri formati verranno "
-"visualizzati ma non utilizzati nell'ordinamento degli eventi"
+"visualizzati ma non utilizzati per l'ordinamento degli eventi"
 
 #: src/legacy/quick-event-editor.php:190
 msgid "Timezone"
 msgstr "Fuso orario"
 
 #: src/legacy/quick-event-editor.php:239
-#, fuzzy
-#| msgid "Pagination"
 msgid "Donation?"
-msgstr "Paginazione"
+msgstr "Donazione?"
 
 #: src/legacy/quick-event-editor.php:240
 msgid "Accept a variable  donation ( minimum per place set in costs)"
 msgstr ""
+"Accetta donazioni variabili (il minimo per ogni posto stabilito nei costi)"
 
 #: src/legacy/quick-event-editor.php:240,
 #: src/legacy/quick-event-editor.php:277, src/legacy/settings.php:413
@@ -593,13 +590,16 @@ msgstr "Rendi questo numero obbligatorio"
 
 #: src/legacy/quick-event-editor.php:301
 msgid "Tick if you want only a single name/email to reserve multi places"
-msgstr ""
+msgstr "Selezionalo se vuoi riservare più posti con un singolo nome/email"
 
 #: src/legacy/quick-event-editor.php:304
 msgid ""
 "Collect emails - if you have made emails mandatory on the registration form "
 "- you need to tick this otherwise users will not be able to submit the form"
 msgstr ""
+"Raccogli le email - se nel modulo di registrazione il campo email è "
+"obbligatorio - devi selezionare questa voce altrimenti gli utenti non "
+"riusciranno ad inviare il modulo"
 
 #: src/legacy/quick-event-editor.php:308
 msgid "Registration Cutoff Date"
@@ -645,7 +645,7 @@ msgstr "Protezione della password"
 
 #: src/legacy/quick-event-editor.php:360
 msgid "Whole event"
-msgstr "Evento completo"
+msgstr "Intero evento"
 
 #: src/legacy/quick-event-editor.php:360
 msgid "Registration form"
@@ -658,7 +658,7 @@ msgstr "Nascondi l'evento"
 #: src/legacy/quick-event-editor.php:366
 msgid "Hide this event in the event list (only display on the calendar)"
 msgstr ""
-"Nascondi questo evento dalla lista degli eventi (visualizzalo solo nel "
+"Nascondi questo evento nella lista degli eventi (visualizzalo solo nel "
 "calendario)"
 
 #: src/legacy/quick-event-editor.php:371, src/legacy/settings.php:1333
@@ -706,26 +706,26 @@ msgid "View Full Registration Details"
 msgstr "Vedi i dettagli di registrazione completi"
 
 #: src/legacy/quick-event-editor.php:427
-msgid "Upgrade to Pro for just $4.16 / month"
-msgstr "Fai l'upgrade alla versione Pro per soli $3.99 al mese"
+msgid "Upgrade to Pro for just %s per month"
+msgstr "Fai l'upgrade alla versione Pro per soli %s al mese"
 
 #: src/legacy/quick-event-editor.php:428
 msgid ""
 "Upgrading gives you access the Guest Event creator, a range of registration "
 "reports and the very cool 'In Context Checkout'."
 msgstr ""
-"L'upgrade offre l'accesso al creatore di eventi ospite, a una serie di "
-"rapporti di registrazione e alla fantastica funzione 'Controllo Contestuale'."
+"L'upgrade ti offre l'accesso al creatore di Evento Ospite, a una serie di "
+"rapporti di registrazione e alla fantastica funzione 'Pagamento Contestuale'."
 
 #: src/legacy/quick-event-editor.php:429, src/legacy/settings.php:204,
 #: src/legacy/settings.php:3072, src/legacy/settings.php:3262
 msgid "Click to find out more"
-msgstr "Clicca per continuare a cercare"
+msgstr "Clicca per vedere altro"
 
 #: src/legacy/quick-event-editor.php:430, src/legacy/settings.php:205,
 #: src/legacy/settings.php:3073, src/legacy/settings.php:3263
 msgid "single site, when paid annually, excludes taxes"
-msgstr "il singolo sito, se pagato annualmente, esclude le tasse"
+msgstr "il singolo sito, se pagato annualmente, non comprende le tasse"
 
 #: src/legacy/quick-event-editor.php:442
 msgid "Use custom form settings"
@@ -773,16 +773,12 @@ msgid "User defined"
 msgstr "Definito dall'utente"
 
 #: src/legacy/quick-event-editor.php:453, src/legacy/settings.php:1884
-#, fuzzy
-#| msgid "Dropdown"
 msgid "Dropdown 1"
-msgstr "Tendina"
+msgstr "Tendina 1"
 
 #: src/legacy/quick-event-editor.php:454, src/legacy/settings.php:1905
-#, fuzzy
-#| msgid "Dropdown"
 msgid "Dropdown 2"
-msgstr "Tendina"
+msgstr "Tendina 2"
 
 #: src/legacy/quick-event-editor.php:456, src/legacy/settings.php:1919
 msgid "Options"
@@ -833,7 +829,7 @@ msgstr "Nome Mittente:"
 #: src/legacy/quick-event-editor.php:668,
 #: src/legacy/quick-event-extensions__premium_only.php:333
 msgid "Defaults to your"
-msgstr "Viene compilato col"
+msgstr "Viene compilato col tuo"
 
 #: src/legacy/quick-event-editor.php:668,
 #: src/legacy/quick-event-extensions__premium_only.php:333
@@ -858,7 +854,7 @@ msgstr "Email del mittente:"
 #: src/legacy/quick-event-extensions__premium_only.php:335,
 #: src/legacy/settings.php:2338
 msgid "Defaults to the"
-msgstr "Viene compilato con  è quella dell"
+msgstr "Viene compilato con  è quella del"
 
 #: src/legacy/quick-event-editor.php:670,
 #: src/legacy/quick-event-extensions__premium_only.php:335,
@@ -874,7 +870,7 @@ msgstr "Oggetto:"
 
 #: src/legacy/quick-event-editor.php:787
 msgid "Duplicate"
-msgstr "Duplicato"
+msgstr "Duplica"
 
 #: src/legacy/quick-event-editor.php:797, src/legacy/settings.php:3498,
 #: src/legacy/settings.php:3499
@@ -939,7 +935,7 @@ msgstr "Invia il rapporto a questo indirizzo email:"
 #: src/legacy/quick-event-extensions__premium_only.php:1073,
 #: src/legacy/settings.php:3506, src/legacy/settings.php:3507
 msgid "Reports"
-msgstr "Resoconti"
+msgstr "Rapporti"
 
 #: src/legacy/quick-event-extensions__premium_only.php:1150
 msgid "Warning!"
@@ -998,6 +994,8 @@ msgid ""
 "Since June 2016 you need to have a valid API key enabled to display Google "
 "maps, see plugin settings"
 msgstr ""
+"A partire da giugno 2016 bisogna avere una chiave API valida abilitata per "
+"la visualizzazione di Google maps, vedi le impostazioni del plugin"
 
 #: src/legacy/quick-event-manager.php:2821, src/legacy/settings.php:126,
 #: src/legacy/settings.php:211, src/legacy/settings.php:212
@@ -1005,18 +1003,14 @@ msgid "Settings"
 msgstr "Impostazioni"
 
 #: src/legacy/quick-event-register.php:889
-#, fuzzy
-#| msgid "Name"
 msgid "Names"
-msgstr "Nome"
+msgstr "Nomi"
 
 #: src/legacy/quick-event-register.php:1292,
 #: src/legacy/quick-event-register.php:1298,
 #: src/legacy/quick-event-register.php:1303
-#, fuzzy
-#| msgid "Places required"
 msgid "Name required"
-msgstr "Numero di posti richiesti"
+msgstr "Nome obbligatorio"
 
 #: src/legacy/quick-event-register.php:1311,
 #: src/legacy/quick-event-register.php:1317,
@@ -1025,35 +1019,29 @@ msgstr "Numero di posti richiesti"
 #: src/legacy/quick-event-register.php:1365,
 #: src/legacy/quick-event-register.php:1373,
 #: src/legacy/quick-event-register.php:1377
-#, fuzzy
-#| msgid "Required Fields:"
 msgid "Required input"
-msgstr "Capmpi Obbligatori:"
+msgstr "Capmpi Obbligatori"
 
 #: src/legacy/quick-event-register.php:1321,
 #: src/legacy/quick-event-register.php:1326
-#, fuzzy
-#| msgid "Places required"
 msgid "Valid email required"
-msgstr "Numero di posti richiesti"
+msgstr "Inserire un email valido"
 
 #: src/legacy/quick-event-register.php:1332
-#, fuzzy
-#| msgid "The number of places required"
 msgid "Valid phone number required"
-msgstr "Numero di posti richiesti"
+msgstr "Inserire un numero di telefono valido"
 
 #: src/legacy/quick-event-register.php:1345
 msgid "Insufficient amount"
-msgstr ""
+msgstr "Importo insufficiente"
 
 #: src/legacy/quick-event-register.php:1381
 msgid "Incorrect value try again"
-msgstr ""
+msgstr "Valore errato riprova"
 
 #: src/legacy/quick-event-register.php:1391
 msgid "Not enough places left"
-msgstr ""
+msgstr "Posti rimasti insufficienti"
 
 #: src/legacy/quick-event-register.php:1552
 msgid "New Registration for "
@@ -1061,10 +1049,8 @@ msgstr "Nuova registrazione per "
 
 #: src/legacy/quick-event-register.php:2282,
 #: src/legacy/quick-event-register.php:2290
-#, fuzzy
-#| msgid "Pending Title"
 msgid "Pending"
-msgstr "Titolo in attesa"
+msgstr "In attesa"
 
 #: src/legacy/quick-event-register.php:2560
 msgid "Update Applications"
@@ -1076,7 +1062,7 @@ msgstr "Modifica le applicazioni"
 
 #: src/legacy/quick-event-register.php:2562
 msgid "Edit Selected"
-msgstr "Modifica le cose selezionate"
+msgstr "Modifica le voci selezionate"
 
 #: src/legacy/quick-event-widget.php:8
 msgid "Quick Event List"
@@ -1084,7 +1070,7 @@ msgstr "Quick Event List"
 
 #: src/legacy/quick-event-widget.php:9
 msgid "Add an event list to your sidebar"
-msgstr "Aggiungi un evento alla tua barra laterale"
+msgstr "Aggiungi una lista di eventi alla tua barra laterale"
 
 #: src/legacy/quick-event-widget.php:55
 msgid "Number of posts to display "
@@ -1140,14 +1126,14 @@ msgid ""
 "personalised support please upgrade to %3$sa paid plan here%2$s"
 msgstr ""
 "oppure visita il forum della comunità di supporto %1$s qui %2$s, se hai "
-"bisogno di un supporto urgente o personalizzato sei pregato di attivare un "
-"piano a pagamento %3$s qui  %2$s"
+"bisogno di un supporto urgente o personalizzato puoi attivare un piano a "
+"pagamento %3$s qui  %2$s"
 
 #: src/legacy/settings.php:168
 msgid "if you cannot find a solution please use the contact form %1$shere%2$s."
 msgstr ""
-"se non riesci a trovare una soluzione per favore contattaci tramite il "
-"modulo %1$s qui %2$s."
+"se non riesci a trovare una soluzione contattaci tramite il modulo %1$s qui "
+"%2$s."
 
 #: src/legacy/settings.php:177
 msgid "Setting up and using the plugin"
@@ -1165,11 +1151,11 @@ msgstr ""
 
 #: src/legacy/settings.php:179
 msgid "Create new events using the"
-msgstr "Crea un nuovo evento usando il link"
+msgstr "Crea un nuovo evento usando"
 
 #: src/legacy/settings.php:179
 msgid "link on your dashboard menu"
-msgstr "dal menu del tuo pannello di controllo"
+msgstr "il link nel menu del tuo pannello di controllo"
 
 #: src/legacy/settings.php:180
 msgid ""
@@ -1210,7 +1196,7 @@ msgstr "Traduzioni"
 #: src/legacy/settings.php:202, src/legacy/settings.php:3070,
 #: src/legacy/settings.php:3260
 msgid "Upgrade for just $4.16 / month"
-msgstr "Fai l'upgrade per appena $3.99 al mese"
+msgstr "Fai l'upgrade per appena $4.16 al mese"
 
 #: src/legacy/settings.php:203, src/legacy/settings.php:3071,
 #: src/legacy/settings.php:3261
@@ -1219,9 +1205,9 @@ msgid ""
 "registration reports and downloads, mailchimp subscriber and the very cool "
 "'In Context Checkout'."
 msgstr ""
-"L'upgrade offre l'accesso al creatore di eventi ospite, all'upload di file "
+"L'upgrade offre l'accesso al creatore di Evento Ospite, all'upload di file "
 "CSV, a una serie di rapporti di registrazione e di download, iscrizioni a "
-"mailchimp e la fantastica funzionalità di 'Controllo Contestuale'."
+"mailchimp e la fantastica funzionalità di 'Pagamento Contestuale'."
 
 #: src/legacy/settings.php:208
 msgid "Event Manager Role"
@@ -1262,12 +1248,12 @@ msgstr ""
 #: src/legacy/settings.php:221
 msgid "Add a registration form and attendee reports to your events"
 msgstr ""
-"Aggiunge un modulo di registrazione e un resoconto dei partecipanti ai tuoi "
+"Aggiunge un modulo di registrazione e un rapporto dei partecipanti ai tuoi "
 "eventi"
 
 #: src/legacy/settings.php:223
 msgid "Set up an email responder for event registrations"
-msgstr "Imposta una email di risposta alla registrazione agli eventi"
+msgstr "Imposta una email di risposta alle registrazioni degli eventi"
 
 #: src/legacy/settings.php:225
 msgid "Configure event payments"
@@ -1292,11 +1278,11 @@ msgstr "Modello"
 
 #: src/legacy/settings.php:231
 msgid "Create an event template based on your theme single.php"
-msgstr "Crea un modello di evento basato sul  single.php del tuo tema"
+msgstr "Crea un modello di evento basato sul file single.php del tuo tema"
 
 #: src/legacy/settings.php:232, src/legacy/settings.php:3063
 msgid "Guest Events"
-msgstr "Eventi ospite"
+msgstr "Eventi Ospite"
 
 #: src/legacy/settings.php:233
 msgid "Let your visitors create their own events"
@@ -1380,11 +1366,11 @@ msgstr "Colore"
 
 #: src/legacy/settings.php:355
 msgid "Font<br>size"
-msgstr "Dimensione<br>carattere"
+msgstr "Dimensione<br>del font"
 
 #: src/legacy/settings.php:356
 msgid "Font<br>attributes"
-msgstr "Attributi<br>carattere"
+msgstr "Attributi<br>del font"
 
 #: src/legacy/settings.php:357
 msgid "Caption and display options"
@@ -1436,7 +1422,7 @@ msgstr "Mostra gli avatar"
 
 #: src/legacy/settings.php:410
 msgid "Only show message if less than"
-msgstr "Mostra solo  il messaggio se minore di"
+msgstr "Mostra solo il messaggio se minore di"
 
 #: src/legacy/settings.php:410
 msgid "places available"
@@ -1575,11 +1561,11 @@ msgstr "Mostra gli eventi passati nella lista degli eventi"
 
 #: src/legacy/settings.php:635
 msgid ""
-"If you only want to display past events use the shortcode: [qem id=\"archive"
-"\"]"
+"If you only want to display past events use the shortcode: [qem "
+"id=\"archive\"]"
 msgstr ""
-"Se vuoi visualizzare solo gli eventi passati usa lo shortcode: [qem id="
-"\"archive\"]"
+"Se vuoi visualizzare solo gli eventi passati usa lo shortcode: [qem "
+"id=\"archive\"]"
 
 #: src/legacy/settings.php:640
 msgid "Split the list into month/year sections"
@@ -1665,8 +1651,8 @@ msgstr "Apri l'evento in una lightbox"
 #: src/legacy/settings.php:706
 msgid "Warning: doesn't always behave as expected on small screens"
 msgstr ""
-"Attenzione: non sempre il comportamento è quello che ci si aspetta sugli "
-"schermi piccoli"
+"Attenzione: non sempre, sugli schermi piccoli, il comportamento è quello che "
+"ci si aspetta"
 
 #: src/legacy/settings.php:710
 msgid "Width:"
@@ -1733,11 +1719,11 @@ msgstr "La mappa viene mostrata solo se l'indirizzo è valido."
 
 #: src/legacy/settings.php:763
 msgid "To display a Google Map you need a valid "
-msgstr ""
+msgstr "Per visualizzare una Google Map serve una"
 
 #: src/legacy/settings.php:766
 msgid "Google API Key:"
-msgstr "Google API Key:"
+msgstr "Google API Key valida:"
 
 #: src/legacy/settings.php:769
 msgid "Image and Map Width"
@@ -2064,7 +2050,7 @@ msgstr "Etichette Inizia/Finisce"
 
 #: src/legacy/settings.php:1020
 msgid "Show start/finish labels"
-msgstr "Etichette inizia/finisce"
+msgstr "Mostra le etichette inizia/finisce"
 
 #: src/legacy/settings.php:1021
 msgid "Start"
@@ -2080,11 +2066,11 @@ msgstr "Nome del giorno"
 
 #: src/legacy/settings.php:1026
 msgid "Show day name"
-msgstr "Nome del giorno"
+msgstr "Mostra il nome del giorno"
 
 #: src/legacy/settings.php:1027
 msgid "Show day name inline with date"
-msgstr "Nome del giorno e data in linea"
+msgstr "Mostra nome del giorno e data in linea"
 
 #: src/legacy/settings.php:1030
 msgid "Date Background Colour"
@@ -2166,9 +2152,7 @@ msgstr "Margini e padding"
 
 #: src/legacy/settings.php:1074
 msgid "Set the margins and padding of each bit using CSS shortcodes"
-msgstr ""
-"Imposta i margini e il padding di ciascun pezzetto usando il linguaggio dei "
-"CSS"
+msgstr "Imposta i margini e il padding di ciascun pezzetto usando i CSS"
 
 #: src/legacy/settings.php:1077
 msgid "Event Margin"
@@ -2176,7 +2160,7 @@ msgstr "Margini dell'evento"
 
 #: src/legacy/settings.php:1078
 msgid "Set the margin or each event using CSS shortcodes"
-msgstr "Imposta i margini di ciascun evento usando il linguaggio dei CSS"
+msgstr "Imposta i margini di ciascun evento usando i CSS"
 
 #: src/legacy/settings.php:1082
 msgid "Event Category Colours"
@@ -2217,6 +2201,8 @@ msgid ""
 "This feature is deprecated: please move custom CSS to the Customizer / "
 "Additional CSS as this feature will be removed in the future"
 msgstr ""
+"Questa funzione è deprecata: sposta il CSS personalizzato in CSS Aggiuntivo/"
+"Personalizzato poiché in futuro questa funzionalità verrà rimossa"
 
 #: src/legacy/settings.php:1104
 msgid "The main style wrapper is the <code>.qem</code> class."
@@ -2231,8 +2217,8 @@ msgid ""
 "Check the event list in your site as the Wordpress Dashboard can do funny "
 "things with styles"
 msgstr ""
-"Controlla la lista degli eventi perché il pannello di controllo di WordPress "
-"può provocare effetti bizzarri sugli stili"
+"Controlla la lista degli eventi perché la bacheca di WordPress può provocare "
+"effetti bizzarri sugli stili"
 
 #: src/legacy/settings.php:1189
 msgid "The calendar settings have been updated"
@@ -2257,7 +2243,7 @@ msgstr "Impostazioni Generali"
 
 #: src/legacy/settings.php:1225
 msgid "Linking to Events"
-msgstr "Collegamenti agli Eventi"
+msgstr "Collegamento agli Eventi"
 
 #: src/legacy/settings.php:1226
 msgid "Link opens event page"
@@ -2333,7 +2319,7 @@ msgstr "sotto"
 
 #: src/legacy/settings.php:1263
 msgid "Jump to links"
-msgstr "Salta al link"
+msgstr "Salta ai link"
 
 #: src/legacy/settings.php:1264
 msgid "Jump to the top of the calendar when linking to a new month."
@@ -2361,7 +2347,7 @@ msgstr "Bordo del giorno"
 
 #: src/legacy/settings.php:1286
 msgid "Cellspacing"
-msgstr "Cellspacing"
+msgstr "Spazio fra le celle"
 
 #: src/legacy/settings.php:1290
 msgid "Months"
@@ -2482,7 +2468,7 @@ msgstr "Larghezza di partenza"
 #: src/legacy/settings.php:1357
 msgid "This is the text size when the screen is below the trigger width"
 msgstr ""
-"Dimensione del testo quando la larghezza dello schermo inferiore al minimo"
+"Dimensione del testo se la larghezza dello schermo è inferiore al minimo"
 
 #: src/legacy/settings.php:1360
 msgid "Flag Attendees"
@@ -2531,7 +2517,7 @@ msgstr "Aggiungi un link di ritorno  a tutte le categorie"
 #: src/legacy/settings.php:1430
 msgid "This uses the Calendar page URL set at the top of this page"
 msgstr ""
-"Questo usa l'URL della pagina Calendario  utilizzato all'inizio di questa "
+"Questo usa l'URL della pagina Calendario impostato all'inizio di questa "
 "pagina"
 
 #: src/legacy/settings.php:1437
@@ -2643,7 +2629,7 @@ msgstr "Notifiche"
 
 #: src/legacy/settings.php:1757
 msgid "Your Email Address"
-msgstr "Indirizzo email"
+msgstr "Il tuo indirizzo email"
 
 #: src/legacy/settings.php:1758
 msgid "This is where registration notifications will be sent"
@@ -2674,16 +2660,12 @@ msgid "Adds a maths captcha to confuse the spammers."
 msgstr "Aggiunge un captcha di tipo matematico per minimizzare lo spam."
 
 #: src/legacy/settings.php:1870
-#, fuzzy
-#| msgid "User defined"
 msgid "User defined 1"
-msgstr "Definito dall'utente"
+msgstr "Definito dall'utente 1"
 
 #: src/legacy/settings.php:1877
-#, fuzzy
-#| msgid "User defined"
 msgid "User defined 2"
-msgstr "Definito dall'utente"
+msgstr "Definito dall'utente 2"
 
 #: src/legacy/settings.php:1898
 msgid "Additional Info"
@@ -2695,7 +2677,7 @@ msgstr "Opzione casella di spunta"
 
 #: src/legacy/settings.php:1926
 msgid "Donation if enabled"
-msgstr ""
+msgstr "Donazione se abilitata"
 
 #: src/legacy/settings.php:1953, src/legacy/settings.php:2245
 msgid "Submit Button"
@@ -2754,7 +2736,7 @@ msgid ""
 "Only displays if there is a cost and the transfer to paypal option is "
 "enabled on the"
 msgstr ""
-"Visualizza solo se c'è un costo da pagare e i trasferimento a paypal è "
+"Visualizza solo se c'è un costo da pagare e il trasferimento a paypal è "
 "abilitato sulla"
 
 #: src/legacy/settings.php:2015
@@ -2792,7 +2774,7 @@ msgstr "Mostra il messaggio 'ritorna all'evento' dopo la registrazione"
 
 #: src/legacy/settings.php:2045
 msgid "Return to event message:"
-msgstr "Messaggio ritorna all'evento:"
+msgstr "Messaggio di ritorno all'evento:"
 
 #: src/legacy/settings.php:2049
 msgid "Confirmation Email"
@@ -2858,7 +2840,7 @@ msgid ""
 "If you want a link to a website use first used defined field and the %1$s "
 "shortcode."
 msgstr ""
-"Se vuoi un link a un sito web usa il primo campo definito dall'utente e lo "
+"Se vuoi un link a un sito web usa prima il campo definito dall'utente e lo "
 "shortcode %1$s."
 
 #: src/legacy/settings.php:2123
@@ -2898,12 +2880,11 @@ msgid ""
 "Are you sure you want to do this?"
 msgstr ""
 "Questo cancella la chiave Akismet.\n"
-" \n"
 "Sei sicuro di volerlo fare?"
 
 #: src/legacy/settings.php:2142, src/legacy/settings.php:2269
 msgid "Form Styling"
-msgstr "Stile delmodulo"
+msgstr "Stile del modulo"
 
 #. translators: leave the html breaks
 #: src/legacy/settings.php:2147
@@ -2912,7 +2893,7 @@ msgstr "NOTA:</b> Se non vuoi usare questi campi lasciali vuoti"
 
 #: src/legacy/settings.php:2150
 msgid "Use theme styles"
-msgstr "Usa lo stile del tuo tema"
+msgstr "Usa lo stile del tema"
 
 #: src/legacy/settings.php:2154
 msgid "Form Width"
@@ -2964,7 +2945,7 @@ msgstr "Intestazione del Modulo"
 
 #: src/legacy/settings.php:2190
 msgid "Header Type"
-msgstr "Tipo della testata"
+msgstr "Tipo di testata"
 
 #: src/legacy/settings.php:2194
 msgid "Header Size:"
@@ -3058,7 +3039,7 @@ msgstr ""
 
 #: src/legacy/settings.php:2271
 msgid "Find out more"
-msgstr "Continua a cercare"
+msgstr "Vedi altro"
 
 #: src/legacy/settings.php:2275
 msgid "Example form"
@@ -3079,6 +3060,11 @@ msgid ""
 "notifications until after payment. Free Events and Events that do not "
 "redirect to payment automatically will still be notified immediately."
 msgstr ""
+"Inviare solo dopo la conferma di pagamento - per gli eventi pagati che vanno "
+"direttamente a PayPal (se %1$sPayPal IPN%2$s è attivo), le notifiche "
+"dell'amministratore arriveranno solo dopo il pagamento. Gli eventi gratuiti "
+"e quelli che non ridirigono automaticamente al pagamento saranno notificati "
+"immediatamente."
 
 #: src/legacy/settings.php:2323
 msgid ""
@@ -3088,18 +3074,24 @@ msgid ""
 "Events that do not redirect to payment automatically will still be notified "
 "immediately."
 msgstr ""
+"Inviare solo dopo la conferma di pagamento - per gli eventi pagati che vanno "
+"direttamente al gateway dei pagamenti (se si usa Stripe o se %1$sPayPal "
+"IPN%2$s è attivo), le notifiche dell'amministratore arriveranno solo dopo il "
+"pagamento. Gli eventi gratuiti e quelli che non ridirigono automaticamente "
+"al pagamento saranno notificati immediatamente."
 
 #: src/legacy/settings.php:2330
 msgid "Auto responder settings"
 msgstr "Impostazioni Risponditore Automatico"
 
 #: src/legacy/settings.php:2331
+#, fuzzy
 msgid ""
 "The Auto Responder will send an email to the Registrant if enabled of if "
 "they choose to recieve a copy of their details"
 msgstr ""
-"Il Risponditore Automatico, se abilitato, invia una email alla persona "
-"registrata o a coloro che hanno scelto di ricevere una copia dei dettagli di "
+"Il Risponditore Automatico, invierà una email alla persona registrata, se "
+"abilitato o a coloro che scelgono di ricevere una copia dei dettagli di "
 "registrazione"
 
 #: src/legacy/settings.php:2333
@@ -3140,7 +3132,7 @@ msgstr "Pagina di impostazione dei pagamenti"
 
 #: src/legacy/settings.php:2353
 msgid "You can use the following shortcodes in the message body:"
-msgstr "Puoi usare i seguenti shortcodes nel corpo del messaggio:"
+msgstr "Puoi usare i seguenti shortcode nel corpo del messaggio:"
 
 #: src/legacy/settings.php:2355
 msgid "Replacement Text"
@@ -3164,7 +3156,7 @@ msgstr "Numero di posti richiesti"
 
 #: src/legacy/settings.php:2360
 msgid "Event location (not the address)"
-msgstr "Luogo dell'evento (Non l'indirizzo)"
+msgstr "Luogo dell'evento (non l'indirizzo)"
 
 #: src/legacy/settings.php:2361
 msgid "Start time"
@@ -3217,9 +3209,9 @@ msgid ""
 "<em>Entry $10</em> will be OK but <em>&pound;5 for adults and &pound;3 for "
 "children</em> may cause problems."
 msgstr ""
-"Questa impostazione funziona solo se il costo del pagamento è semplice. "
-"Cioè  <em>Ingresso $10</em>  va bene ma <em>5 € per gli adulti e 3 € per i "
-"bambini</em> può causare problemi."
+"Questa impostazione funziona solo se il costo del pagamento è semplice. Cioè "
+"<em>Ingresso $10</em> va bene ma <em>&pound;5 per gli adulti e &pound;3 per "
+"i bambini</em> può causare problemi."
 
 #: src/legacy/settings.php:2428
 msgid "Transfer to Payment Provider after registration"
@@ -3245,7 +3237,7 @@ msgstr "PayPal"
 
 #: src/legacy/settings.php:2438
 msgid "Your PayPal Email Address"
-msgstr "Indirizzo Email su PayPal"
+msgstr "Il tuo indirizzo Email su PayPal"
 
 #: src/legacy/settings.php:2442
 msgid "Currency"
@@ -3339,7 +3331,7 @@ msgid ""
 "been set up on that account"
 msgstr ""
 "IPN funziona solo se sei hai un account PayPal Business o Premier e l'IPN "
-"viene inviata  a quell'account"
+"viene inviata a quell'account"
 
 #: src/legacy/settings.php:2494, src/legacy/settings.php:2522
 msgid "See the"
@@ -3355,7 +3347,7 @@ msgstr "per ulteriori informazioni su come impostare l'IPN"
 
 #: src/legacy/settings.php:2496
 msgid "The IPN listener URL you will need is"
-msgstr "L'URL  del tuo IPN listener deve essere"
+msgstr "L'URL del tuo IPN listener deve essere"
 
 #: src/legacy/settings.php:2497
 msgid "To see the Payments Report click on the"
@@ -3375,36 +3367,35 @@ msgstr "Abilita IPN"
 
 #: src/legacy/settings.php:2499
 msgid "Abandoned Cart Payment Processing"
-msgstr ""
+msgstr "Gesione pagamenti incompleti"
 
 #: src/legacy/settings.php:2501
 msgid ""
 "Pending payments, for events with a cost that that immediately redirect to "
 "payment can be cleared after a short while automatically."
 msgstr ""
+"I pagamenti pendenti, per gli eventi il cui costo viene immediatamente "
+"ridiretto al pagamento possono essere annullati automaticamente dopo un po' "
+"di tempo"
 
 #: src/legacy/settings.php:2506
 msgid "Enable auto clearing of pending payments"
-msgstr ""
+msgstr "Abilita la cancellazione automatica per i pagamenti pendenti"
 
 #: src/legacy/settings.php:2508
-#, fuzzy
-#| msgid "Hide registration details unless payment is complete"
 msgid "Hide registration details for pending payments"
-msgstr ""
-"Nascondi i dettagli di registrazione a meno che il pagamento non sia stato "
-"completato"
+msgstr "Nascondi i dettagli di registrazione per i pagamenti pendenti"
 
 #: src/legacy/settings.php:2510
 msgid ""
 "Send a message when clearing down a pending payments (blank not to send)."
 msgstr ""
+"Invia un messaggio quando un pagamento pendente viene cancellato (lasciare "
+"vuoto per non inviare)"
 
 #: src/legacy/settings.php:2513
-#, fuzzy
-#| msgid "Payment Report Column header"
 msgid "Payment Report"
-msgstr "Intestazione della colonna del resoconto pagamenti"
+msgstr "Resoconto pagamenti"
 
 #: src/legacy/settings.php:2515
 msgid "Payment Report Column header"
@@ -3416,7 +3407,7 @@ msgstr "Etichetta di pagamento completato"
 
 #: src/legacy/settings.php:2521
 msgid "Payments Autoresponder"
-msgstr "Abilita il Risponditore Automatico"
+msgstr "Risponditore Automatico per i pagamenti"
 
 #: src/legacy/settings.php:2522
 msgid "This is the message that will be sent for events linked to payments"
@@ -3429,7 +3420,7 @@ msgstr "Impostazioni della pagina Risponditore Automatico"
 
 #: src/legacy/settings.php:2522
 msgid "for all other options"
-msgstr "per le altre opzioni"
+msgstr "per tutte le altre opzioni"
 
 #: src/legacy/settings.php:2529
 msgid "Are you sure you want to reset the settings?"
@@ -3437,7 +3428,7 @@ msgstr "Sei sicuro di voler resettare le impostazioni?"
 
 #: src/legacy/settings.php:2530
 msgid "Use Paypal sandbox (developer use only)"
-msgstr "Usa la sandbox di PayPal (riservato agli sviluppatori)"
+msgstr "Usa l'ambiente di simulazionedi PayPal (riservato agli sviluppatori)"
 
 #: src/legacy/settings.php:2534
 msgid "IPN Simulation"
@@ -3465,7 +3456,7 @@ msgstr "Per effettuare una simulazione"
 
 #: src/legacy/settings.php:2538
 msgid "Enable IPN and the PayPal Sandbox on the left"
-msgstr "Abilita l'IPN e l'ambiente di test PyPal sulla sinstra"
+msgstr "Abilita l'IPN e l'ambiente di simulazione di PyPal sulla sinstra"
 
 #: src/legacy/settings.php:2539
 msgid ""
@@ -3493,7 +3484,7 @@ msgstr "Vai alla pagina di simulazione dell'IPN"
 
 #: src/legacy/settings.php:2543
 msgid "Login and enter the IPN listener URL"
-msgstr "Collegati ed entra nell'URL del listener IPN"
+msgstr "Collegati ed inserisci l'URL del listener IPN"
 
 #: src/legacy/settings.php:2544
 msgid "Select 'Express Checkout' from the drop down"
@@ -3513,7 +3504,7 @@ msgid ""
 "message"
 msgstr ""
 "Clicca su 'Send IPN'. Scorri la pagina verso l'alto e dovresti vedere il "
-"messaggio   'IPN Verified'"
+"messaggio 'IPN Verified'"
 
 #: src/legacy/settings.php:2547
 msgid ""
@@ -3553,7 +3544,7 @@ msgstr "ERRORE: impossibile creare un nuovo file di tema"
 
 #: src/legacy/settings.php:2671
 msgid "Event Templates"
-msgstr "Modello di Evento"
+msgstr "Modelli di Eventi"
 
 #: src/legacy/settings.php:2674
 msgid ""
@@ -3569,7 +3560,7 @@ msgid ""
 "This function clones the 'single.php' theme file and saves it as 'single-"
 "event.php'."
 msgstr ""
-"Questa funzione clona il file del tema 'single.php'e lo salva come 'single-"
+"Questa funzione copia il file del tema 'single.php'e lo salva come 'single-"
 "event.php'."
 
 #: src/legacy/settings.php:2677
@@ -3580,7 +3571,7 @@ msgstr ""
 
 #: src/legacy/settings.php:2677
 msgid "first"
-msgstr "primo"
+msgstr "prima"
 
 #: src/legacy/settings.php:2680
 msgid ""
@@ -3592,7 +3583,7 @@ msgstr ""
 
 #: src/legacy/settings.php:2680
 msgid "View Template file"
-msgstr "Guarda il file del modello"
+msgstr "Visualizza il file del modello"
 
 #: src/legacy/settings.php:2683
 msgid "Create Event Template"
@@ -3604,7 +3595,7 @@ msgid ""
 "event template. To create an event template follow the instructions on the "
 "right."
 msgstr ""
-"Sembra che il tuo tema non abbia il file  'single.php' che serve per creare "
+"Sembra che il tuo tema non abbia il file 'single.php' che serve per creare "
 "un modello di evento. Per creare un modello di evento segui le istruzioni "
 "che trovi qui a destra."
 
@@ -3637,7 +3628,7 @@ msgstr "3. Scarica sul tuo computer il file single.php"
 
 #: src/legacy/settings.php:2696
 msgid "4. Open the file using a text editor"
-msgstr "4. Apri il file usndo un text editor"
+msgstr "4. Apri il file usando un text editor"
 
 #: src/legacy/settings.php:2697
 msgid "5. Add the following to the very top of the file"
@@ -3655,7 +3646,7 @@ msgstr "7. Carica il file nella tua cartella dei temi"
 msgid ""
 "The event manager will detect the new template and use it for single events"
 msgstr ""
-"L'Event Manager  troverà il nuovo modello e lo userà per i singoli eventi"
+"L'Event Manager troverà il nuovo modello e lo userà per i singoli eventi"
 
 #: src/legacy/settings.php:2766
 msgid "Are you sure you want to reset these settings?"
@@ -3680,23 +3671,17 @@ msgstr "Passa alla versione Pro - Prova gratuita"
 #: src/legacy/settings.php:2905
 msgid " *** PayPal Sandbox is turned on, turn off to allow Stripe ***"
 msgstr ""
+"*** L'ambiente di simulazione di PayPal è attivo, disattivalo per usare "
+"Stripe ***"
 
 #: src/legacy/settings.php:2917
-#, fuzzy
-#| msgid ""
-#| "The payments API lets people pay for their events without going off site. "
-#| "You can choose between PayPal and Stripe as the payment provider. \n"
-#| "\t\t\t\tInstructions on where to get your API credentials is given on the "
-#| "right."
 msgid ""
 "The Stripe API lets people pay for their events without going off site. \n"
 "\t\t\t\tInstructions on where to get your API credentials is given on the "
 "right."
 msgstr ""
-"L'API per i pagamenti consente alle persone di pagare i propri eventi senza "
-"uscire dal sito. Puoi scegliere fra PayPal e Stripe come gestore dei "
-"pagamenti.\n"
-"\t\t\t\tLe istruzioni su dove reperire le tue credenziali API sono sulla "
+"L'API Stripe consente i pagamenti degli eventi senza uscire dal sito.\n"
+"\t\t\t\tLe istruzioni su dove reperire le tue credenziali API sono qui a "
 "destra."
 
 #: src/legacy/settings.php:2919
@@ -3705,7 +3690,7 @@ msgstr "Usa Stripe."
 
 #: src/legacy/settings.php:2923
 msgid "Stripe API Settings"
-msgstr "Impostazioni  dell'API Stripe"
+msgstr "Impostazioni dell'API Stripe"
 
 #: src/legacy/settings.php:2926
 msgid "Publishable Key"
@@ -3716,10 +3701,8 @@ msgid "Secret Key"
 msgstr "Chiave segreta"
 
 #: src/legacy/settings.php:2934
-#, fuzzy
-#| msgid "Secret Key"
 msgid "Webhook Secret Key"
-msgstr "Chiave segreta"
+msgstr "Webhook Chiave Segreta"
 
 #: src/legacy/settings.php:2938
 msgid "Messages"
@@ -3739,7 +3722,7 @@ msgstr "Titolo per cancellazione e restituzione"
 
 #: src/legacy/settings.php:2953
 msgid "Cancel and Return Blurb"
-msgstr "Dicitura per cancellazione e restituzione"
+msgstr "Sottotitolo per cancellazione e restituzione"
 
 #: src/legacy/settings.php:2957
 msgid "Try Again Anchor"
@@ -3751,7 +3734,7 @@ msgstr "Titolo della conferma di pagamento"
 
 #: src/legacy/settings.php:2965
 msgid "Payment Confirmation Blurb"
-msgstr "Dicitura della conferma di pagamento"
+msgstr "Sottotitolo della conferma di pagamento"
 
 #: src/legacy/settings.php:2969
 msgid "Reset API"
@@ -3770,10 +3753,8 @@ msgid "Are you sure you want to reset the messages?"
 msgstr "Sei sicuro di voler resettare i messaggi?"
 
 #: src/legacy/settings.php:2981
-#, fuzzy
-#| msgid "Use Stripe."
 msgid "To Use Stripe"
-msgstr "Usa Stripe."
+msgstr "Usare Stripe"
 
 #: src/legacy/settings.php:2983
 msgid ""
@@ -3782,29 +3763,23 @@ msgstr "Collegati al tuo account Stripe (o creane uno se non ce l'hai ancora)"
 
 #: src/legacy/settings.php:2985
 msgid "For detailed how-to - see %1$sknowledgebase article%2$s"
-msgstr ""
+msgstr "Per dettagli su come fare - vedere %1$sknowledgebase article%2$s"
 
 #: src/legacy/settings.php:2989
 msgid ""
 "Copy and paste the Secret and Publishable keys into the appropriate fields "
 "on the left"
 msgstr ""
-"Copia e incolla le chiavi Pubblica e Segreta nei rispettivi qui campi a "
+"Copia e incolla le chiavi Segreta e Pubblica nei rispettivi campi qui a "
 "sinistra"
 
 #: src/legacy/settings.php:2991
 msgid "Set up a Webhook for 'checkout.session.completed' pointing to %1$s"
-msgstr ""
+msgstr "Imposta un Webhook per 'checkout.session.completed' collegato a %1$s"
 
 #: src/legacy/settings.php:2994
-#, fuzzy
-#| msgid ""
-#| "Copy and paste the Secret and Publishable keys into the appropriate "
-#| "fields on the left"
 msgid "Copy and paste the Webhook Secret into field on the left"
-msgstr ""
-"Copia e incolla le chiavi Pubblica e Segreta nei rispettivi qui campi a "
-"sinistra"
+msgstr "Copia e incolla il Webhook Segreto nel campo qui a sinistra"
 
 #: src/legacy/settings.php:2995
 msgid "Make sure the <b>Use Stripe</b> box is checked and save the settings"
@@ -3827,8 +3802,8 @@ msgid ""
 "There are all sorts of options you can set to manage what guests can do. For "
 "example: images, categories, form fields, create new user and so on."
 msgstr ""
-"Ci sono tutti i tipi di opzioni che puoi settare per gestire ciò che gli "
-"ospiti possono fare. Pere sempio: immagini, categorie, campi dei moduli, "
+"Ci sono tutti i tipi di opzioni che puoi impostare per gestire ciò che gli "
+"ospiti possono fare. Per esempio: immagini, categorie, campi dei moduli, "
 "creare nuovi utenti ecc."
 
 #: src/legacy/settings.php:3066
@@ -3841,7 +3816,7 @@ msgstr "Impostazioni dell' Evento Ospite"
 
 #: src/legacy/settings.php:3080
 msgid "Adding the guest event form to your site"
-msgstr "Aggiungo il modulo dell'evento ospite al tuo sito"
+msgstr "Aggiunta del modulo dell'evento ospite al tuo sito"
 
 #. translators: leave the shortcode [qemguest] as is
 #: src/legacy/settings.php:3083
@@ -3870,7 +3845,8 @@ msgstr "Modera gli eventi ospite prima della pubblicazione."
 
 #: src/legacy/settings.php:3089
 msgid "Only allow logged in users to add guest events. "
-msgstr "Consenti solo agli utenti collegati di aggiungere nuovi eventi ospite"
+msgstr ""
+"Consenti solo agli utenti collegati di aggiungere nuovi eventi ospite. "
 
 #: src/legacy/settings.php:3090
 msgid ""
@@ -3878,7 +3854,7 @@ msgid ""
 "event change their role to contributor"
 msgstr ""
 "L'invio crea un nuovo utente (sottoscrittore). Se vuoi consentirgli di "
-"modificare l'evento cambia il suo ruolo in collaboratore"
+"modificare l'evento cambia il suo ruolo in contributore"
 
 #: src/legacy/settings.php:3091
 msgid "Form Title and Introduction"
@@ -3886,7 +3862,7 @@ msgstr "Titolo del Modulo e Introduzione"
 
 #: src/legacy/settings.php:3092
 msgid "Form title (leave blank if you don't want a heading):"
-msgstr "Titolo del modulo (non compilarlo  se non vuoi un'intestazione)"
+msgstr "Titolo del modulo (lascialo vuoto se non vuoi un'intestazione):"
 
 #: src/legacy/settings.php:3094
 msgid ""
@@ -3898,11 +3874,12 @@ msgstr ""
 
 #: src/legacy/settings.php:3096
 msgid "Thank-you Title and Blurb"
-msgstr "Sottotitolo del messaggio di ringraziamento"
+msgstr "Titolo e sottotitolo del messaggio di ringraziamento"
 
 #: src/legacy/settings.php:3097
 msgid "Thank You title (leave blank if you don't want a heading):"
-msgstr "Titolo del ringraziamento (non compilarlo se non vuoi un'intestazione)"
+msgstr ""
+"Titolo del ringraziamento (lascialo vuoto se non vuoi un'intestazione):"
 
 #: src/legacy/settings.php:3099
 msgid ""
@@ -3937,7 +3914,7 @@ msgstr "Consenti agli ospiti di caricare immagini"
 
 #: src/legacy/settings.php:3107
 msgid "Maximum file size. Only use numbers, eg: 100000 not 100kB."
-msgstr "Dimensione massima dei file. Usa solo numeri, es. 100000 e non 100KB."
+msgstr "Dimensione massima dei file. Usa solo numeri, es. 100000 e non 100kB."
 
 #: src/legacy/settings.php:3109
 msgid "Repeat Events"
@@ -3953,7 +3930,7 @@ msgstr "Informazioni mancanti"
 
 #: src/legacy/settings.php:3118
 msgid "Duplicate Title"
-msgstr "Duplica il titolo"
+msgstr "Titolo duplicato"
 
 #: src/legacy/settings.php:3122
 msgid "Image Errors"
@@ -3978,11 +3955,11 @@ msgstr "U = Usa questo campo. R = campo Richiesto (deve essere compilato)"
 
 #: src/legacy/settings.php:3145
 msgid "Label (what your visitor's see)"
-msgstr "Etichetta (come viene vista dal visitatore)"
+msgstr "Etichetta (ciò che vedono i visitatori)"
 
 #: src/legacy/settings.php:3206
 msgid "Remove all jQuery  styles"
-msgstr "Rimuovi tutti gli stili jQuery"
+msgstr "Rimuove tutti gli stili jQuery"
 
 #: src/legacy/settings.php:3242
 msgid "Extensions"
@@ -4023,7 +4000,7 @@ msgstr "Consenti ai visitatori di vedere la lista delle loro registrazioni"
 
 #: src/legacy/settings.php:3254
 msgid "Event templates"
-msgstr "Modello di Evento"
+msgstr "Modelli di Evento"
 
 #: src/legacy/settings.php:3255
 msgid "Pagination"
@@ -4242,21 +4219,22 @@ msgid ""
 " You have installed the PREMIUM plugin, but have not activated your "
 "<strong>licence</strong>. Don't worry it is easy.\n"
 "</p><p>If you do not have your licence you can use your email <strong>%2$s</"
-"strong>  to login at <a href=\"https://fullworks.net/account/\" target="
-"\"_blank\">\n"
+"strong>  to login at <a href=\"https://fullworks.net/account/\" "
+"target=\"_blank\">\n"
 "https://fullworks.net/account/</a> to get your licence key.\n"
 "</p>"
 msgstr ""
-"%1$s<strong>Azione importante richiesta - La tua installazione  Pro Install "
-"è andata a buon fine - ma devi attivare la tua licenza</strong>. <p> Grandi "
-"modifiche sono in arrivo coi pagamenti veloci PayPal e BISOGNA agire ora per "
-"onservare le tue funzionalità premium!!<br>\n"
+"%1$s<strong>Azione importante richiesta - La tua installazione Pro Install è "
+"andata a buon fine - ma devi attivare la tua licenza</strong>. <p> Grandi "
+"modifiche sono in arrivo coi pagamenti veloci PayPal e DEVI agire ora per "
+"conservare le tue funzionalità premium!!<br>\n"
 " Hai installato la versione PREMIUM del plugin, ma non hai attivato la tua "
 "<strong>licenza</strong>. Non preoccuparti è facile.\n"
 "</p><p> Se non hai la licenza puoi usare la tua email <strong>%2$s</strong> "
-"per collegarti a <a href=\"https://fullworks.net/account/\" target=\"_blank"
-"\">\n"
-"https://fullworks.net/account/</a>  e ottenere la chiave di licenza"
+"per collegarti a <a href=\"https://fullworks.net/account/\" "
+"target=\"_blank\">\n"
+"https://fullworks.net/account/</a>  e ottenere la chiave di licenza.\n"
+"<p>"
 
 #: src/ui/admin/class-admin.php:113
 msgid ""
@@ -4275,18 +4253,17 @@ msgid ""
 "the Pro version - you do not have to pay again</p>"
 msgstr ""
 "%1$s<strong>Azione importante richiesta</strong>. %2$s<p>Grandi modifiche "
-"sono in arrivo per Quick Event Manager e BISOGNA agire ora per mantenere le "
-"tue funzionalità premium!!<br>\n"
+"sono in arrivo per Quick Event Manager e DEVI agire ora per mantenere le tue "
+"funzionalità premium!!<br>\n"
 " Devi <strong>scaricare e installare la versione PREMIUM</strong> del plugin "
 "per mantenere le funzionalità premium. Non preoccuparti è facile.</p>\n"
 "<p></p><a target=\"_blank\" href=\"%3$s\" class=\"button\" >Clicca QUI PER "
-"SCARICARE IL PLUGIN  E OTTENERE LA LICENZA VIA EMAIL</a></p><p>Se non "
+"SCARICARE IL PLUGIN E OTTENERE LA LICENZA VIA EMAIL</a></p><p>Se non "
 "scarichi e installi la versione premium del plugin \n"
 " - quando ne verrà rilasciata una nuova versione potresti perdere alcune "
-"funzionalità fondamentali, quindi registrati ora per essere pronto.\n"
-"</p>\n"
+"funzionalità fondamentali, quindi registrati ora per essere pronto.</p>\n"
 "<p>La email sarà inviata a <strong>%4$s</strong> Se non ricevi a breve la "
-"email,  controlla la cartella spam </p><p>Sia chiaro che se hai già pagato "
+"email, controlla la cartella spam </p><p>Sia chiaro che se hai già pagato "
 "per la versione Pro - non devi pagare un'altra volta</p>"
 
 #: src/ui/admin/class-admin.php:125
@@ -4309,20 +4286,19 @@ msgid ""
 msgstr ""
 "%1$s<strong>Azione importante richiesta - La tua richiesta di licenza è "
 "andata a buon fine</strong>. <p>Grandi modifiche sono in arrivo per i "
-"pagmenti di Quick PayPal  e BISOGNA agire ora per mantenere le tue "
-"funzionalità premium!!<br>\n"
+"pagamenti di Quick PayPal e DEVI agire ora per mantenere le tue funzionalità "
+"premium!!<br>\n"
 " Hai richiesto la versione PREMIUM del plugin, sei pregato di installarla "
-"per conservare le caratteristiche premium. Non preoccuparti è facile.\n"
+"per conservare le funzionalità premium. Non preoccuparti è facile.\n"
 "</p><p>Se non scarichi e installi la versione premium del plugin - quando ne "
 "verrà rilasciata una nuova versione potresti perdere delle funzionalità "
 "fondamentali per te, quindi registrati ora per essere pronto.\n"
 "La email è stata inviata a <strong>%2$s</strong>. </p><p>Se non puoi "
-"accedere a <strong>%2$s</strong>( controlla la casella di spam ) contatta "
-"il \n"
+"accedere a <strong>%2$s</strong>(controlla la casella di spam) contatta il \n"
 "<a target=\"_blank\" href=\"mailto:support@fullworks.net\">supporto</a> "
 "inviando i tuoi dettagli.</p><p>Puoi anche usare la tua email <strong>%2$s</"
-"strong>  per collegarti a <a href=\"https://fullworks.net/account/\" target="
-"\"_blank\">\n"
+"strong> per collegarti a <a href=\"https://fullworks.net/account/\" "
+"target=\"_blank\">\n"
 "https://fullworks.net/account/</a> per scaricare il plugin e ottenere la "
 "chiave di licenza\n"
 "</p>"
@@ -4522,11 +4498,11 @@ msgstr "Eventi correnti"
 #~ msgstr "Evento caricato. <a target=\"_blank\" href=\"%s\">Anteprima</a>"
 
 #~ msgid ""
-#~ "Event scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href="
-#~ "\"%2$s\">Preview event</a>"
+#~ "Event scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" "
+#~ "href=\"%2$s\">Preview event</a>"
 #~ msgstr ""
-#~ "Evento pianificato per: <strong>%1$s</strong>. <a target=\"_blank\" href="
-#~ "\"%2$s\">Anteprima</a>"
+#~ "Evento pianificato per: <strong>%1$s</strong>. <a target=\"_blank\" "
+#~ "href=\"%2$s\">Anteprima</a>"
 
 #~ msgid "M j, Y @ G:i"
 #~ msgstr "M j, Y @ G:i"

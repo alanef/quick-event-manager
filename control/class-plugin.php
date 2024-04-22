@@ -23,30 +23,30 @@
  */
 namespace Quick_Event_Manager\Plugin\Control;
 
-use  Quick_Event_Manager\Plugin\Business\Display_Eventbrite_Integration ;
-use  Quick_Event_Manager\Plugin\UI\Admin\Admin ;
-use  Quick_Event_Manager\Plugin\UI\Admin\Admin_Attendees ;
-use  Quick_Event_Manager\Plugin\UI\Admin\Admin_Reports ;
-use  Quick_Event_Manager\Plugin\UI\Admin\Admin_Settings ;
-use  Quick_Event_Manager\Plugin\UI\User\FrontEnd ;
-use  Quick_Event_Manager\Plugin\Business\Business ;
-class Plugin
-{
-    private  $plugin_name ;
-    private  $version ;
+use Quick_Event_Manager\Plugin\Business\Display_Eventbrite_Integration;
+use Quick_Event_Manager\Plugin\UI\Admin\Admin;
+use Quick_Event_Manager\Plugin\UI\Admin\Admin_Attendees;
+use Quick_Event_Manager\Plugin\UI\Admin\Admin_Reports;
+use Quick_Event_Manager\Plugin\UI\Admin\Admin_Settings;
+use Quick_Event_Manager\Plugin\UI\User\FrontEnd;
+use Quick_Event_Manager\Plugin\Business\Business;
+class Plugin {
+    private $plugin_name;
+
+    private $version;
+
     /**
      * @param \Freemius $freemius Object for freemius.
      */
-    private  $freemius ;
-    public function __construct( $plugin_name, $version, $freemius )
-    {
+    private $freemius;
+
+    public function __construct( $plugin_name, $version, $freemius ) {
         $this->plugin_name = $plugin_name;
         $this->version = $version;
         $this->freemius = $freemius;
     }
-    
-    public function run()
-    {
+
+    public function run() {
         require_once QUICK_EVENT_MANAGER_PLUGIN_DIR . 'legacy/quick-event-manager.php';
         $this->set_locale();
         $this->define_admin_hooks();
@@ -56,46 +56,39 @@ class Plugin
         $this->define_public_hooks();
         $this->version_upgrades();
     }
-    
-    private function version_upgrades()
-    {
+
+    private function version_upgrades() {
         $version = get_option( 'qem_version' );
         update_option( 'qem_version', $this->version );
     }
-    
-    private function set_locale()
-    {
+
+    private function set_locale() {
         add_action( 'init', function () {
             load_plugin_textdomain( $this->plugin_name, false, basename( QUICK_EVENT_MANAGER_PLUGIN_DIR ) . '/languages/' );
         } );
     }
-    
-    private function define_admin_hooks()
-    {
-        $admin = new Admin( $this->plugin_name, $this->version, $this->freemius );
+
+    private function define_admin_hooks() {
+        $admin = new Admin($this->plugin_name, $this->version, $this->freemius);
         $admin->hooks();
     }
-    
-    private function define_admin_attendees_hooks()
-    {
-        $admin_attendees = new Admin_Attendees( $this->plugin_name, $this->version, $this->freemius );
+
+    private function define_admin_attendees_hooks() {
+        $admin_attendees = new Admin_Attendees($this->plugin_name, $this->version, $this->freemius);
         $admin_attendees->hooks();
     }
-    
-    private function define_public_hooks()
-    {
-        $public = new FrontEnd( $this->plugin_name, $this->version, $this->freemius );
+
+    private function define_public_hooks() {
+        $public = new FrontEnd($this->plugin_name, $this->version, $this->freemius);
         $public->hooks();
     }
-    
-    private function define_business_hooks()
-    {
-        $business = new Business( $this->plugin_name, $this->version, $this->freemius );
+
+    private function define_business_hooks() {
+        $business = new Business($this->plugin_name, $this->version, $this->freemius);
         $business->hooks();
     }
-    
-    private function define_integration_hooks()
-    {
+
+    private function define_integration_hooks() {
     }
 
 }

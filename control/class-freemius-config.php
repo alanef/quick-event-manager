@@ -23,13 +23,10 @@
  */
 namespace Quick_Event_Manager\Plugin\Control;
 
-use  Freemius ;
-class Freemius_Config
-{
-    public function init()
-    {
-        global  $qem_fs ;
-        
+use Freemius;
+class Freemius_Config {
+    public function init() {
+        global $qem_fs;
         if ( !isset( $qem_fs ) ) {
             // Include Freemius SDK.
             require_once QUICK_EVENT_MANAGER_PLUGIN_DIR . 'vendor/freemius/wordpress-sdk/start.php';
@@ -42,29 +39,27 @@ class Freemius_Config
                 'has_addons'     => false,
                 'has_paid_plans' => true,
                 'trial'          => array(
-                'days'               => 14,
-                'is_require_payment' => true,
-            ),
+                    'days'               => 14,
+                    'is_require_payment' => true,
+                ),
                 'navigation'     => 'tabs',
                 'menu'           => array(
-                'slug'    => 'quick-event-manager',
-                'contact' => false,
-                'support' => true,
-                'parent'  => array(
-                'slug' => 'options-general.php',
-            ),
-            ),
+                    'slug'    => 'quick-event-manager',
+                    'contact' => false,
+                    'support' => true,
+                    'parent'  => array(
+                        'slug' => 'options-general.php',
+                    ),
+                ),
                 'is_live'        => true,
             ) );
         }
-        
         $qpp_key = get_option( 'qpp_key', array(
             'authorised' => false,
         ) );
         if ( !isset( $qpp_key['authorised'] ) ) {
             $qpp_key['authorised'] = false;
         }
-        
         if ( false === $qpp_key['authorised'] ) {
             update_option( 'qem_freemius_state', array(
                 'authorised' => $qem_fs->can_use_premium_code(),
@@ -74,20 +69,19 @@ class Freemius_Config
                 'authorised' => true,
             ) );
         }
-        
         // @TODO remove when premium code removed
         if ( true === $qpp_key['authorised'] ) {
             $qem_fs->add_filter(
                 'is_submenu_visible',
                 function ( $is_visible, $menu_id ) {
-                if ( 'contact' === $menu_id ) {
-                    return false;
-                }
-                if ( 'support' === $menu_id ) {
-                    return false;
-                }
-                return $is_visible;
-            },
+                    if ( 'contact' === $menu_id ) {
+                        return false;
+                    }
+                    if ( 'support' === $menu_id ) {
+                        return false;
+                    }
+                    return $is_visible;
+                },
                 10,
                 2
             );

@@ -1,9 +1,7 @@
 <?php
 
-function qem_download_files()
-{
-    global  $qem_fs ;
-    
+function qem_download_files() {
+    global $qem_fs;
     if ( isset( $_POST['qem_download_csv'] ) ) {
         if ( !isset( $_POST['_qem_download_form_nonce'] ) || !wp_verify_nonce( $_POST['_qem_download_form_nonce'], 'qem_download_form' ) ) {
             wp_die( esc_html__( 'Invalid Nonce, sorry something went wrong', 'quick-event-manager' ) );
@@ -110,7 +108,7 @@ function qem_download_files()
             // add commas except last one
             $row .= ( next( $headerrow ) ? qem_csv_a_cell( $header ) . ',' : qem_csv_a_cell( $header ) );
         }
-        echo  qem_wp_kses_post( $row ) . PHP_EOL ;
+        echo qem_wp_kses_post( $row ) . PHP_EOL;
         foreach ( $message as $value ) {
             $cells = array();
             $value['morenames'] = preg_replace( "/\r|\n/", ", ", qem_get_element( $value, 'morenames' ) );
@@ -197,11 +195,10 @@ function qem_download_files()
                     $row .= ',';
                 }
             }
-            echo  qem_wp_kses_post( $row ) . PHP_EOL ;
+            echo qem_wp_kses_post( $row ) . PHP_EOL;
         }
         exit;
     }
-
 }
 
 /**
@@ -211,8 +208,7 @@ function qem_download_files()
  *
  * @return mixed|string
  */
-function qem_csv_a_cell( $cell )
-{
+function qem_csv_a_cell(  $cell  ) {
     if ( strpos( $cell, ',' ) !== false || strpos( $cell, '"' ) !== false ) {
         $cell = '"' . $cell . '"';
     }

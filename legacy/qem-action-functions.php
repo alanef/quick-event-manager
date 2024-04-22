@@ -1,7 +1,6 @@
 <?php
 
-function remove_menus()
-{
+function remove_menus() {
     // get current login user's role
     $roles = wp_get_current_user()->roles;
     // test role
@@ -19,8 +18,7 @@ function remove_menus()
 }
 
 // Builds the CSS
-function qem_generate_css()
-{
+function qem_generate_css() {
     $style = qem_get_stored_style();
     $cal = qem_get_stored_calendar();
     $display = event_get_stored_display();
@@ -57,13 +55,11 @@ function qem_generate_css()
     if ( $style['date_background'] == 'red' ) {
         $color = 'red';
     }
-    
     if ( $style['month_background'] == 'colour' ) {
         $colour = $style['month_backgroundhex'];
     } else {
         $colour = '#FFF';
     }
-    
     $eventbackground = '';
     if ( $style['event_background'] == 'bgwhite' ) {
         $eventbackground = 'background:white;';
@@ -83,26 +79,22 @@ function qem_generate_css()
     $nondayborder = 'border: ' . $style['date_border_width'] . 'px solid ' . $style['date_border_colour'] . ';border-top:none;background:' . $colour . ';';
     $monthcolor = 'span.month {color:' . $style['month_colour'] . ';}';
     $eventborder = 'border: ' . $style['date_border_width'] . 'px solid ' . $style['date_border_colour'] . ';';
-    
     if ( $style['icon_corners'] == 'rounded' ) {
         $dayborder = $dayborder . '-webkit-border-top-left-radius:' . $radius . 'px; -moz-border-top-left-radius:' . $radius . 'px; border-top-left-radius:' . $radius . 'px; -webkit-border-top-right-radius:' . $radius . 'px; -moz-border-top-right-radius:' . $radius . 'px; border-top-right-radius:' . $radius . 'px;';
         $nondayborder = $nondayborder . '-webkit-border-bottom-left-radius:' . $radius . 'px; -moz-border-bottom-left-radius:' . $radius . 'px; border-bottom-left-radius:' . $radius . 'px; -webkit-border-bottom-right-radius:' . $radius . 'px; -moz-border-bottom-right-radius:' . $radius . 'px; border-bottom-right-radius:' . $radius . 'px;';
         $eventborder = $eventborder . '-webkit-border-radius:' . $radius . 'px; -moz-border-radius:' . $radius . 'px; border-radius:' . $radius . 'px;';
     }
-    
     if ( $style['event_border'] ) {
         $showeventborder = 'padding:' . $radius . 'px;' . $eventborder;
     }
     if ( $register['formborder'] ) {
         $formborder = "\n.qem-register {" . $eventborder . "padding:" . $radius . "px;}";
     }
-    
     if ( $style['widthtype'] == 'pixel' ) {
         $eventwidth = preg_replace( "/[^0-9]/", "", $style['width'] ) . 'px;';
     } else {
         $eventwidth = '100%';
     }
-    
     $j = preg_split( '#(?<=\\d)(?=[a-z%])#i', $display['event_image_width'] );
     if ( !$j[0] ) {
         $j[0] = '300';
@@ -145,7 +137,6 @@ function qem_generate_css()
         $script .= '.qem h2, .qem h3 {display:block;}';
     }
     if ( $cal['tdborder'] ) {
-        
         if ( $cal['cellspacing'] > 0 ) {
             $script .= '#qem-calendar td.day, #qem-calendar td.eventday, #qem-calendar td.calday {border: ' . $cal['tdborder'] . ';}';
         } else {
@@ -155,7 +146,6 @@ function qem_generate_css()
 #qem-calendar tr td.blankday {border-bottom: ' . $cal['tdborder'] . ';}
 #qem-calendar tr td.firstday {border-right: ' . $cal['tdborder'] . ';border-bottom: ' . $cal['tdborder'] . ';}';
         }
-    
     }
     $lbmargin = (int) ((int) $display['lightboxwidth'] / 2);
     $script .= '#xlightbox {width:' . $display['lightboxwidth'] . '%;margin-left:-' . $lbmargin . '%;}
@@ -179,7 +169,6 @@ function qem_generate_css()
         'j'
     );
     foreach ( $cat as $i ) {
-        
         if ( $style['cat' . $i] ) {
             $eb = ( $cal['fixeventborder'] || $cal['eventborder'] == 'none' ? '' : 'border:1px solid ' . $style['cat' . $i . 'text'] . ' !important;' );
             $script .= "#qem-calendar a." . $style['cat' . $i] . " {background:" . $style['cat' . $i . 'back'] . " !important;color:" . $style['cat' . $i . 'text'] . " !important;" . $eb . "}";
@@ -188,12 +177,10 @@ function qem_generate_css()
                 $script .= '.' . $style['cat' . $i] . ' .qem-calendar-small .day, .' . $style['cat' . $i] . ' .qem-calendar-medium .day, .' . $style['cat' . $i] . ' .qem-calendar-large .day {background:' . $style['cat' . $i . 'back'] . ';color:' . $style['cat' . $i . 'text'] . ';}';
             }
         }
-    
     }
     $code = $header = $font = $submitfont = $fontoutput = $border = '';
     $headercolour = $corners = $input = $background = $submitwidth = $paragraph = $submitbutton = $submit = '';
     $register_style = qem_get_register_style();
-    
     if ( !isset( $register_style['nostyling'] ) || !$register_style['nostyling'] ) {
         $code .= '.qem-register {text-align: left;margin: 10px 0 10px 0;padding: 0;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
 .qem-register #none {border: 0px solid #FFF;padding: 0;}
@@ -246,65 +233,55 @@ div.toggle-qem a:link, div.toggle-qem a:visited, div.toggle-qem a:hover {color:#
         if ( $register_style['submitwidth'] == 'submitpixel' ) {
             $submitwidth = 'width:' . $style['submitwidthset'] . ';';
         }
-        
         if ( $register_style['submitposition'] == 'submitleft' ) {
             $submitposition = 'float:left;';
         } else {
             $submitposition = 'float:right;';
         }
-        
         $submit = "color:" . $register_style['submit-colour'] . ";background:" . $register_style['submit-background'] . ";border:" . $register_style['submit-border'] . $submitfont . ";font-size: inherit;";
         $submithover = "background:" . $register_style['submit-hover-background'] . ";";
         $submitbutton = ".qem-register #submit {" . $submitposition . $submitwidth . $submit . "}\n.qem-register #submit:hover {" . $submithover . "}";
-        
         if ( $register_style['corners'] == 'round' ) {
             $corner = '5px';
         } else {
             $corner = '0';
         }
-        
         $corners = ".qem-register  input[type=text], .qem-register  input[type=number], .qem-register textarea, .qem-register select, .qem-register #submit {border-radius:" . $corner . ";}\r\n";
         if ( $register_style['corners'] == 'theme' ) {
             $corners = '';
         }
         $code .= "\r\n.qem-register {max-width:100%;overflow:hidden;width:" . $width . ";}" . $submitbutton . "\r\n" . $border . "\r\n" . $corners . "\r\n" . $header . "\r\n" . $paragraph . "\r\n" . $input . "\r\n" . $focus . "\r\n" . $required . "\r\n" . $text . "\r\n" . $error . "\r\n" . $background . "\r\n";
     }
-    
     return $script . $code;
 }
 
-function qem_head_ic()
-{
-    global  $qem_fs ;
-    global  $post ;
-    
+function qem_head_ic() {
+    global $qem_fs;
+    global $post;
     if ( is_singular( 'event' ) ) {
         $unixtime = get_post_meta( $post->ID, 'event_date', true );
         $date = date_i18n( "j M y", $unixtime );
-        echo  '<meta property="og:locale" content="en_GB" />
+        echo '<meta property="og:locale" content="en_GB" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="' . esc_attr( $date ) . ' - ' . esc_attr( get_the_title() ) . '" />
 <meta property="og:description" content="' . esc_attr( get_post_meta( $post->ID, 'event_desc', true ) ) . '" />
 <meta property="og:url" content="' . esc_attr( get_permalink() ) . '" />
 <meta property="og:site_name" content="WFTR" />
-<meta property="og:image" content="' . esc_attr( get_post_meta( $post->ID, 'event_image', true ) ) . '" />' ;
+<meta property="og:image" content="' . esc_attr( get_post_meta( $post->ID, 'event_image', true ) ) . '" />';
     }
-    
     // should  be changed to locaizescript or add inline script
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- this is core WP security function
-    echo  '<script type="text/javascript">ajaxurl = "' . esc_url( admin_url( 'admin-ajax.php' ) ) . '"; qem_calendar_atts = []; qem_year = []; qem_month = []; qem_category = [];</script>' ;
+    echo '<script type="text/javascript">ajaxurl = "' . esc_url( admin_url( 'admin-ajax.php' ) ) . '"; qem_calendar_atts = []; qem_year = []; qem_month = []; qem_category = [];</script>';
 }
 
-function qem_flush_rules()
-{
+function qem_flush_rules() {
     event_register();
     flush_rewrite_rules();
 }
 
-function qem_add_custom_post_type_to_query( $query )
-{
+function qem_add_custom_post_type_to_query(  $query  ) {
     if ( is_home() ) {
-        $query->set( 'post_type', array( 'post', 'event' ) );
+        $query->set( 'post_type', array('post', 'event') );
     }
 }
 
@@ -315,15 +292,12 @@ function qem_add_custom_post_type_to_query( $query )
  *
  * @return void
  */
-function qem_admin_edit_table_order( $query )
-{
-    global  $post_type, $pagenow ;
+function qem_admin_edit_table_order(  $query  ) {
+    global $post_type, $pagenow;
     if ( 'edit.php' == $pagenow && 'event' == $post_type ) {
-        
-        if ( empty(get_query_var( 'order' )) && empty(get_query_var( 'orderby' )) ) {
+        if ( empty( get_query_var( 'order' ) ) && empty( get_query_var( 'orderby' ) ) ) {
             $query->set( 'orderby', 'meta_value_num' );
             $query->set( 'order', 'desc' );
         }
-    
     }
 }

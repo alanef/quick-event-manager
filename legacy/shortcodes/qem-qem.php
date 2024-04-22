@@ -1,8 +1,7 @@
 <?php
 
-function qem_event_shortcode_esc( $atts, $widget )
-{
-    global  $qem_fs ;
+function qem_event_shortcode_esc(  $atts, $widget  ) {
+    global $qem_fs;
     $remaining = $all = $i = $monthnumber = $archive = $yearnumber = $daynumber = $notthisyear = '';
     $atts = shortcode_atts( array(
         'id'               => '',
@@ -39,7 +38,7 @@ function qem_event_shortcode_esc( $atts, $widget )
         'widget'           => '',
         'grid'             => '',
     ), $atts, 'qem' );
-    global  $post ;
+    global $post;
     $category = $atts['category'];
     // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- front end user selection of category - no update processing or security implication
     if ( isset( $_GET['category'] ) ) {
@@ -72,7 +71,6 @@ function qem_event_shortcode_esc( $atts, $widget )
     }
     $output_escaped = '';
     $content_escaped = '';
-    
     if ( qem_get_element( $display, 'event_descending', false ) || $atts['order'] == 'asc' ) {
         $args = array(
             'post_type'      => 'event',
@@ -89,8 +87,7 @@ function qem_event_shortcode_esc( $atts, $widget )
             'posts_per_page' => -1,
         );
     }
-    
-    $the_query = new WP_Query( $args );
+    $the_query = new WP_Query($args);
     $event_found = false;
     $today = strtotime( date( 'Y-m-d' ) );
     $catlabel = str_replace( ',', ', ', $category );
@@ -143,41 +140,34 @@ function qem_event_shortcode_esc( $atts, $widget )
     }
     if ( $atts['id'] == 'calendar' ) {
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- front end user selection of category - no update processing or security implication
-        
         if ( isset( $_GET['qemmonth'] ) ) {
             // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- front end user selection of category - no update processing or security implication
             $monthnumber = sanitize_text_field( $_GET['qemmonth'] );
         } else {
             $monthnumber = date( 'n' );
         }
-    
     }
     $thisyear = date( 'Y' );
     $thismonth = date( "M" );
     $currentmonth = date( "M" );
-    
     if ( $atts['id'] == 'today' ) {
         $daynumber = date( "d" );
         $todaymonth = $thismonth;
     }
-    
     if ( strpos( $atts['id'], 'D' ) !== false ) {
         $daynumber = filter_var( $atts['id'], FILTER_SANITIZE_NUMBER_INT );
     }
-    
     if ( strpos( $atts['id'], 'M' ) !== false ) {
         $dm = explode( "D", $atts['id'] );
         $monthnumber = filter_var( $dm[0], FILTER_SANITIZE_NUMBER_INT );
         $daynumber = filter_var( $dm[1], FILTER_SANITIZE_NUMBER_INT );
     }
-    
     if ( $category ) {
         $category = explode( ',', $category );
     }
     if ( $atts['event'] ) {
         $eventid = explode( ',', $atts['event'] );
     }
-    
     if ( $the_query->have_posts() ) {
         if ( $cal['connect'] ) {
             $content_escaped .= '<p><a href="' . esc_url( $cal['calendar_url'] ) . '">' . esc_html( $cal['calendar_text'] ) . '</a></p>';
@@ -197,37 +187,29 @@ function qem_event_shortcode_esc( $atts, $widget )
             $month = ( $display['monthtype'] == 'short' ? date_i18n( "M", $unixtime ) : date_i18n( "F", $unixtime ) );
             $year = date( "Y", $unixtime );
             $monthheading = ( $display['monthheadingorder'] == 'ym' ? $year . ' ' . $month : $month . ' ' . $year );
-            
             if ( $atts['y'] ) {
                 $thisyear = $atts['y'];
                 $yearnumber = 0;
             }
-            
-            
             if ( $atts['event'] ) {
                 $atts['id'] = 'event';
                 $event = $post->ID;
                 $eventbyid = ( in_array( $event, $eventid ) ? 'checked' : '' );
             }
-            
             if ( $i < $atts['posts'] ) {
-                
                 if ( ($all || $atts['event'] && $eventbyid || $archive && $unixtime < $today && $enddate < $today || $atts['id'] == '' && ($unixtime >= $today || $enddate >= $today || $display['event_archive'] == 'checked') || $daynumber == $day && $todaymonth == $eventmonth && $thisyear == $year || $daynumber == $day && $monthnumber == $eventmonthnumber && $thisyear == $year || $nextweek && $unixtime >= $today && $unixtime <= $nextweek || !$daynumber && $monthnumber && $monthnow == $monthnumber && $thisyear == $year || $remaining && $monthnow == $remaining && $thisyear == $year && ($unixtime >= $today || $enddate >= $today) || $yearnumber && $yearnumber == $year || $notthisyear && $currentyear > $year) && (in_category( $category ) || !$category) ) {
-                    
                     if ( !$atts['grid'] && $display['monthheading'] && ($currentmonth || $month != $thismonth || $year != $thisyear) ) {
                         $content_escaped .= '<h2>' . esc_html( $monthheading ) . '</h2>';
                         $thismonth = $month;
                         $thisyear = $year;
                         $currentmonth = '';
                     }
-                    
                     if ( !$hide_event ) {
                         $content_escaped .= qem_event_construct_esc( $atts ) . "\r\n";
                     }
                     $event_found = true;
                     $i++;
                 }
-            
             }
         }
         if ( $atts['grid'] == 'masonry' ) {
@@ -244,7 +226,6 @@ function qem_event_shortcode_esc( $atts, $widget )
         }
         $output_escaped .= $content_escaped;
     }
-    
     if ( !$event_found ) {
         $output_escaped .= "<h2>" . qem_wp_kses_post( $display['noevent'] ) . "</h2>";
     }
@@ -253,8 +234,7 @@ function qem_event_shortcode_esc( $atts, $widget )
     return $output_escaped;
 }
 
-function qem_category_dropdown( $display )
-{
+function qem_category_dropdown(  $display  ) {
     $args = array(
         'exclude' => 1,
     );

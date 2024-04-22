@@ -23,43 +23,40 @@
  */
 namespace Quick_Event_Manager\Plugin\Business;
 
-use  WP_Query ;
-use  WP_REST_Server ;
-class Business
-{
-    private  $plugin_name ;
-    private  $version ;
+use WP_Query;
+use WP_REST_Server;
+class Business {
+    private $plugin_name;
+
+    private $version;
+
     /**
      * @param Freemius $freemius Object for freemius.
      */
-    private  $freemius ;
-    public function __construct( $plugin_name, $version, $freemius )
-    {
+    private $freemius;
+
+    public function __construct( $plugin_name, $version, $freemius ) {
         $this->plugin_name = $plugin_name;
         $this->version = $version;
         $this->freemius = $freemius;
     }
-    
-    public function hooks()
-    {
-        add_action( 'rest_api_init', array( $this, 'rest_api_init' ) );
-        add_action( 'init', array( $this, 'cron_jobs' ) );
-        add_action( 'qem_pending_cleardown', array( $this, 'pending_cleardown' ) );
+
+    public function hooks() {
+        add_action( 'rest_api_init', array($this, 'rest_api_init') );
+        add_action( 'init', array($this, 'cron_jobs') );
+        add_action( 'qem_pending_cleardown', array($this, 'pending_cleardown') );
     }
-    
-    public function rest_api_init()
-    {
+
+    public function rest_api_init() {
     }
-    
-    public function cron_jobs()
-    {
+
+    public function cron_jobs() {
         if ( !wp_next_scheduled( 'qem_pending_cleardown' ) ) {
             wp_schedule_event( time(), 'hourly', 'qem_pending_cleardown' );
         }
     }
-    
-    public function pending_cleardown()
-    {
+
+    public function pending_cleardown() {
         $this->payment = qem_get_stored_payment();
         if ( !isset( $this->payment['usependingcleardown'] ) ) {
             return;
@@ -72,13 +69,13 @@ class Business
             'post_status'    => 'publish',
             'posts_per_page' => -1,
         );
-        $query = new WP_Query( $args );
+        $query = new WP_Query($args);
         if ( $query->have_posts() ) {
             while ( $query->have_posts() ) {
                 $query->the_post();
                 $id = get_the_ID();
                 $cost = get_post_meta( $id, 'event_cost', true );
-                if ( empty($cost) ) {
+                if ( empty( $cost ) ) {
                     continue;
                 }
                 $paypal = get_post_meta( $id, 'event_paypal', true );
@@ -86,32 +83,27 @@ class Business
                     continue;
                 }
                 $message = get_option( 'qem_messages_' . $id );
-                
-                if ( !empty($message) ) {
+                if ( !empty( $message ) ) {
                     foreach ( $message as $key => $attendee ) {
                         if ( 'Paid' != qem_get_element( $attendee, 'ipn', false ) ) {
-                            
                             if ( time() - qem_get_element( $attendee, 'datetime_added', time() ) > 1800 ) {
-                                unset( $message[$key] );
-                                if ( !empty($this->payment['pendingcleardownmsg']) ) {
+                                unset($message[$key]);
+                                if ( !empty( $this->payment['pendingcleardownmsg'] ) ) {
                                     $this->send_notification( qem_get_element( $attendee, 'youremail', false ), qem_get_element( $attendee, 'yourname', false ) );
                                 }
                             }
-                        
                         }
                     }
                     $message = array_values( $message );
                     update_option( 'qem_messages_' . $id, $message );
                 }
-            
             }
         }
         wp_reset_postdata();
     }
-    
-    private function send_notification( $youremail, $yourname )
-    {
-        global  $post ;
+
+    private function send_notification( $youremail, $yourname ) {
+        global $post;
         if ( !$youremail ) {
             return;
         }
@@ -121,27 +113,24 @@ class Business
         $content = '<p>' . $this->payment['pendingcleardownmsg'] . '</p>';
         $content .= '<p><a href="' . get_the_permalink() . '">' . get_the_permalink() . '</a></p>';
         $message = '<html>' . $content . '</html>';
-        
         if ( $register['qemmail'] == 'smtp' ) {
             qem_send_smtp(
                 $youremail,
                 $subject,
                 array(
-                'yourname'  => $yourname,
-                'youremail' => $youremail,
-            ),
+                    'yourname'  => $yourname,
+                    'youremail' => $youremail,
+                ),
                 $message
             );
         } else {
-            add_filter( 'wp_mail_content_type', array( $this, 'set_html_content_type' ) );
+            add_filter( 'wp_mail_content_type', array($this, 'set_html_content_type') );
             wp_mail( $youremail, $subject, $message );
-            remove_filter( 'wp_mail_content_type', array( $this, 'set_html_content_type' ) );
+            remove_filter( 'wp_mail_content_type', array($this, 'set_html_content_type') );
         }
-    
     }
-    
-    public function set_html_content_type()
-    {
+
+    public function set_html_content_type() {
         return 'text/html';
     }
 

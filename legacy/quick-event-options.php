@@ -1,67 +1,66 @@
 <?php
 
-function event_get_stored_options()
-{
+function event_get_stored_options() {
     $event = get_option( 'event_settings' );
     if ( !is_array( $event ) ) {
         $event = array();
     }
     $default = array(
         'active_buttons'        => array(
-        'field1'  => true,
-        'field2'  => true,
-        'field3'  => true,
-        'field4'  => true,
-        'field5'  => true,
-        'field6'  => true,
-        'field7'  => true,
-        'field8'  => true,
-        'field9'  => true,
-        'field10' => true,
-        'field11' => true,
-        'field12' => true,
-        'field13' => false,
-        'field14' => false,
-    ),
+            'field1'  => true,
+            'field2'  => true,
+            'field3'  => true,
+            'field4'  => true,
+            'field5'  => true,
+            'field6'  => true,
+            'field7'  => true,
+            'field8'  => true,
+            'field9'  => true,
+            'field10' => true,
+            'field11' => true,
+            'field12' => true,
+            'field13' => false,
+            'field14' => false,
+        ),
         'summary'               => array(
-        'field1' => 'checked',
-        'field2' => 'checked',
-        'field3' => 'checked',
-    ),
+            'field1' => 'checked',
+            'field2' => 'checked',
+            'field3' => 'checked',
+        ),
         'label'                 => array(
-        'field1'  => esc_html__( 'Short Description', 'quick-event-manager' ),
-        'field2'  => esc_html__( 'Event Time', 'quick-event-manager' ),
-        'field3'  => esc_html__( 'Venue', 'quick-event-manager' ),
-        'field4'  => esc_html__( 'Address', 'quick-event-manager' ),
-        'field5'  => esc_html__( 'Event Website', 'quick-event-manager' ),
-        'field6'  => esc_html__( 'Cost', 'quick-event-manager' ),
-        'field7'  => esc_html__( 'Organiser', 'quick-event-manager' ),
-        'field8'  => esc_html__( 'Full Description', 'quick-event-manager' ),
-        'field9'  => esc_html__( 'Places Taken', 'quick-event-manager' ),
-        'field10' => esc_html__( 'Attendees', 'quick-event-manager' ),
-        'field11' => esc_html__( 'Places Available', 'quick-event-manager' ),
-        'field12' => esc_html__( 'Registration Form', 'quick-event-manager' ),
-        'field13' => esc_html__( 'Category', 'quick-event-manager' ),
-        'field14' => esc_html__( 'Sharing', 'quick-event-manager' ),
-        'field17' => esc_html__( 'Allow variable donations', 'quick-event-manager' ),
-    ),
+            'field1'  => esc_html__( 'Short Description', 'quick-event-manager' ),
+            'field2'  => esc_html__( 'Event Time', 'quick-event-manager' ),
+            'field3'  => esc_html__( 'Venue', 'quick-event-manager' ),
+            'field4'  => esc_html__( 'Address', 'quick-event-manager' ),
+            'field5'  => esc_html__( 'Event Website', 'quick-event-manager' ),
+            'field6'  => esc_html__( 'Cost', 'quick-event-manager' ),
+            'field7'  => esc_html__( 'Organiser', 'quick-event-manager' ),
+            'field8'  => esc_html__( 'Full Description', 'quick-event-manager' ),
+            'field9'  => esc_html__( 'Places Taken', 'quick-event-manager' ),
+            'field10' => esc_html__( 'Attendees', 'quick-event-manager' ),
+            'field11' => esc_html__( 'Places Available', 'quick-event-manager' ),
+            'field12' => esc_html__( 'Registration Form', 'quick-event-manager' ),
+            'field13' => esc_html__( 'Category', 'quick-event-manager' ),
+            'field14' => esc_html__( 'Sharing', 'quick-event-manager' ),
+            'field17' => esc_html__( 'Allow variable donations', 'quick-event-manager' ),
+        ),
         'sort'                  => 'field1,field2,field3,field4,field5,field17,field6,field7,field8,field9,field10,field11,field12,field13,field14',
         'bold'                  => array(
-        'field2'  => true,
-        'field10' => true,
-    ),
+            'field2'  => true,
+            'field10' => true,
+        ),
         'italic'                => array(
-        'field4' => true,
-    ),
+            'field4' => true,
+        ),
         'colour'                => array(
-        'field2' => '#343838',
-        'field6' => '#008C9E',
-    ),
+            'field2' => '#343838',
+            'field6' => '#008C9E',
+        ),
         'size'                  => array(
-        'field1' => '110',
-        'field2' => '120',
-        'field6' => '120',
-    ),
+            'field1' => '110',
+            'field2' => '120',
+            'field6' => '120',
+        ),
         'address_label'         => '',
         'url_label'             => '',
         'description_label'     => '',
@@ -99,8 +98,7 @@ function event_get_stored_options()
     return $event;
 }
 
-function event_get_stored_display()
-{
+function event_get_stored_display() {
     $display = get_option( 'qem_display' );
     if ( !is_array( $display ) ) {
         $display = array();
@@ -151,8 +149,7 @@ function event_get_stored_display()
     return $display;
 }
 
-function qem_get_stored_style()
-{
+function qem_get_stored_style() {
     $style = get_option( 'qem_style' );
     if ( !is_array( $style ) ) {
         $style = array();
@@ -220,8 +217,7 @@ function qem_get_stored_style()
     return $style;
 }
 
-function qem_get_stored_calendar()
-{
+function qem_get_stored_calendar() {
     $calendar = get_option( 'qem_calendar' );
     if ( !is_array( $calendar ) ) {
         $calendar = array();
@@ -288,8 +284,7 @@ function qem_get_stored_calendar()
     return $calendar;
 }
 
-function qem_get_stored_register()
-{
+function qem_get_stored_register() {
     $register = get_option( 'qem_register' );
     if ( !is_array( $register ) ) {
         $register = array();
@@ -399,8 +394,7 @@ function qem_get_stored_register()
     return $register;
 }
 
-function qem_get_register_style()
-{
+function qem_get_register_style() {
     $style = get_option( 'qem_register_style' );
     $register = qem_get_stored_register();
     if ( !is_array( $style ) ) {
@@ -444,8 +438,7 @@ function qem_get_register_style()
     return $style;
 }
 
-function qem_get_stored_payment()
-{
+function qem_get_stored_payment() {
     $payment = get_option( 'qem_payment' );
     if ( !is_array( $payment ) ) {
         $payment = array();
@@ -477,7 +470,6 @@ function qem_get_stored_payment()
         'currencysymbol'      => '$',
     );
     $payment = array_merge( $default, $payment );
-    
     if ( $payment['processtype'] ) {
         if ( $payment['processtype'] == 'processfixed' ) {
             $payment['processpercent'] = false;
@@ -486,13 +478,11 @@ function qem_get_stored_payment()
             $payment['processfixed'] = false;
         }
     }
-    
     return $payment;
 }
 
-function qem_get_stored_autoresponder()
-{
-    global  $qem_fs ;
+function qem_get_stored_autoresponder() {
+    global $qem_fs;
     $auto = get_option( 'qem_autoresponder' );
     if ( !is_array( $auto ) ) {
         $auto = array();
@@ -519,8 +509,7 @@ function qem_get_stored_autoresponder()
     return $auto;
 }
 
-function qem_get_stored_incontext()
-{
+function qem_get_stored_incontext() {
     $payment = get_option( 'qem_incontext' );
     if ( !is_array( $payment ) ) {
         $payment = array();
@@ -540,8 +529,7 @@ function qem_get_stored_incontext()
     return $payment;
 }
 
-function qem_get_stored_sandbox()
-{
+function qem_get_stored_sandbox() {
     $payment = get_option( 'qem_sandbox' );
     if ( !is_array( $payment ) ) {
         $payment = array();
@@ -558,8 +546,7 @@ function qem_get_stored_sandbox()
     return $payment;
 }
 
-function qem_get_stored_api()
-{
+function qem_get_stored_api() {
     $api = get_option( 'qem_api' );
     if ( !is_array( $api ) ) {
         $api = array();
@@ -586,14 +573,12 @@ function qem_get_stored_api()
     return $api;
 }
 
-function qem_get_addons()
-{
-    global  $qem_fs ;
+function qem_get_addons() {
+    global $qem_fs;
     return array();
 }
 
-function qem_stored_guest()
-{
+function qem_stored_guest() {
     $guest = get_option( 'qem_guest' );
     if ( !is_array( $guest ) ) {
         $guest = array();
@@ -710,8 +695,7 @@ function qem_stored_guest()
     return $guest;
 }
 
-function qem_guest_list()
-{
+function qem_guest_list() {
     $event = array(
         'event_title',
         'event_date',

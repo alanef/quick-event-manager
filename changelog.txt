@@ -1,4 +1,14 @@
 == Changelog ==
+= 9.9.6 =
+* update Italian translations
+
+= 9.9.5 =
+* Fix post PayPal IPN message when variable tickets used
+* Fix date in cutoff date message
+
+= 9.9.4 =
+* Fix issue with admin notification on PayPal IPN
+
 = 9.9.3 =
 * Enable submit to work on multiple forms on same page
 
