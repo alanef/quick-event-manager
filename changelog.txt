@@ -1,4 +1,10 @@
 == Changelog ==
+= 9.9.8 =
+* fix issue with php 8.2 cutoff date
+
+= 9.9.7 =
+* fix missing image issue
+
 = 9.9.6 =
 * update Italian translations
 

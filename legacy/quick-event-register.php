@@ -427,7 +427,7 @@ function qem_display_form_unprotected_esc(  $values, $errors, $registered  ) {
     if ( !empty( $cutoffdate ) && $cutoffdate <= time() ) {
         $cutoff = 'checked';
     }
-    $utc_timestamp_converted = date( 'Y-m-d H:i:s', $cutoffdate );
+    $utc_timestamp_converted = date( 'Y-m-d H:i:s', (int) $cutoffdate );
     $cutoff_display_date = get_date_from_gmt( $utc_timestamp_converted, get_option( 'date_format' ) . ' ' . get_option( 'time_format' ) );
     $style = qem_get_register_style();
     $payment = qem_get_stored_payment();

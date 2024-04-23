@@ -53,7 +53,7 @@ function qem_event_construct_esc(  $atts  ) {
     }
     $display['read_more'] = ( $readmore ? $readmore : $display['read_more'] );
     if ( $image ) {
-        $image = 'quick-event-manager="' . $image . '">';
+        $image = 'src="' . $image . '">';
     }
     $usefeatured = false;
     if ( has_post_thumbnail( $post->ID ) && $display['usefeatured'] ) {
