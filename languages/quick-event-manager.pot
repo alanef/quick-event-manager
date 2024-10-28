@@ -6,7 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-04-23 20:12+0000\n"
+"POT-Creation-Date: 2024-10-28 22:48+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -24,6 +24,46 @@ msgstr ""
 
 #: quick-event-manager/control/autoloader.php:74
 msgid "The system file attempting to be loaded at %1$s does not exist."
+msgstr ""
+
+#: quick-event-manager/core/class-utilities.php:151, quick-event-manager/legacy/quick-event-options.php:99
+msgid "Find out more..."
+msgstr ""
+
+#: quick-event-manager/core/class-utilities.php:152, quick-event-manager/legacy/quick-event-options.php:100
+msgid "No event found"
+msgstr ""
+
+#: quick-event-manager/core/class-utilities.php:156, quick-event-manager/legacy/quick-event-options.php:104
+msgid "Return to Event list"
+msgstr ""
+
+#: quick-event-manager/core/class-utilities.php:165, quick-event-manager/legacy/quick-event-options.php:113
+msgid "Download Event to Calendar"
+msgstr ""
+
+#: quick-event-manager/core/class-utilities.php:167, quick-event-manager/legacy/quick-event-options.php:115
+msgid "Timezone:"
+msgstr ""
+
+#: quick-event-manager/core/class-utilities.php:168, quick-event-manager/legacy/quick-event-options.php:116
+msgid "time"
+msgstr ""
+
+#: quick-event-manager/core/class-utilities.php:175, quick-event-manager/legacy/quick-event-options.php:123
+msgid "Select a Category"
+msgstr ""
+
+#: quick-event-manager/core/class-utilities.php:184, quick-event-manager/legacy/quick-event-options.php:132, quick-event-manager/legacy/quick-event-options.php:189
+msgid "Event Categories:"
+msgstr ""
+
+#: quick-event-manager/core/class-utilities.php:187, quick-event-manager/legacy/quick-event-options.php:135, quick-event-manager/legacy/quick-event-options.php:193
+msgid "Current Category:"
+msgstr ""
+
+#: quick-event-manager/core/class-utilities.php:190, quick-event-manager/legacy/quick-event-options.php:138, quick-event-manager/legacy/quick-event-options.php:196, quick-event-manager/legacy/quick-event-options.php:269
+msgid "Show All"
 msgstr ""
 
 #: quick-event-manager/legacy/qem-csv-functions.php:7, quick-event-manager/legacy/qem-ics-functions.php:20, quick-event-manager/legacy/quick-event-editor.php:978, quick-event-manager/legacy/quick-event-register.php:2943, quick-event-manager/legacy/quick-event-register.php:2972, quick-event-manager/legacy/quick-event-register.php:2984, quick-event-manager/legacy/quick-event-register.php:3002, quick-event-manager/legacy/quick-event-register.php:3019, quick-event-manager/legacy/quick-event-register.php:3037, quick-event-manager/legacy/quick-event-register.php:3060, quick-event-manager/legacy/quick-event-register.php:3120, quick-event-manager/legacy/quick-event-register.php:3132, quick-event-manager/legacy/quick-event-register.php:3157, quick-event-manager/legacy/quick-event-register.php:3187
@@ -444,6 +484,14 @@ msgstr ""
 
 #: quick-event-manager/legacy/quick-event-editor.php:518, quick-event-manager/legacy/quick-event-manager-settings.php:1383, quick-event-manager/legacy/quick-event-options.php:716
 msgid "Event Image"
+msgstr ""
+
+#: quick-event-manager/legacy/quick-event-editor.php:522
+msgid "event image"
+msgstr ""
+
+#: quick-event-manager/legacy/quick-event-editor.php:520
+msgid "placeholder image"
 msgstr ""
 
 #: quick-event-manager/legacy/quick-event-editor.php:528
@@ -3552,46 +3600,6 @@ msgstr ""
 
 #: quick-event-manager/legacy/quick-event-options.php:78
 msgid "There is one person coming"
-msgstr ""
-
-#: quick-event-manager/legacy/quick-event-options.php:99
-msgid "Find out more..."
-msgstr ""
-
-#: quick-event-manager/legacy/quick-event-options.php:100
-msgid "No event found"
-msgstr ""
-
-#: quick-event-manager/legacy/quick-event-options.php:104
-msgid "Return to Event list"
-msgstr ""
-
-#: quick-event-manager/legacy/quick-event-options.php:113
-msgid "Download Event to Calendar"
-msgstr ""
-
-#: quick-event-manager/legacy/quick-event-options.php:115
-msgid "Timezone:"
-msgstr ""
-
-#: quick-event-manager/legacy/quick-event-options.php:116
-msgid "time"
-msgstr ""
-
-#: quick-event-manager/legacy/quick-event-options.php:123
-msgid "Select a Category"
-msgstr ""
-
-#: quick-event-manager/legacy/quick-event-options.php:132, quick-event-manager/legacy/quick-event-options.php:189
-msgid "Event Categories:"
-msgstr ""
-
-#: quick-event-manager/legacy/quick-event-options.php:135, quick-event-manager/legacy/quick-event-options.php:193
-msgid "Current Category:"
-msgstr ""
-
-#: quick-event-manager/legacy/quick-event-options.php:138, quick-event-manager/legacy/quick-event-options.php:196, quick-event-manager/legacy/quick-event-options.php:269
-msgid "Show All"
 msgstr ""
 
 #: quick-event-manager/legacy/quick-event-options.php:174

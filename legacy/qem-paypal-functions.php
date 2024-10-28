@@ -82,7 +82,7 @@ function qem_ipn() {
                 $message = get_option( 'qem_messages_' . $id );
                 if ( $message ) {
                     $count = count( $message );
-                    for ($i = 0; $i <= $count; $i++) {
+                    for ($i = 0; $i < $count; $i++) {
                         if ( $message[$i]['ipn'] == $custom ) {
                             $message[$i]['ipn'] = 'Paid';
                             $auto = qem_get_stored_autoresponder();
@@ -90,30 +90,27 @@ function qem_ipn() {
                             $addons = qem_get_addons();
                             $payment = qem_get_stored_payment();
                             $values = array(
-                                'yourname'        => $message[$i]['yourname'],
-                                'youremail'       => $message[$i]['youremail'],
-                                'yourtelephone'   => $message[$i]['yourtelephone'],
-                                'yourmessage'     => $message[$i]['yourmessage'],
-                                'yourplaces'      => $message[$i]['yourplaces'],
-                                'yourblank1'      => $message[$i]['yourblank1'],
-                                'yourdropdown'    => $message[$i]['yourdropdown'],
-                                'yourselector'    => $message[$i]['yourselector'],
-                                'yournumber1'     => $message[$i]['yournumber1'],
-                                'morenames'       => $message[$i]['morenames'],
-                                'ignore'          => $message[$i]['ignore'],
-                                'donation_amount' => $message[$i]['donation_amount'],
-                                'products'        => $message[$i]['products'],
+                                'yourname'        => ( isset( $message[$i]['yourname'] ) ? $message[$i]['yourname'] : '' ),
+                                'youremail'       => ( isset( $message[$i]['youremail'] ) ? $message[$i]['youremail'] : '' ),
+                                'yourtelephone'   => ( isset( $message[$i]['yourtelephone'] ) ? $message[$i]['yourtelephone'] : '' ),
+                                'yourmessage'     => ( isset( $message[$i]['yourmessage'] ) ? $message[$i]['yourmessage'] : '' ),
+                                'yourplaces'      => ( isset( $message[$i]['yourplaces'] ) ? $message[$i]['yourplaces'] : '' ),
+                                'yourblank1'      => ( isset( $message[$i]['yourblank1'] ) ? $message[$i]['yourblank1'] : '' ),
+                                'yourdropdown'    => ( isset( $message[$i]['yourdropdown'] ) ? $message[$i]['yourdropdown'] : '' ),
+                                'yourselector'    => ( isset( $message[$i]['yourselector'] ) ? $message[$i]['yourselector'] : '' ),
+                                'yournumber1'     => ( isset( $message[$i]['yournumber1'] ) ? $message[$i]['yournumber1'] : '' ),
+                                'morenames'       => ( isset( $message[$i]['morenames'] ) ? $message[$i]['morenames'] : '' ),
+                                'ignore'          => ( isset( $message[$i]['ignore'] ) ? $message[$i]['ignore'] : '' ),
+                                'donation_amount' => ( isset( $message[$i]['donation_amount'] ) ? $message[$i]['donation_amount'] : '' ),
                             );
-                            preg_match_all(
-                                '/(\\w+)\\s*x\\s*(\\d+)/',
-                                $message[$i]['products'],
-                                $matches,
-                                PREG_SET_ORDER
-                            );
-                            for ($i = 0; $i < 4; $i++) {
-                                $key = 'qtyproduct' . $i;
-                                // if there is a match for this index, use it, otherwise default to 0
-                                $values[$key] = ( isset( $matches[$i] ) ? $matches[$i][2] : 0 );
+                            if ( $message[$i]['products'] && !empty( $message[$i]['products'] ) ) {
+                                preg_match_all( '/x (\\d+)/', $message[$i]['products'], $matches );
+                                $numbers = $matches[1];
+                                for ($n = 0; $n < 4; $n++) {
+                                    $key = 'qtyproduct' . $n;
+                                    // if there is a match for this index, use it, otherwise default to 0
+                                    $values[$key] = ( isset( $numbers[$n] ) ? $numbers[$n] : 0 );
+                                }
                             }
                             $date = get_post_meta( $id, 'event_date', true );
                             $enddate = get_post_meta( $id, 'event_end_date', true );

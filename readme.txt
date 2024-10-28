@@ -1,8 +1,10 @@
 === Quick Event Manager ===
 Contributors: Fullworks
 Tags: event manager, calendar, events, event booking, event calendar
-Tested up to: 6.5
-Stable tag: 9.9.8
+Tested up to: 6.7
+Stable tag: 9.12.1
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Type: freemium
 
 Simple event manager. No messing about, just add events and a shortcode and the plugin does the rest for you.
@@ -92,6 +94,34 @@ Well OK yes you can add more fields if you want but you are going to have to fid
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/quick-event-manager)
 
 == Changelog ==
+= 9.12.1 =
+* Update libraries
+
+= 9.12 =
+* Improve Display Eventbrite integration ( Pro only )
+
+= 9.11.2 =
+* Add extra field to integration with Display Eventbrite ( Pro only )
+
+= 9.11.1 =
+* update Stripe library ( Pro only )
+
+= 9.11 =
+* fix to the auto option ( Pro Only )
+* better handling of free when installing pro
+
+= 9.10.1 =
+* update sStripe library ( Pro only )
+
+= 9.10 =
+* add option for calendar to auto start on first future month when there is an event ( Pro only )
+
+= 9.9.10 =
+* Fix broken images
+
+= 9.9.9 =
+* further fix to post IPN processing
+
 = 9.9.8 =
 * fix issue with php 8.2 cutoff date
 

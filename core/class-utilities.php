@@ -45,6 +45,58 @@ class Utilities {
         return self::$instance;
     }
 
+    /* used by external shortcode */
+    public function get_display_settings() {
+        $display = get_option( 'qem_display' );
+        if ( !is_array( $display ) ) {
+            $display = array();
+        }
+        $default = array(
+            'read_more'             => esc_html__( 'Find out more...', 'quick-event-manager' ),
+            'noevent'               => esc_html__( 'No event found', 'quick-event-manager' ),
+            'event_image'           => '',
+            'usefeatured'           => 'checked',
+            'monthheading'          => '',
+            'back_to_list_caption'  => esc_html__( 'Return to Event list', 'quick-event-manager' ),
+            'image_width'           => 300,
+            'event_image_width'     => 300,
+            'event_archive'         => '',
+            'map_width'             => 200,
+            'max_width'             => 40,
+            'map_height'            => 200,
+            'useics'                => '',
+            'uselistics'            => '',
+            'useicsbutton'          => esc_html__( 'Download Event to Calendar', 'quick-event-manager' ),
+            'usetimezone'           => '',
+            'timezonebefore'        => esc_html__( 'Timezone:', 'quick-event-manager' ),
+            'timezoneafter'         => esc_html__( 'time', 'quick-event-manager' ),
+            'show_map'              => '',
+            'map_and_image'         => 'checked',
+            'localization'          => '',
+            'monthtype'             => 'short',
+            'monthheadingorder'     => 'my',
+            'categorydropdown'      => false,
+            'categorydropdownlabel' => esc_html__( 'Select a Category', 'quick-event-manager' ),
+            'categorydropdownwidth' => false,
+            'categorylocation'      => 'title',
+            'showcategory'          => '',
+            'recentposts'           => '',
+            'lightboxwidth'         => 60,
+            'fullpopup'             => 'checked',
+            'linktocategory'        => 'checked',
+            'showuncategorised'     => '',
+            'keycaption'            => esc_html__( 'Event Categories:', 'quick-event-manager' ),
+            'showkeyabove'          => '',
+            'showkeybelow'          => '',
+            'showcategorycaption'   => esc_html__( 'Current Category:', 'quick-event-manager' ),
+            'cat_border'            => 'checked',
+            'catallevents'          => '',
+            'catalleventscaption'   => esc_html__( 'Show All', 'quick-event-manager' ),
+        );
+        $display = array_merge( $default, $display );
+        return $display;
+    }
+
     public function get_date_format() {
         $fmt = get_option( 'date_format' );
         return apply_filters( 'qem_date_format', $fmt );

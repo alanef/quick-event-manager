@@ -675,7 +675,7 @@ function qem_build_event(
                         $ipn = qem_check_ipnblock( $payment, $item );
                         if ( ('' === $event_number_max || (int) $num <= (int) $event_number_max) && !qem_get_element( $item, 'notattend', false ) && !$ipn && ($register['moderate'] && $item['approved'] || !$register['moderate']) ) {
                             $str = $str . esc_attr( qem_get_element( $item, 'yourname' ) ) . ', ';
-                            $grav = $grav . '<img title="' . esc_attr( qem_get_element( $item, 'yourname' ) ) . '" quick-event-manager="http://www.gravatar.com/avatar/' . md5( qem_get_element( $item, 'youremail' ) ) . '?s=40&&d=identicon" /> ';
+                            $grav = $grav . '<img title="' . esc_attr( qem_get_element( $item, 'yourname' ) ) . '" src="http://www.gravatar.com/avatar/' . md5( qem_get_element( $item, 'youremail' ) ) . '?s=40&&d=identicon" /> ';
                         }
                     }
                     $str = substr( $str, 0, -2 );
@@ -769,7 +769,7 @@ function get_event_map(  $mapwidth  ) {
             $mapurl = '<div class="qemmap">' . __( 'Since June 2016 you need to have a valid API key enabled to display Google maps, see plugin settings', 'quick-event-manager' ) . '</div>';
         } else {
             $map = str_replace( ' ', '+', $custom['event_address'][0] );
-            $mapurl .= '<div class="qemmap"><a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=' . $map . '&amp;t=m" ' . $target . '><img quick-event-manager="https://maps.googleapis.com/maps/api/staticmap?center=' . $map . '&size=' . $mapwidth . 'x' . $display['map_height'] . '&markers=color:blue%7C' . $map . '&key=' . $display['apikey'] . '" alt="' . $custom['event_address'][0] . '" /></a></div>';
+            $mapurl .= '<div class="qemmap"><a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=' . $map . '&amp;t=m" ' . $target . '><img src="https://maps.googleapis.com/maps/api/staticmap?center=' . $map . '&size=' . $mapwidth . 'x' . $display['map_height'] . '&markers=color:blue%7C' . $map . '&key=' . $display['apikey'] . '" alt="' . $custom['event_address'][0] . '" /></a></div>';
         }
     }
     return $mapurl;
