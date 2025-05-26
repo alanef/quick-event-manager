@@ -2,6 +2,7 @@
 
 global $qem_fs;
 // requires
+use Quick_Event_Manager\Plugin\Legacy\QEM_Event_Guest;
 require_once plugin_dir_path( __FILE__ ) . 'quick-event-options.php';
 require_once plugin_dir_path( __FILE__ ) . 'quick-event-register.php';
 require_once plugin_dir_path( __FILE__ ) . 'quick-event-payments.php';
@@ -100,8 +101,10 @@ register_activation_hook( __FILE__, 'qem_flush_rules' );
 register_activation_hook( __FILE__, 'qem_add_role' );
 // theme support
 add_theme_support( 'post-thumbnails', array('post', 'page', 'event') );
-$display = event_get_stored_display();
-if ( $display['recentposts'] ) {
-    add_action( 'pre_get_posts', 'qem_add_custom_post_type_to_query' );
-}
+add_action( 'init', function () {
+    $display = event_get_stored_display();
+    if ( $display['recentposts'] ) {
+        add_action( 'pre_get_posts', 'qem_add_custom_post_type_to_query' );
+    }
+} );
 add_action( 'pre_get_posts', 'qem_admin_edit_table_order' );

@@ -6,6 +6,24 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitbb5de37c2290cde1e74306a8f6388981
 {
+    public static $files = array (
+        '8d50dc88e56bace65e1e72f6017983ed' => __DIR__ . '/..' . '/freemius/wordpress-sdk/start.php',
+    );
+
+    public static $prefixLengthsPsr4 = array (
+        'F' => 
+        array (
+            'Fullworks_Template_Loader_Lib\\' => 30,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Fullworks_Template_Loader_Lib\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/alanef/fullworks-template-loader-lib/src',
+        ),
+    );
+
     public static $prefixesPsr0 = array (
         'C' => 
         array (
@@ -53,12 +71,14 @@ class ComposerStaticInitbb5de37c2290cde1e74306a8f6388981
         'Composer\\Installers\\WordPressInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/WordPressInstaller.php',
         'Composer\\Installers\\ZendInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/ZendInstaller.php',
         'Composer\\Installers\\ZikulaInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/ZikulaInstaller.php',
-        'Gamajo_Template_Loader' => __DIR__ . '/..' . '/gamajo/template-loader/class-gamajo-template-loader.php',
+        'Fullworks_Template_Loader_Lib\\BaseLoader' => __DIR__ . '/..' . '/alanef/fullworks-template-loader-lib/src/BaseLoader.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInitbb5de37c2290cde1e74306a8f6388981::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitbb5de37c2290cde1e74306a8f6388981::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInitbb5de37c2290cde1e74306a8f6388981::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitbb5de37c2290cde1e74306a8f6388981::$classMap;
 

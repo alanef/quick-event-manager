@@ -1,6 +1,56 @@
 {
     "packages": [
         {
+            "name": "alanef/fullworks-template-loader-lib",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alanef/fullworks-template-loader-lib.git",
+                "reference": "af25c1e55f01e55964e60eaab88281a7ee9c7e80"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alanef/fullworks-template-loader-lib/zipball/af25c1e55f01e55964e60eaab88281a7ee9c7e80",
+                "reference": "af25c1e55f01e55964e60eaab88281a7ee9c7e80",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "codedungeon/phpunit-result-printer": "^0.32",
+                "phpunit/phpunit": "^9.0",
+                "wp-phpunit/wp-phpunit": "^6.7",
+                "yoast/wp-test-utils": "^1.2"
+            },
+            "time": "2025-04-27T20:32:07+00:00",
+            "default-branch": true,
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Fullworks_Template_Loader_Lib\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "alan",
+                    "email": "alan@fullworks.net"
+                }
+            ],
+            "description": "Library to load templates for plugins",
+            "support": {
+                "issues": "https://github.com/alanef/fullworks-template-loader-lib/issues",
+                "source": "https://github.com/alanef/fullworks-template-loader-lib/tree/master"
+            },
+            "install-path": "../alanef/fullworks-template-loader-lib"
+        },
+        {
             "name": "composer/installers",
             "version": "v1.0.12",
             "version_normalized": "1.0.12.0",
@@ -93,17 +143,17 @@
         },
         {
             "name": "freemius/wordpress-sdk",
-            "version": "2.9.0",
-            "version_normalized": "2.9.0.0",
+            "version": "2.12.0",
+            "version_normalized": "2.12.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Freemius/wordpress-sdk.git",
-                "reference": "56696717c5f0b7fb395618e88e1b592d1893e5dc"
+                "reference": "db6f35a2b3d318a53330409dbeab49156ee76dd8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Freemius/wordpress-sdk/zipball/56696717c5f0b7fb395618e88e1b592d1893e5dc",
-                "reference": "56696717c5f0b7fb395618e88e1b592d1893e5dc",
+                "url": "https://api.github.com/repos/Freemius/wordpress-sdk/zipball/db6f35a2b3d318a53330409dbeab49156ee76dd8",
+                "reference": "db6f35a2b3d318a53330409dbeab49156ee76dd8",
                 "shasum": ""
             },
             "require": {
@@ -118,9 +168,14 @@
                 "szepeviktor/phpstan-wordpress": "^1.3",
                 "wp-coding-standards/wpcs": "^2.3"
             },
-            "time": "2024-10-21T10:21:58+00:00",
+            "time": "2025-05-11T07:07:09+00:00",
             "type": "library",
             "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "start.php"
+                ]
+            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-3.0-only"
@@ -138,58 +193,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Freemius/wordpress-sdk/issues",
-                "source": "https://github.com/Freemius/wordpress-sdk/tree/2.9.0"
+                "source": "https://github.com/Freemius/wordpress-sdk/tree/2.12.0"
             },
             "install-path": "../freemius/wordpress-sdk"
-        },
-        {
-            "name": "gamajo/template-loader",
-            "version": "dev-master",
-            "version_normalized": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/GaryJones/Gamajo-Template-Loader.git",
-                "reference": "05057216f60baebfc4939e1a2b9aae6e89d25c91"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/GaryJones/Gamajo-Template-Loader/zipball/05057216f60baebfc4939e1a2b9aae6e89d25c91",
-                "reference": "05057216f60baebfc4939e1a2b9aae6e89d25c91",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2.4"
-            },
-            "time": "2017-03-24T17:28:34+00:00",
-            "type": "library",
-            "installation-source": "dist",
-            "autoload": {
-                "classmap": [
-                    "class-gamajo-template-loader.php"
-                ]
-            },
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Gary Jones",
-                    "email": "gamajo@gamajo.com",
-                    "homepage": "http://gamajo.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A class for your WordPress plugin, to allow loading template parts with fallback through the child theme > parent theme > plugin",
-            "homepage": "http://github.com/GaryJones/Gamajo-Template-Loader",
-            "keywords": [
-                "templates",
-                "wordpress"
-            ],
-            "support": {
-                "issues": "https://github.com/GaryJones/Gamajo-Template-Loader/issues",
-                "source": "https://github.com/GaryJones/Gamajo-Template-Loader/tree/1.3.0"
-            },
-            "install-path": "../gamajo/template-loader"
         }
     ],
     "dev": true,
